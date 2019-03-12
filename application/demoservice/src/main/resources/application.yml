@@ -1,0 +1,13 @@
+# 服务端口号
+server:
+  port: 20001
+# 服务名称，即serviceId
+spring:
+  application:
+    name: demo-service
+# 服务注册与发现相关配置
+eureka:
+  client:
+    # 服务注册地址
+    serviceUrl:
+      defaultZone: http://127.0.0.1:20000/eureka/
