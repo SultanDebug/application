@@ -6,43 +6,18 @@
         <artifactId>application</artifactId>
         <groupId>com.hzq.demo</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.hzq</groupId>
     <artifactId>register</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <java.version>1.8</java.version>
-    </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
-        </dependency>
+        <!--项目特殊依赖-->
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.SR1</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
