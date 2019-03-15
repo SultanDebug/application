@@ -11,9 +11,9 @@
   <!--微服务信息-->
   <modules>
     <!--注册中心示例 Eureka -->
-    <module>register</module>
-    <module>config</module>
-    <module>gateway</module>
+    <module>register-service</module>
+    <!--<module>config</module>
+   <module>gateway</module>-->
   </modules>
   <!--Spring Boot版本-->
   <parent>
@@ -91,4 +91,17 @@
       </snapshots>
     </repository>
   </repositories>
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
 </project>

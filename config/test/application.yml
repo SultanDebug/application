@@ -1,6 +1,0 @@
-server:
-  port: 9092
-
-spring:
-  application:
-    name: config-app
