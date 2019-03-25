@@ -1,16 +1,17 @@
+# 端口号
 server:
   port: 20000
-
+# 服务注册配置
 eureka:
-
+# 服务示例主机名   注册中心可相互注册达到高可用效果
   instance:
     hostname: register
-
+# 服务提供者配置
   client:
-
+# 注册中心单点式的时候   不作为服务注册
     registerWithEureka: false
-
+# 单点不获取注册信息
     fetchRegistry: false
-
+# 注册中心地址
     serviceUrl:
       defaultZone: http://127.0.0.1:20000/eureka/

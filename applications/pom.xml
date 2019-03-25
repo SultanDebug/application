@@ -19,6 +19,7 @@
     <!--注册中心示例 Eureka -->
     <module>register</module>
     <module>demoservice</module>
+    <module>democlient</module>
     <module>interface</module>
     <!--<module>config</module>
    <module>gateway</module>-->

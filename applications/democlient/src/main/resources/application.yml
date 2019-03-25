@@ -4,7 +4,7 @@ server:
 spring:
   application:
     name: demo-client
-
+# 服务注册   服务发现配置
 eureka:
   client:
     serviceUrl:
