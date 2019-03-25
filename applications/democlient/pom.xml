@@ -9,9 +9,9 @@
         <!--<relativePath/> --><!-- lookup parent from repository -->
     </parent>
     <groupId>com.hzq</groupId>
-    <artifactId>demoservice</artifactId>
+    <artifactId>democlient</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demoservice</name>
+    <name>democlient</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

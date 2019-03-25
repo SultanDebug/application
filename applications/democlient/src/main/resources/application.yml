@@ -1,0 +1,11 @@
+server:
+  port: 20002
+
+spring:
+  application:
+    name: demo-client
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:20000/eureka/

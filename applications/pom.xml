@@ -8,7 +8,7 @@
   <artifactId>applications</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>applications</name>
   <!-- FIXME change it to the project's website -->
@@ -19,6 +19,7 @@
     <!--注册中心示例 Eureka -->
     <module>register</module>
     <module>demoservice</module>
+    <module>interface</module>
     <!--<module>config</module>
    <module>gateway</module>-->
   </modules>
@@ -60,6 +61,12 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <!--feign组件-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-feign</artifactId>
+    </dependency>
+
   </dependencies>
 
   <dependencyManagement>
