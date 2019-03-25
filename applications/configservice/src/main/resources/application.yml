@@ -1,0 +1,26 @@
+
+server:
+  port: 20003
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+#          clone-on-start: true
+          force-pull: true
+#          timeout: 10
+          # '{profile}'
+          searchPaths: '{profile}'
+        default-profile: ${spring.profiles.active}
+      allow-override: true
+      override-none: true
+      override-system-properties: true
+      label:
+# 服务注册   服务发现配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:20000/eureka/

@@ -21,8 +21,8 @@
     <module>demoservice</module>
     <module>democlient</module>
     <module>interface</module>
-    <!--<module>config</module>
-   <module>gateway</module>-->
+    <module>configservice</module>
+    <!--<module>gateway</module>-->
   </modules>
 
   <!--Spring Boot版本-->
@@ -66,6 +66,12 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-feign</artifactId>
+    </dependency>
+    <!--bean 工具-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
     </dependency>
 
   </dependencies>
