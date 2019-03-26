@@ -22,7 +22,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: demo-service
+    name: demo-client
   cloud:
     config:
 #      uri: http://localhost:20003
