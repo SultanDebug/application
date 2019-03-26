@@ -2,6 +2,7 @@ package com.hzq.democlient;
 
 import com.hzq.demoservice.DemoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableFeignClients(basePackages = ("com.hzq.*"))
 public class DemoclientApplication {
 
+    @Value("${test.val}")
+    private String val;
+
     @Autowired
     private DemoServiceInterface demoServiceInterface;
 
@@ -28,7 +32,7 @@ public class DemoclientApplication {
 
     @GetMapping("/democlient/test/{name}")
     public String clientTest(@PathVariable("name") String name){
-        return "clienttest para :"+name +". demoservice para : "+ demoServiceInterface.getTest(name);
+        return "clienttest para :"+name +". demoservice para : "+ demoServiceInterface.getTest(name) + ",当前配置文件数据：" + val;
     }
 
 }
