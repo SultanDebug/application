@@ -14,6 +14,7 @@
 - demoservice
   - feign测试服务提供方
   - redis  ssdb连接及性能测试
+  - rabbitmq 测试
 
 ------
 
