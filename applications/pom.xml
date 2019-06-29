@@ -22,7 +22,7 @@
     <module>democlient</module>
     <module>interface</module>
     <module>configservice</module>
-    <!--<module>gateway</module>-->
+      <module>gateway</module>
   </modules>
 
   <!--Spring Boot版本-->
@@ -83,6 +83,21 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
       <optional>true</optional>
+    </dependency>
+
+    <!-- 网关 -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+    </dependency>
+    <!--<dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-gateway</artifactId>
+    </dependency>
+-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
     </dependency>
 
     <!-- Swagger -->
