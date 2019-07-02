@@ -14,13 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sun.nio.ch.ThreadPool;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author Huangzq
  * @date 2019-04-12
  */
 @RestController
-@Api("测试服务")
+@Api(tags = "中间件测试接口")
 @Slf4j
 public class DemoController  {
 
@@ -36,15 +40,15 @@ public class DemoController  {
     @Autowired
     private ProduceThreadPool produceThreadPool;
 
-    @ApiOperation("redis 性能测试")
+    @ApiOperation(value = "redis 性能测试")
     @GetMapping("/redis")
     public String redis(@RequestParam String str){
 
         System.out.println(redisCon);
 
-        redisUtil.set("test","val");
+        redisUtil.set("test","我是园丁");
 
-        return "hello:"+str+","+redisUtil.get("test");
+        return "花朵花朵"+str+","+redisUtil.get("test");
     }
 
     @ApiOperation("ssdb 性能测试")
@@ -58,7 +62,7 @@ public class DemoController  {
         return "hello:"+str+","+ssdb.get("test");
     }
 
-    @ApiOperation("mq生产者开关")
+    @ApiOperation("mq多线程生产者开关")
     @GetMapping("/mq")
     public String mq(@RequestParam(required = false) Long thredId){
 
@@ -66,6 +70,32 @@ public class DemoController  {
             Thread thread = ProduceThreadPool.pool.get(thredId);
             thread.interrupt();
         }else{
+
+            /*ExecutorService executorService = ProduceThreadPool.executorService;
+
+            Runnable runnable = () -> {
+                for (int i = 0;i<Integer.MAX_VALUE;i++){
+                    msgProducer.sendMsg("发送第 "+i+" 条消息");
+                    log.info("发送{}次消息",i);
+                    if(Thread.currentThread().isInterrupted()){
+                        log.info(Thread.currentThread().getId()+" 已经停止");
+                        break;
+                    }
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+                        log.info("测试");
+                        break;
+                    }
+                }
+            };
+
+            executorService.execute(runnable);*/
+
+
+
             Thread thread = new Thread(() -> {
                 for (int i = 0;i<Integer.MAX_VALUE;i++){
                     msgProducer.sendMsg("发送第 "+i+" 条消息");

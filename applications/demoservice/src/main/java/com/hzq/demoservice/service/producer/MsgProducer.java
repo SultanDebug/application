@@ -25,7 +25,7 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback {
     @Autowired
     public MsgProducer(RabbitTemplate rabbitTemplate){
         this.rabbitTemplate = rabbitTemplate;
-        rabbitTemplate.setConfirmCallback(this::confirm);
+        this.rabbitTemplate.setConfirmCallback(this::confirm);
     }
 
     public void sendMsg(String msg){

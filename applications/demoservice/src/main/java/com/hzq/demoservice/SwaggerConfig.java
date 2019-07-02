@@ -29,9 +29,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        Contact contact = new Contact("黄生", "", "hzqsultan9527@gmail.com");
-        return new ApiInfoBuilder().title("demoservice接口") // 任意，请稍微规范点
-                .description("测试地址:http://localhost:20001/swagger-ui.html") // 任意，请稍微规范点
+        Contact contact = new Contact("黄大仙", "", "hzqsultan9527@gmail.com");
+        return new ApiInfoBuilder().title("内网穿透测试") // 任意，请稍微规范点
+                .description("微服务测试接口:http://sultanlocal.free.idcfengye.com/swagger-ui.html") // 任意，请稍微规范点
                 .contact(contact) // 无所谓（这里是作者的别称）
                 .version("1.0") //
                 .build();
