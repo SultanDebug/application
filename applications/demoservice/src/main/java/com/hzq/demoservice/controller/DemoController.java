@@ -1,23 +1,18 @@
 package com.hzq.demoservice.controller;
 
 import com.hzq.demoservice.config.RedisCon;
-import com.hzq.demoservice.service.producer.MsgProducer;
+import com.hzq.demoservice.service.rabbitmq.MsgProducer;
 import com.hzq.demoservice.ssdb.core.SSDB;
 import com.hzq.demoservice.util.ProduceThreadPool;
 import com.hzq.demoservice.util.RedisUtil;
-import com.netflix.discovery.converters.Auto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sun.nio.ch.ThreadPool;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author Huangzq
@@ -38,6 +33,9 @@ public class DemoController  {
     private MsgProducer msgProducer;
 
     @Autowired
+    private CuratorFramework curatorFramework;
+
+    @Autowired
     private ProduceThreadPool produceThreadPool;
 
     @ApiOperation(value = "redis 性能测试")
@@ -48,7 +46,7 @@ public class DemoController  {
 
         redisUtil.set("test","我是园丁");
 
-        return "花朵花朵"+str+","+redisUtil.get("test");
+        return "花朵花朵"+","+redisUtil.get("test");
     }
 
     @ApiOperation("ssdb 性能测试")
@@ -121,6 +119,13 @@ public class DemoController  {
         }
 
         return thredId+"中断成功";
+    }
+
+    @ApiOperation("zookeeper测试")
+    @GetMapping("/zk")
+    public String zkTest(){
+
+        return "success";
     }
 
 }

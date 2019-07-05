@@ -1,4 +1,4 @@
-package com.hzq.demoservice.service.producer;
+package com.hzq.demoservice.service.rabbitmq;
 
 import com.hzq.demoservice.config.RabbitMqConfig;
 import lombok.extern.slf4j.Slf4j;

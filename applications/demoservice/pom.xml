@@ -20,6 +20,7 @@
 
     <dependencies>
 
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -30,6 +31,27 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+        <!--curator-recipes-->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <!--<version>2.12.0</version>-->
+        </dependency>
+
+        <!--curator-framework-->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <!--<version>2.12.0</version>-->
+        </dependency>
+
+        <!--curator-test 用来模拟 zookeeper 环境-->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-test</artifactId>
+            <!--<version>2.12.0</version>-->
         </dependency>
 
         <dependency>
