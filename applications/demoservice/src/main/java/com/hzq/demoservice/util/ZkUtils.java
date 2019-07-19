@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -71,42 +72,48 @@ public class ZkUtils<T> {
 
     }
 
-    public T pop(){
+    public T pop() throws Exception {
 
         System.out.println( "*******开始消费*******");
         CuratorFramework curatorFramework = getCon();
+
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+
         T t = null;
 
-        try {
-            System.out.println("读数据");
-            List<String> list = curatorFramework.getChildren().forPath(rootPath);
+        while (true){
+            try {
+                System.out.println("读数据");
+                List<String> list = curatorFramework.getChildren().forPath(rootPath);
 
-            list.sort(String::compareTo);
+                list.sort(String::compareTo);
 
-            String path = rootPath.concat("/").concat(list.get(list.size()-1));
+                String path = rootPath.concat("/").concat(list.get(list.size()-1));
 
-            byte[] tmp = curatorFramework.getData().forPath(path);
+                byte[] tmp = curatorFramework.getData().forPath(path);
 
-            zkDel(path);
+                zkDel(path);
 
-            System.out.println(Thread.currentThread()+"删除成功");
+                countDownLatch.countDown();
 
-            //反序列化对象
-            String res = new String(tmp);
+                System.out.println(Thread.currentThread()+"删除成功");
 
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(res.getBytes("ISO-8859-1"));
-            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+                //反序列化对象
+                String res = new String(tmp);
 
-            t = (T) objectInputStream.readObject();
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(res.getBytes("ISO-8859-1"));
+                ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 
-            return t;
+                t = (T) objectInputStream.readObject();
 
-        } catch (Exception e) {
-            System.out.println("获取队列数据失败");
+                return t;
+
+            } catch (Exception e) {
+                System.out.println("获取队列数据失败");
 //                    e.printStackTrace();
+                countDownLatch.await();
+            }
         }
-
-        return t;
     }
 
     private static void zkDel(String path) throws Exception{
@@ -144,11 +151,11 @@ public class ZkUtils<T> {
             test.push(users2);
             test.push(users3);*/
 
-            Users users = test.pop();
-            System.out.println(users.getId()+"/"+users.getUserName());
+//            Users users = test.pop();
+//            System.out.println(users.getId()+"/"+users.getUserName());
 
 
-            /*ExecutorService executorService = Executors.newFixedThreadPool(5);
+            ExecutorService executorService = Executors.newFixedThreadPool(4);
 
             Runnable runnable = () -> {
                 try {
@@ -167,9 +174,8 @@ public class ZkUtils<T> {
             executorService.execute(runnable);
             executorService.execute(runnable);
             executorService.execute(runnable);
-            executorService.execute(runnable);
 
-            executorService.shutdown();*/
+            executorService.shutdown();
 
         }catch (Exception e){
 
