@@ -1,11 +1,9 @@
 package com.hzq.demoservice.util;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

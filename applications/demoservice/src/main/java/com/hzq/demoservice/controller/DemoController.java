@@ -1,5 +1,6 @@
 package com.hzq.demoservice.controller;
 
+import com.hzq.demoservice.DemoServiceInterface;
 import com.hzq.demoservice.config.RedisCon;
 import com.hzq.demoservice.service.rabbitmq.MsgProducer;
 import com.hzq.demoservice.ssdb.core.SSDB;
@@ -10,7 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019-04-12
  */
 @RestController
-@Api(tags = "中间件测试接口")
+@Api(tags = "feign和中间件测试接口")
 @Slf4j
-public class DemoController  {
+public class DemoController implements DemoServiceInterface {
 
     @Autowired
     private RedisUtil redisUtil;
@@ -38,13 +41,23 @@ public class DemoController  {
     @Autowired
     private ProduceThreadPool produceThreadPool;
 
+    @Value("${test.val}")
+    private String val;
+
+    @ApiOperation(value = "service端")
+    @GetMapping("/demo/{name}")
+    public String getTest(@PathVariable("name") String name){
+        System.out.println("----------测试---------");
+        return "hello "+name+",there is :"+val;
+    }
+
     @ApiOperation(value = "redis 性能测试")
     @GetMapping("/redis")
     public String redis(@RequestParam String str){
 
         System.out.println(redisCon);
 
-        redisUtil.set("test","我是园丁");
+        redisUtil.set("test",str);
 
         return "花朵花朵"+","+redisUtil.get("test");
     }
