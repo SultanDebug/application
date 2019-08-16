@@ -1,5 +1,5 @@
 server:
-  port: 20001
+  port: 20005
 
 # 服务注册   服务发现配置
 eureka:
@@ -31,7 +31,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: demo-service
+    name: spring-boot-starter-demo
   cloud:
     config:
 #      uri: http://localhost:20003
