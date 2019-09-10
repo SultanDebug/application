@@ -24,6 +24,7 @@
     <module>configservice</module>
       <module>gateway</module>
     <module>spring-boot-starter-demo</module>
+    <module>kafkaservice</module>
   </modules>
 
   <!--Spring Boot版本-->

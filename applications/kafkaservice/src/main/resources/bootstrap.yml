@@ -1,0 +1,44 @@
+server:
+  port: 20009
+
+# 服务注册   服务发现配置
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:20000/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
+
+#spring:
+#  application:
+#    name: demo-service
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true #开启配置中心服务
+#        service-id: config-service #配置中心服务名
+#      profile: dev
+#test:
+#  val: sultan-dev
+spring:
+  profiles:
+    active: dev
+  application:
+    name: kafka-service
+  cloud:
+    config:
+#      uri: http://localhost:20003
+#      name: config-service
+      profile: ${spring.profiles.active}
+      label: master
+      fail-fast: true
+      discovery:
+        enabled: true #开启配置中心服务
+        service-id: config-service #配置中心服务名
