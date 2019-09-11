@@ -25,6 +25,7 @@
       <module>gateway</module>
     <module>spring-boot-starter-demo</module>
     <module>kafkaservice</module>
+      <module>spring-boot-starter-hzqtest</module>
   </modules>
 
   <!--Spring Boot版本-->
