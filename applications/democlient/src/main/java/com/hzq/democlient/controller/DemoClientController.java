@@ -32,13 +32,13 @@ public class DemoClientController {
     private DemoServiceInterface demoServiceInterface;
 
     @ApiOperation(value = "client端测试")
-    @GetMapping("/democlient/test/{name}")
+    @GetMapping("/client/democlient/test/{name}")
     public String clientTest(@PathVariable("name") String name){
         return "clienttest para :"+name +". demoservice para : "+ demoServiceInterface.getTest(name) + ",当前配置文件数据：" + val;
     }
 
     @ApiOperation(value = "client端starter测试")
-    @GetMapping("/democlient/starterTest")
+    @GetMapping("/client/democlient/starterTest")
     public String starterTest(){
         personService.sayHello();
         return "测试成功";

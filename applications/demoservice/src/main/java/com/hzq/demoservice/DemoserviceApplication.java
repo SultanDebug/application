@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @EnableEurekaClient
 @SpringBootApplication
-@RestController
 /*@EnableDiscoveryClient*/
 @EnableFeignClients(basePackages = ("com.hzq.*"))
 public class DemoserviceApplication {

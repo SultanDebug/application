@@ -22,10 +22,10 @@
     <module>democlient</module>
     <module>interface</module>
     <module>configservice</module>
-      <module>gateway</module>
-    <module>spring-boot-starter-demo</module>
+    <module>gateway</module>
     <module>kafkaservice</module>
-      <module>spring-boot-starter-hzqtest</module>
+    <module>spring-boot-starter-hzqtest</module>
+    <module>cloud-gateway</module>
   </modules>
 
   <!--Spring Boot版本-->

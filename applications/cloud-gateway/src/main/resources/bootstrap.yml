@@ -1,5 +1,5 @@
 server:
-  port: 20999
+  port: 29999
 
 # 服务注册   服务发现配置
 eureka:
@@ -7,8 +7,14 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://192.168.43.1:20000/eureka/
-    registry-fetch-interval-seconds: 5
+      defaultZone: http://127.0.0.1:20000/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
 
 #spring:
 #  application:
@@ -25,11 +31,11 @@ spring:
   profiles:
     active: dev
   application:
-    name: gate-way
+    name: cloud-gateway
   cloud:
     config:
-#      uri: http://localhost:20003
-#      name: config-service
+      #      uri: http://localhost:20003
+      #      name: config-service
       profile: ${spring.profiles.active}
       label: master
       fail-fast: true
