@@ -26,6 +26,7 @@
     <module>kafkaservice</module>
     <module>spring-boot-starter-hzqtest</module>
     <module>cloud-gateway</module>
+      <module>common</module>
   </modules>
 
   <!--Spring Boot版本-->
