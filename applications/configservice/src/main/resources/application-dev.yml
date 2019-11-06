@@ -6,3 +6,4 @@ spring:
           username: hzqsultan@qq.com
           password: 2012sultan
           uri: https://github.com/SultanDebug/config.git
+          skipSslValidation: true
