@@ -44,10 +44,15 @@ public class DemoClientController {
 
         LogAop logAop = applicationContext.getBean(LogAop.class);
         log.info("aop实例：{}",logAop.toString());
+        String service = "";
+        try {
+            String str = demoServiceInterface.getTest(name);
+            service += str;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-
-
-        return "clienttest para :"+name /*+". demoservice para : "+ demoServiceInterface.getTest(name)*/ + ",当前配置文件数据：" + val;
+        return "clienttest para :"+name +". demoservice para : "+ service + ",当前配置文件数据：" + val;
     }
 
     @ApiOperation(value = "client端starter测试")
