@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "feign和中间件测试接口")
 @Slf4j
-public class DemoController implements DemoServiceInterface {
+public class DemoController implements DemoServiceInterface{
 
     @Autowired
     private RedisUtil redisUtil;
@@ -47,7 +47,7 @@ public class DemoController implements DemoServiceInterface {
     @ApiOperation(value = "service端")
     @GetMapping("/demo/{name}")
     public String getTest(@PathVariable("name") String name){
-        System.out.println("----------测试---------");
+        log.info("----------测试{}---------",name);
         return "hello "+name+",there is :"+val;
     }
 
