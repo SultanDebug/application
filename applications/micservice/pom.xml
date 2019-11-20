@@ -25,6 +25,7 @@
         <module>demoservice</module>
         <module>democlient</module>
         <module>kafkaservice</module>
+        <module>feignservice</module>
     </modules>
 
     <dependencies>

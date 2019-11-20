@@ -3,6 +3,7 @@ package com.hzq.democlient.controller;
 import com.hzq.common.aop.LogAop;
 import com.hzq.common.utils.ApplicationContextUtils;
 import com.hzq.demoservice.DemoServiceInterface;
+import com.hzq.feignservice.FeignServInterface;
 import com.hzq.starter.service.PersonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +25,7 @@ import org.springframework.web.context.ContextLoader;
  * @date 2019/8/6 15:59
  */
 @RestController
-@Api(tags = "feign和中间件测试接口")
+@Api(tags = "feign客户端和中间件测试接口")
 @Slf4j
 public class DemoClientController {
     @Value("${test.val}")
@@ -33,8 +34,11 @@ public class DemoClientController {
     @Autowired(required = false)
     private PersonService personService;
 
+    /*@Autowired
+    private DemoServiceInterface demoServiceInterface;*/
+
     @Autowired
-    private DemoServiceInterface demoServiceInterface;
+    private FeignServInterface feignServInterface;
 
     @ApiOperation(value = "client端测试")
     @GetMapping("/client/democlient/test/{name}")
@@ -46,7 +50,7 @@ public class DemoClientController {
         log.info("aop实例：{}",logAop.toString());
         String service = "";
         try {
-            String str = demoServiceInterface.getTest(name);
+            String str = feignServInterface.servTest(name);
             service += str;
         }catch (Exception e){
             e.printStackTrace();
