@@ -9,14 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hzq.starter</groupId>
-    <artifactId>spring-boot-starter-hzqtest</artifactId>
-    <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>micservice</artifactId>
 
-    <name>spring-boot-starter-hzqtest</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+    <name>micservice</name>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,26 +21,19 @@
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
+    <modules>
+        <module>demoservice</module>
+        <module>democlient</module>
+        <module>kafkaservice</module>
+    </modules>
+
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.60</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>

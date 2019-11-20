@@ -11,22 +11,18 @@
   <packaging>pom</packaging>
 
   <name>applications</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <!--微服务信息-->
   <modules>
     <!--注册中心示例 Eureka -->
     <module>register</module>
-    <module>demoservice</module>
-    <module>democlient</module>
     <module>interface</module>
     <module>configservice</module>
     <module>gateway</module>
-    <module>kafkaservice</module>
     <module>spring-boot-starter-hzqtest</module>
     <module>cloud-gateway</module>
       <module>common</module>
+    <module>micservice</module>
   </modules>
 
   <!--Spring Boot版本-->
@@ -40,12 +36,12 @@
 
   <!--基础的Spring Boot/Cloud依赖-->
   <dependencies>
-    <dependency>
+    <!--<dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>-->
     <!--服务监视器组件-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -139,14 +135,14 @@
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
-      <version>2.5.0</version>
+      <version>2.7.0</version>
       <optional>true</optional>
     </dependency>
 
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
-      <version>2.5.0</version>
+      <version>2.7.0</version>
       <optional>true</optional>
     </dependency>
 
@@ -207,6 +203,14 @@
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
         </plugin>
         <!--<plugin>
           <groupId>org.apache.maven.plugins</groupId>
