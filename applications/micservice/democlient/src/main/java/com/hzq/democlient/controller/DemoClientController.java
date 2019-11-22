@@ -2,6 +2,7 @@ package com.hzq.democlient.controller;
 
 import com.hzq.common.aop.LogAop;
 import com.hzq.common.utils.ApplicationContextUtils;
+import com.hzq.common.utils.UserUtils;
 import com.hzq.demoservice.DemoServiceInterface;
 import com.hzq.feignservice.FeignServInterface;
 import com.hzq.starter.service.PersonService;
@@ -17,6 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Huangzq
@@ -43,6 +49,12 @@ public class DemoClientController {
     @ApiOperation(value = "client端测试")
     @GetMapping("/client/democlient/test/{name}")
     public String clientTest(@PathVariable("name") String name){
+        RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
+        HttpServletRequest request = sra.getRequest();
+        log.info("thread local val : "+UserUtils.getUser()+" 线程："+Thread.currentThread().getId()+" 请求头参数："+request.getHeader("user"));
+
+//        UserUtils.removeUser();
 
         ApplicationContext applicationContext = ApplicationContextUtils.getApplicationContext();
 

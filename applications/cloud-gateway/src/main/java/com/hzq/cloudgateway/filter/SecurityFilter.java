@@ -1,5 +1,6 @@
 package com.hzq.cloudgateway.filter;
 
+import com.hzq.common.utils.UserUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -28,6 +29,8 @@ public class SecurityFilter implements GatewayFilter , Ordered {
         ServerHttpResponse serverHttpResponse = exchange.getResponse();
 
         exchange.getAttributes().put("startTime",System.currentTimeMillis());
+
+//        UserUtils.setUser(exchange.getRequest().getHeaders().getFirst("user"));
 
 //        String srce = serverHttpRequest.getHeaders().;
 

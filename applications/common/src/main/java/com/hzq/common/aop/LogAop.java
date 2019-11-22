@@ -2,12 +2,14 @@ package com.hzq.common.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.hzq.common.utils.UserUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -67,13 +69,26 @@ public class LogAop {
     public Object process(ProceedingJoinPoint point) throws Throwable {
         String className = point.getTarget().getClass().getSimpleName()+"."+point.getSignature().getName();
 
-        log.info("执行{}，入参为：{}",className, JSONArray.toJSONString(paramsList(point)));
+        try {
+            log.info("执行{}，入参为：{}",className, JSONArray.toJSONString(paramsList(point)));
 
-        Object result = point.proceed();
+            RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+            ServletRequestAttributes sra = (ServletRequestAttributes) ra;
+            HttpServletRequest request = sra.getRequest();
+            UserUtils.setUser(request.getHeader("user"));
 
-        log.info("执行{}，出参为：{}",className, JSON.toJSONString(result));
+            Object result = point.proceed();
 
-        return result;
+            log.info("执行{}，出参为：{}",className, JSON.toJSONString(result));
+
+            UserUtils.removeUser();
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            UserUtils.removeUser();
+        }
+
+        return null;
     }
 
     private List<Object> paramsList(ProceedingJoinPoint point){
