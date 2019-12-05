@@ -5,6 +5,8 @@ import com.hzq.common.utils.ApplicationContextUtils;
 import com.hzq.common.utils.UserUtils;
 import com.hzq.demoservice.DemoServiceInterface;
 import com.hzq.feignservice.FeignServInterface;
+import com.hzq.rediscore.lockaop.RedisLock;
+import com.hzq.rediscore.service.RedisService;
 import com.hzq.starter.service.PersonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,6 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Huangzq
@@ -39,6 +42,9 @@ public class DemoClientController {
 
     @Autowired(required = false)
     private PersonService personService;
+
+    @Autowired
+    private RedisService redisService;
 
     /*@Autowired
     private DemoServiceInterface demoServiceInterface;*/
@@ -76,6 +82,15 @@ public class DemoClientController {
     public String starterTest(){
         personService.sayHello();
         return "测试成功";
+    }
+
+    @ApiOperation(value = "client端redis锁测试")
+    @GetMapping("/client/democlient/redis")
+    @RedisLock(lockKey = "lockKey",expire = 60000)
+    public String redis(String val) throws InterruptedException {
+        redisService.set("testKey",val);
+        TimeUnit.SECONDS.sleep(1L);
+        return (String) redisService.get("testKey");
     }
 
 }

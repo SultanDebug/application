@@ -23,6 +23,7 @@
     <module>cloud-gateway</module>
       <module>common</module>
     <module>micservice</module>
+    <module>framework</module>
   </modules>
 
   <!--Spring Boot版本-->
