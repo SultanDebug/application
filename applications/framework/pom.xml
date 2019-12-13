@@ -16,6 +16,9 @@
     <name>framework</name>
     <modules>
         <module>rediscore</module>
+        <module>kafkacore</module>
+        <module>rabbitmqcore</module>
+        <module>zkcore</module>
     </modules>
 
 

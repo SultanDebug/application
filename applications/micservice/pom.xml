@@ -26,6 +26,8 @@
         <module>democlient</module>
         <module>kafkaservice</module>
         <module>feignservice</module>
+        <module>rabbitservice</module>
+        <module>zkservice</module>
     </modules>
 
     <dependencies>
