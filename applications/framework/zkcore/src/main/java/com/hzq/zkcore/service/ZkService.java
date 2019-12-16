@@ -84,6 +84,14 @@ public class ZkService<T> {
         return t;
     }
 
+    public List<String> getAllNode(String root) throws Exception {
+        List<String> list = curatorFramework.getChildren().forPath(root);
+
+        list.sort(String::compareTo);
+
+        return list;
+    }
+
     public void zkDel(String path) throws Exception{
 
         curatorFramework.delete().forPath(path);
