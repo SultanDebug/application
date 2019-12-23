@@ -1,5 +1,7 @@
 package com.hzq.kafka.kafkaservice.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.hzq.kafka.kafkaservice.config.KafkaConstant;
 import com.hzq.kafka.kafkaservice.msgbean.MsgBean;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +24,15 @@ import java.util.Properties;
 @Component
 @Slf4j
 public class ConsumerService {
+
+    private Gson gson = new GsonBuilder().create();
+
     @KafkaListener(topics = {KafkaConstant.TEST_TOPIC})
     public void consumerMsg(ConsumerRecord<?,?> record){
         Optional<?> msg = Optional.ofNullable(record.value());
 
         if(msg.isPresent()){
-            MsgBean msgBean = (MsgBean) msg.get();
+            MsgBean msgBean = gson.fromJson ((String) msg.get(),MsgBean.class) ;
 
             log.info("<<<<<<<<<<<<<<bean：{}>>>>>>>>>>>>",msgBean);
             log.info("<<<<<<<<<<<<<<optional：{}>>>>>>>>>>>>",msg);
