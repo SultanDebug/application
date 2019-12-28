@@ -65,6 +65,13 @@
             <version>4.12</version>
         </dependency>
         <!-- 接口导出 -->
+
+        <!--websocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <!--websocket-->
     </dependencies>
 
     <build>
