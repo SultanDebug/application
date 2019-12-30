@@ -45,13 +45,15 @@ public class RabbitQueue {
         return BindingBuilder.bind(defaultQueue()).to(defaultExchange()).with(ROUTINGKEY_A);
     }
 
+
+
     /******************默认队列*********************/
 
     /******************示例队列*********************/
 
-    /*@Bean
+    @Bean
     public DirectExchange demoExchange(){
-        return new DirectExchange(EXCHANGE_B);
+        return new DirectExchange(EXCHANGE_A);
     }
 
     @Bean
@@ -61,8 +63,8 @@ public class RabbitQueue {
 
     @Bean
     public Binding demoBinding(){
-        return BindingBuilder.bind(demoQueue()).to(demoExchange()).with(ROUTINGKEY_B);
-    }*/
+        return BindingBuilder.bind(demoQueue()).to(demoExchange()).with(ROUTINGKEY_A);
+    }
 
     /******************示例队列*********************/
 }

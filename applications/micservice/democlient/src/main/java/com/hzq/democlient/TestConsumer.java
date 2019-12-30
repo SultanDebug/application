@@ -1,6 +1,5 @@
-package com.hzq.rabbitservice.consumer;
+package com.hzq.democlient;
 
-import com.hzq.rabbitservice.config.RabbitQueue;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -13,11 +12,11 @@ import org.springframework.stereotype.Component;
  * @date 2019/12/13 15:40
  */
 @Component
-@RabbitListener(queues = RabbitQueue.QUEUE_A)
+@RabbitListener(queues = "QUEUE_B")
 @Slf4j
 public class TestConsumer {
     @RabbitHandler
     public void process(String msg){
-        log.info("收到A队列消息："+msg);
+        log.info("收到B队列消息："+msg);
     }
 }
