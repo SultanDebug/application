@@ -48,11 +48,11 @@
           <artifactId>spring-cloud-openfeign-core</artifactId>
         </dependency>-->
 
-        <!--web组件-->
-        <dependency>
+        <!--web组件 会跟gateway的webflux冲突-->
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--配置信息获取-->
         <dependency>

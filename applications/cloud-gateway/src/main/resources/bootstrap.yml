@@ -42,3 +42,8 @@ spring:
       discovery:
         enabled: true #开启配置中心服务
         service-id: config-service #配置中心服务名
+  main:
+    allow-bean-definition-overriding: true
+feign:
+  httpclient:
+    enabled: true
