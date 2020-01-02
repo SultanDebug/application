@@ -42,8 +42,3 @@ spring:
       discovery:
         enabled: true #开启配置中心服务
         service-id: config-service #配置中心服务名
-  rabbitmq:
-    host: 192.168.50.50
-    port: 5672
-    username: admin
-    password: 123456

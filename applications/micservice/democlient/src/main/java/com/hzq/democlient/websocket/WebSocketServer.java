@@ -1,5 +1,6 @@
 package com.hzq.democlient.websocket;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -15,6 +16,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 @ServerEndpoint("/websocket/{sid}")
 @Component
+@Slf4j
 public class WebSocketServer {
     private static int onlineCount=0;
 
@@ -39,7 +41,7 @@ public class WebSocketServer {
 
         addCount();
 
-        System.out.println("连接打开，监听："+sid+"当前在线人数："+getCount());
+        log.info("连接打开，监听："+sid+"当前在线人数："+getCount());
 
         try {
             sendMsg("连接成功！");
@@ -53,15 +55,15 @@ public class WebSocketServer {
     public void onClose(){
         webSocketServers.remove(this);
         subCount();
-        System.out.println("连接关闭，监听关闭："+sid+"当前在线人数："+getCount());
+        log.info("连接关闭，监听关闭："+sid+"当前在线人数："+getCount());
     }
 
     @OnMessage
     public void OnMessage(String msg, Session session){
-        System.out.println("收到客户端："+sid+" 消息："+msg);
+        log.info("收到客户端："+sid+" 消息："+msg);
         for (WebSocketServer webSocketServer : webSocketServers) {
             try {
-                webSocketServer.sendMsg(this.sid+":"+msg);
+                webSocketServer.sendMsg(msg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,18 +76,32 @@ public class WebSocketServer {
      * @param sid
      */
     public static void sendInfo(String msg,@PathParam("sid") String sid) {
-        //换成map  省循环
+        //换成map  省循环  经测试map不能保存同用户多客户端的问题
+        /*if(sid==null){
+
+            for (Map.Entry<String, WebSocketServer> stringWebSocketServerEntry : webSocketServers.entrySet()) {
+                try {
+                    WebSocketServer webSocketServer = stringWebSocketServerEntry.getValue();
+                    webSocketServer.sendMsg(msg);
+                }catch (IOException e){
+                    log.error(e.getMessage());
+                }
+            }
+        }else if(webSocketServers.get(sid) != null && sid.equals(webSocketServers.get(sid).sid)){
+            log.info("针对推送："+sid+" 内容："+msg);
+            webSocketServers.get(sid).sendMsg(msg);
+        }*/
+
         for (WebSocketServer webSocketServer : webSocketServers) {
             try {
                 if(sid==null){
                     webSocketServer.sendMsg(msg);
                 }else if(sid.equals(webSocketServer.sid)){
-                    System.out.println("针对推送："+sid+" 内容："+msg);
-                    webSocketServer.sendMsg(webSocketServer.sid+":"+msg);
+                    log.info("针对推送："+sid+" 内容："+msg);
+                    webSocketServer.sendMsg(msg);
                 }
             }catch (IOException e){
-                System.out.println("error:"+webSocketServer.sid);
-                continue;
+                log.info("error:"+webSocketServer.sid);
             }
 
         }
@@ -93,9 +109,14 @@ public class WebSocketServer {
 
     @OnError
     public void onError(Session session, Throwable error){
-        System.out.println("异常："+error.getStackTrace());
+        log.info("异常："+error.getStackTrace());
     }
 
+    /**
+     * 发送
+     * @param msg
+     * @throws IOException
+     */
     public void sendMsg(String msg) throws IOException {
         this.session.getBasicRemote().sendText(msg);
     }
