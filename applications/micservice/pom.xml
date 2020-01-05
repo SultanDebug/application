@@ -28,6 +28,7 @@
         <module>feignservice</module>
         <module>rabbitservice</module>
         <module>zkservice</module>
+        <module>nettyservice</module>
     </modules>
 
     <dependencies>
