@@ -23,6 +23,9 @@ public class SocketReqDTO implements Serializable {
     @ApiModelProperty(value = "用户")
     private String cid;
 
+    @ApiModelProperty(value = "服务")
+    private String server;
+
     @ApiModelProperty(value = "内容")
     private String content;
 

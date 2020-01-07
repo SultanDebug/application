@@ -3,8 +3,10 @@ package com.hzq.democlient.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hzq.democlient.SocketReqDTO;
+import com.hzq.democlient.config.WebSocketServerConst;
+import com.hzq.democlient.server.BussOneServerImpl;
+import com.hzq.democlient.server.BussTwoServerImpl;
 import com.hzq.democlient.utils.RedisSerialUtils;
-import com.hzq.democlient.websocket.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
@@ -54,10 +56,24 @@ public class WebsocketListener implements MessageListener {
 
         String topic = new String(channel);
 
-        log.info("实体：{}，信道：{}", JSONObject.toJSONString(jsonArray.getObject(1, SocketReqDTO.class)),topic);
+        SocketReqDTO socketReqDTO = jsonArray.getObject(1, SocketReqDTO.class);
+
+        log.info("实体：{}，信道：{}", JSONObject.toJSONString(socketReqDTO),topic);
 
         //发送消息
-        WebSocketServer.sendInfo(JSONObject.toJSONString(jsonArray.getObject(1,SocketReqDTO.class)),jsonArray.getObject(1,SocketReqDTO.class).getCid());
+        /*WebSocketServerDict.WebSocketEnum webSocketEnum = WebSocketServerDict.WebSocketEnum.getByCode(socketReqDTO.getServer());
+
+        if(webSocketEnum == null){
+            throw new BusinessException("服务代码错误");
+        }*/
+        /**
+         * 消息发送  暂没做到适配 扩展有侵入性
+         */
+        if(WebSocketServerConst.SERVER_TEST_SERVER_1_CODE.equals(socketReqDTO.getServer())){
+            BussOneServerImpl.sendInfo(JSONObject.toJSONString(socketReqDTO),socketReqDTO.getCid());
+        }else if(WebSocketServerConst.SERVER_TEST_SERVER_2_CODE.equals(socketReqDTO.getServer())){
+            BussTwoServerImpl.sendInfo(JSONObject.toJSONString(socketReqDTO),socketReqDTO.getCid());
+        }
 
     }
 
