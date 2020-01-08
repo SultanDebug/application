@@ -8,5 +8,9 @@ package com.hzq.demoservice.test.function;
  */
 @FunctionalInterface
 public interface FunctionTestInterface {
-    public abstract int add(int a , int b);
+    int add(int a , int b);
+
+    default int addPlus(int a , int b){
+        return a*b;
+    }
 }
