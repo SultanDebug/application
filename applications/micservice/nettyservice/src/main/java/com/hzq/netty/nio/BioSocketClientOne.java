@@ -25,7 +25,7 @@ public class BioSocketClientOne {
 
                     System.out.println("发送消息：" + s);
 
-                    outputStream.close();
+//                    outputStream.close();
 //                socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();

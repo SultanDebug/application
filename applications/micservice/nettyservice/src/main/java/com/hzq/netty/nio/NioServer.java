@@ -102,7 +102,9 @@ public class NioServer {
 
             channel.write(ByteBuffer.wrap(ret.getBytes()));
 
-            channel.close();
+//            channel.register(selector,SelectionKey.OP_ACCEPT);
+
+//            channel.close();
         }
     }
 
