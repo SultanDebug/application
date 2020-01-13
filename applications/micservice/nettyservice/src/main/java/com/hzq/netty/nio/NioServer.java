@@ -1,13 +1,11 @@
 package com.hzq.netty.nio;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.SocketAddress;
-import java.net.SocketOption;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Set;
 
 public class NioServer {
@@ -26,6 +24,9 @@ public class NioServer {
         this.port = port;
 
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+
+        InetAddress inetAddress = InetAddress.getByName("");
+
         serverSocketChannel.bind(new InetSocketAddress(this.port));
 
         //nio兼容bio  nio默认采用阻塞式
@@ -93,7 +94,13 @@ public class NioServer {
 
             String s = (String) selectionKey.attachment();
 
-            channel.write(ByteBuffer.wrap(("输出："+s).getBytes()));
+            System.out.println("输出："+s);
+
+            Scanner scanner = new Scanner(System.in);
+
+            String ret = scanner.nextLine();
+
+            channel.write(ByteBuffer.wrap(ret.getBytes()));
 
             channel.close();
         }
