@@ -16,7 +16,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class NioProServer {
     /**
      * 轮询器 selector 叫号
-     * 缓冲区 buffer   等号
+     * 轮询体 SelectionKey 被叫
+     * 缓冲区 buffer   等候区
      */
 
     private Selector selector;
@@ -48,14 +49,6 @@ public class NioProServer {
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
     }
 
-    public void onOpen(String id, SelectionKey key){
-
-    }
-
-    public void onMsg(String msg , SelectionKey key){}
-
-    public void onClose(){}
-
     public void listen() throws IOException {
         System.out.println("监听端口："+port);
         //轮询 非阻塞
@@ -84,45 +77,62 @@ public class NioProServer {
             SocketChannel accept = channel.accept();
 
             accept.configureBlocking(false);
-            accept.register(selector,SelectionKey.OP_READ);
+            accept.register(selector,SelectionKey.OP_READ | SelectionKey.OP_WRITE);
         }else if(selectionKey.isReadable()){
-            SocketChannel channel = (SocketChannel) selectionKey.channel();
-
-            int len = channel.read(byteBuffer);
-            if(len > 0){
-                byteBuffer.flip();
-                String s = new String(byteBuffer.array(),0,len);
-
-                //改成可写
-                selectionKey = channel.register(selector,SelectionKey.OP_WRITE);
-                selectionKey.attach(s);
-                System.out.println("读取消息："+s);
-
+            try {
+                reciev(selectionKey);
+            }catch (Exception e ){
+                e.printStackTrace();
             }
         }else if(selectionKey.isWritable()){
+            try {
+                send(selectionKey);
+            }catch (Exception e ){
+                e.printStackTrace();
+            }
 
-            /*try {
+        }
+    }
+
+    public void reciev(SelectionKey selectionKey) throws IOException {
+        SocketChannel channel = (SocketChannel) selectionKey.channel();
+
+        int len = channel.read(byteBuffer);
+        if(len > 0){
+            byteBuffer.flip();
+            String s = new String(byteBuffer.array(),0,len);
+
+            //改成可写
+//            selectionKey = channel.register(selector,SelectionKey.OP_WRITE);
+            selectionKey.attach(s);
+            System.out.println("读取消息："+s);
+
+        }
+    }
+
+    public void send(SelectionKey selectionKey) throws IOException {
+        /*try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }*/
 
-            SocketChannel channel = (SocketChannel) selectionKey.channel();
+        SocketChannel channel = (SocketChannel) selectionKey.channel();
 
-            String s = (String) selectionKey.attachment();
+            String s = "服务器回复："+(String) selectionKey.attachment();
 
-            System.out.println("输出："+s);
+            System.out.println("写入："+s);
 
-            Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
 
-            String ret = scanner.nextLine();
+        String ret = scanner.nextLine();*/
 
-            channel.write(ByteBuffer.wrap(ret.getBytes()));
+        channel.write(ByteBuffer.wrap(s.getBytes()));
 
+//        channel.register(selector,SelectionKey.OP_WRITE);
 //            channel.register(selector,SelectionKey.OP_ACCEPT);
 
 //            channel.close();
-        }
     }
 
     public static void main(String[] args) throws IOException {
