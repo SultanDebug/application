@@ -1,5 +1,7 @@
 package com.hzq.netty.nio;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -56,17 +58,26 @@ public class NioProServer {
             int select = selector.select();
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
 
-            Iterator<SelectionKey> iterator = selectionKeys.iterator();
+            selectionKeys.forEach(selectionKey -> {
+                try {
+                    proccess(selectionKey);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            selectionKeys.clear();
+
+//            Iterator<SelectionKey> iterator = selectionKeys.iterator();
 
             //同步体现  只处理一个
-            while (iterator.hasNext()){
+            /*while (iterator.hasNext()){
                 SelectionKey next = iterator.next();
 
                 iterator.remove();
 
                 proccess(next);
-            }
-
+            }*/
 
         }
     }
@@ -77,21 +88,21 @@ public class NioProServer {
             SocketChannel accept = channel.accept();
 
             accept.configureBlocking(false);
-            accept.register(selector,SelectionKey.OP_READ | SelectionKey.OP_WRITE);
+            accept.register(selector,SelectionKey.OP_READ );
         }else if(selectionKey.isReadable()){
             try {
                 reciev(selectionKey);
             }catch (Exception e ){
                 e.printStackTrace();
             }
-        }else if(selectionKey.isWritable()){
+        }/*else if(selectionKey.isWritable()){
             try {
                 send(selectionKey);
             }catch (Exception e ){
                 e.printStackTrace();
             }
 
-        }
+        }*/
     }
 
     public void reciev(SelectionKey selectionKey) throws IOException {
@@ -107,6 +118,8 @@ public class NioProServer {
             selectionKey.attach(s);
             System.out.println("读取消息："+s);
 
+            send(selectionKey);
+
         }
     }
 
@@ -118,21 +131,27 @@ public class NioProServer {
             }*/
 
         SocketChannel channel = (SocketChannel) selectionKey.channel();
+        String attachment = (String) selectionKey.attachment();
 
-            String s = "服务器回复："+(String) selectionKey.attachment();
+        if(StringUtils.isNotBlank(attachment)) {
 
-            System.out.println("写入："+s);
+            String s = "服务器回复：" + attachment;
+
+            System.out.println(s);
 
         /*Scanner scanner = new Scanner(System.in);
 
         String ret = scanner.nextLine();*/
 
-        channel.write(ByteBuffer.wrap(s.getBytes()));
+            byteBuffer.flip();
+
+            channel.write(ByteBuffer.wrap(s.getBytes()));
 
 //        channel.register(selector,SelectionKey.OP_WRITE);
 //            channel.register(selector,SelectionKey.OP_ACCEPT);
 
 //            channel.close();
+        }
     }
 
     public static void main(String[] args) throws IOException {
