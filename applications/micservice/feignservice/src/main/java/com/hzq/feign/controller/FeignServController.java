@@ -1,10 +1,13 @@
 package com.hzq.feign.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hzq.common.utils.UserUtils;
+import com.hzq.feign.service.UserService;
 import com.hzq.feignservice.FeignServInterface;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +30,9 @@ public class FeignServController implements FeignServInterface {
     @Value("${test.val}")
     private String val;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     @ApiOperation(value = "feign-service接口")
     public String servTest(@PathVariable("para") String para) {
@@ -37,5 +43,11 @@ public class FeignServController implements FeignServInterface {
 
         log.info("threadLocal : "+ UserUtils.getUser()+" 线程："+Thread.currentThread().getId()+" 请求头参数："+request.getHeader("user"));
         return "服务端调用成功："+val;
+    }
+
+    @Override
+    @ApiOperation(value = "feign-service数据库测试接口")
+    public String feignSevDb(@PathVariable("id") Integer id) {
+        return JSONObject.toJSONString(userService.getById(id));
     }
 }

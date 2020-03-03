@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hzq</groupId>
     <artifactId>gateway</artifactId>
 
     <name>gateway</name>

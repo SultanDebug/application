@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
         <!--<relativePath/> --><!-- lookup parent from repository -->
     </parent>
-    <groupId>com.hzq</groupId>
+    <groupId>com.hzq.demoservice</groupId>
     <artifactId>demoservice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>demoservice</name>
     <description>Demo project for Spring Boot</description>
 
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.hzq</groupId>
             <artifactId>interface</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -92,7 +92,7 @@
         <dependency>
             <groupId>com.hzq.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
 
     </dependencies>

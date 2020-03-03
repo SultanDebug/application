@@ -1,6 +1,7 @@
 package com.hzq.feign;
 
 import com.hzq.common.annotation.EnableApplication;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 
 /**

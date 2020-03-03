@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.hzq.kafka</groupId>
     <artifactId>kafkaservice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>kafkaservice</name>
 
     <properties>
@@ -35,12 +35,12 @@
         <dependency>
             <groupId>com.hzq.kafkacore</groupId>
             <artifactId>kafkacore</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hzq.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
 
     </dependencies>

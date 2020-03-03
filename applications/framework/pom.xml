@@ -19,6 +19,7 @@
         <module>kafkacore</module>
         <module>rabbitmqcore</module>
         <module>zkcore</module>
+        <module>mybatiscore</module>
     </modules>
 
 

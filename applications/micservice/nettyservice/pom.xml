@@ -11,6 +11,7 @@
 
     <groupId>com.hzq.netty</groupId>
     <artifactId>nettyservice</artifactId>
+    <packaging>jar</packaging>
 
     <name>nettyservice</name>
     <dependencies>
@@ -22,18 +23,18 @@
         <dependency>
             <groupId>com.hzq.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.hzq.rediscore</groupId>
             <artifactId>rediscore</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hzq.zkcore</groupId>
             <artifactId>zkcore</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
     </dependencies>
 </project>

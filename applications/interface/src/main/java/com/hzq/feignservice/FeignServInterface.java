@@ -14,4 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FeignServInterface {
     @GetMapping("/feignSev/{para}")
     String servTest(@PathVariable("para") String para);
+
+    @GetMapping("/feignSevDb/{id}")
+    String feignSevDb(@PathVariable("id") Integer id);
+
 }

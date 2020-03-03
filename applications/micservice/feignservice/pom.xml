@@ -9,10 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.hzq.feignservice</groupId>
     <artifactId>feignservice</artifactId>
+    <packaging>jar</packaging>
 
     <name>feignservice</name>
-    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,12 +31,13 @@
         <dependency>
             <groupId>com.hzq</groupId>
             <artifactId>interface</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hzq.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${hzq.app.version}</version>
         </dependency>
+
     </dependencies>
 </project>
