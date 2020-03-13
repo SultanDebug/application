@@ -2,6 +2,7 @@ package com.hzq.starter.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
  * @author Huangzq
@@ -10,6 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2019/9/11 15:10
  */
 @ConfigurationProperties(prefix = "spring.person")
+@RefreshScope
 @Data
 public class PersonProperties {
     private String name;

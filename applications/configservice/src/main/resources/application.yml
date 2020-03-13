@@ -33,3 +33,8 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
     status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
