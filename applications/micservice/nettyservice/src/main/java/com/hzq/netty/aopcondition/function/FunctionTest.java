@@ -1,7 +1,4 @@
-package com.hzq.demoservice.test.function;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+package com.hzq.netty.aopcondition.function;
 
 /**
  * @author Huangzq

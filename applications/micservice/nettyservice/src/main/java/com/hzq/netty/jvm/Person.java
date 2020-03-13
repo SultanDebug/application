@@ -1,4 +1,4 @@
-package com.hzq.feign.jvm;
+package com.hzq.netty.jvm;
 
 /**
  * @Description: TODO
@@ -23,7 +23,7 @@ public class Person {
         return res;
     }
 
-    public static void main(String[] args) {
+    public static void test(String[] args) {
         System.out.println(cal(2,5));
     }
 }

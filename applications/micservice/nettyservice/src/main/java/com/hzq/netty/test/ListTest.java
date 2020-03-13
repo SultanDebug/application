@@ -1,9 +1,4 @@
-package com.hzq.feign.test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.hzq.netty.test;
 
 /**
  * @Description: TODO
@@ -11,7 +6,7 @@ import java.util.Map;
  * @Date: Created in 2020-03-08
  */
 public class ListTest {
-    public static void main(String[] args) {
+    public static void test(String[] args) {
         /*List<String> list = new ArrayList<>(1);
 
         list.add("hzq");

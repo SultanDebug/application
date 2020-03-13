@@ -1,4 +1,4 @@
-package com.hzq.feign.test;
+package com.hzq.netty.test;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,13 +31,13 @@ public class ThreadTest {
         System.out.println("线程"+s+"结束");
     }
 
-    public static void main(String[] args) {
+    public static void test(String[] args) {
 //        U.compareAndSwapInt()
         ConcurrentHashMap<String,String> map = new ConcurrentHashMap<>();
 
-        map.put("test","hzq");
+        map.put("aopcondition","hzq");
 
-        System.out.println(map.get("test"));
+        System.out.println(map.get("aopcondition"));
         /*UserService userService = new UserService();
 
         Thread thread1 = new Thread(() -> {

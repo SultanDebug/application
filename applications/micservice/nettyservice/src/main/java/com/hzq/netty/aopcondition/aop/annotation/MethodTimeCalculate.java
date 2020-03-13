@@ -1,4 +1,4 @@
-package com.hzq.demoservice.test.aop.annotation;
+package com.hzq.netty.aopcondition.aop.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

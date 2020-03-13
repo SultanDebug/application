@@ -1,10 +1,7 @@
-package com.hzq.demoservice.test;
+package com.hzq.netty.aopcondition;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.hzq.demoservice.test.config.ConditionFilterTest;
-import com.hzq.demoservice.test.config.ConditionTest;
-import com.hzq.demoservice.test.config.ImportTest;
-import com.hzq.demoservice.test.nopkg.ConditionNoPkg;
+import com.hzq.netty.aopcondition.config.ImportTest;
+import com.hzq.netty.aopcondition.nopkg.ConditionNoPkg;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,7 +18,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(ImportTest.class)
-@ComponentScan(basePackages = {"com.hzq.demoservice.test"})
+@ComponentScan(basePackages = {"com.hzq.netty.aopcondition"})
 public class TestPkg {
 
     @Autowired

@@ -1,18 +1,13 @@
-package com.hzq.demoservice.test.aop;
+package com.hzq.netty.aopcondition.aop;
 
-import com.hzq.demoservice.test.aop.annotation.ServiceAop;
+import com.hzq.netty.aopcondition.aop.annotation.ServiceAop;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author Huangzq
@@ -21,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2019/8/7 9:35
  */
 @Configuration
-@ComponentScan(basePackages = {"com.hzq.demoservice.test.aop"})
+@ComponentScan(basePackages = {"com.hzq.netty.aopcondition.aop"})
 @Slf4j
 @EnableAspectJAutoProxy
 public class AOPTest {

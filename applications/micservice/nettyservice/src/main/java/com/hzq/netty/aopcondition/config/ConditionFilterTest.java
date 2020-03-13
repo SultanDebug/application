@@ -1,4 +1,4 @@
-package com.hzq.demoservice.test.config;
+package com.hzq.netty.aopcondition.config;
 
 /**
  * @author Huangzq
