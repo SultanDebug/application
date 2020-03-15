@@ -21,7 +21,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class AOPTest {
     @Test
-    public void test(){
+    public void test() {
         ApplicationContext context = new AnnotationConfigApplicationContext(AOPTest.class);
 
         /*String [] strings = context.getBeanDefinitionNames();

@@ -2,7 +2,6 @@ package com.hzq.starter.config;
 
 import com.hzq.starter.properties.PersonProperties;
 import com.hzq.starter.service.PersonService;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

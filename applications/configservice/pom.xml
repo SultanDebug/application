@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
         <!--<relativePath/> --><!-- lookup parent from repository -->
     </parent>
-    
+
     <artifactId>configservice</artifactId>
     <name>configservice</name>
     <description>Demo project for Spring Boot</description>
@@ -23,7 +23,7 @@
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
 
-        
+
     </dependencies>
 
     <build>

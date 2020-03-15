@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>micservice</artifactId>
+        <groupId>com.hzq</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hzq.discovery</groupId>
+    <artifactId>all-discovery</artifactId>
+
+    <name>all-discovery</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.hzq.common</groupId>
+            <artifactId>common</artifactId>
+            <version>${hzq.app.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.hzq.mybatiscore</groupId>
+                    <artifactId>mybatiscore</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- eureka客户端 -->
+        <!--<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>-->
+
+        <!-- zookeeper服务注册与发现 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
+
+
+
+    </dependencies>
+
+
+</project>

@@ -25,6 +25,7 @@
         <module>rabbitservice</module>
         <module>zkservice</module>
         <module>nettyservice</module>
+        <module>all-discovery</module>
     </modules>
 
     <dependencies>
