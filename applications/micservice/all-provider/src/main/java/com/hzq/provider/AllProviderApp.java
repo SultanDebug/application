@@ -1,5 +1,6 @@
 package com.hzq.provider;
 
+import com.hzq.common.annotation.EnableApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 //@EnableAutoConfiguration
-@SpringBootApplication(scanBasePackages = "com.hzq.*")
+//@SpringBootApplication(scanBasePackages = "com.hzq.*")
 //@EnableDiscoveryClient
-@EnableEurekaClient
-@EnableFeignClients(basePackages = ("com.hzq.*"))
+//@EnableEurekaClient
+//@EnableFeignClients(basePackages = ("com.hzq.*"))
+    @EnableApplication
 public class AllProviderApp
 {
     public static void main( String[] args )
