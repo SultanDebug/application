@@ -2,13 +2,13 @@
 
 # 端口号
 server:
-  port: 20008
+  port: 20009
 
 
 
 spring:
   application:
-    name: discovery-client
+    name: discovery-provider
   cloud:
     zookeeper:
       enabled: false

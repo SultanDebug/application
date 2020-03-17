@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @projectName zhengtyun-saas
  * @date 2019/7/26 18:48
  */
-@FeignClient(contextId = "websocketInterface",value = "saas-service-pf-common")
+@FeignClient(contextId = "websocketservice",value = "socket-service")
 @Api(tags = "websocket推送(Huangzq)")
 public interface WebsocketInterface {
     String MAPPING = "/ws";

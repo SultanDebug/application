@@ -26,6 +26,7 @@
         <module>zkservice</module>
         <module>nettyservice</module>
         <module>all-discovery</module>
+        <module>all-provider</module>
     </modules>
 
     <dependencies>
