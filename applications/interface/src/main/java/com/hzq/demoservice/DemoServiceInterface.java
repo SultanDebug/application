@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author Huangzq
  * @date 2019-03-25
  */
-@FeignClient(value = "demo-service",contextId = "demoservice")
+@FeignClient(value = "demo-service",contextId = "demoServiceInterface")
 public interface DemoServiceInterface {
     @GetMapping("/demo/{name}")
     String getTest(@PathVariable("name") String name);

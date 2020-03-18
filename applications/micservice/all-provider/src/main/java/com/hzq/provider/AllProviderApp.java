@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 //@EnableAutoConfiguration
-//@SpringBootApplication(scanBasePackages = "com.hzq.*")
+@SpringBootApplication(scanBasePackages = "com.hzq.*")
 //@EnableDiscoveryClient
-//@EnableEurekaClient
-//@EnableFeignClients(basePackages = ("com.hzq.*"))
-    @EnableApplication
+@EnableEurekaClient
+@EnableFeignClients
+//@EnableFeignClients(basePackages = ("com.hzq.*"))  ERROR:interface bean 扫描重复
+//    @EnableApplication
 public class AllProviderApp
 {
     public static void main( String[] args )

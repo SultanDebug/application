@@ -70,8 +70,14 @@ public class LogAop {
         String className = point.getTarget().getClass().getSimpleName()+"."+point.getSignature().getName();
 
         try {
+            /**
+             * 日志打印
+             */
             log.info("执行{}，入参为：{}",className, JSONArray.toJSONString(paramsList(point)));
 
+            /**
+             * threadlocal设置
+             */
             RequestAttributes ra = RequestContextHolder.getRequestAttributes();
             ServletRequestAttributes sra = (ServletRequestAttributes) ra;
             HttpServletRequest request = sra.getRequest();

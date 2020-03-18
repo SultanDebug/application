@@ -14,12 +14,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 //@EnableAutoConfiguration
 //@EnableDiscoveryClient
 
-//@EnableEurekaClient
-//@SpringBootApplication(scanBasePackages = "com.hzq.*")
-//@EnableFeignClients(basePackages = ("com.hzq.*"))
+@EnableEurekaClient
+@SpringBootApplication(scanBasePackages = "com.hzq.*")
+@EnableFeignClients
 
-
-    @EnableApplication
+//@EnableFeignClients(basePackages = ("com.hzq.*"))  ERROR:interface bean 扫描重复
+//    @EnableApplication
 public class DiscoveryAllApp
 {
     public static void main( String[] args )

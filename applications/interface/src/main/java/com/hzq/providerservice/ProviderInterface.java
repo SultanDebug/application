@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Auth: Huangzq
  * @Date: Created in 2020-03-17
  */
-@FeignClient(value = "discovery-provider",contextId = "providerService")
+@FeignClient(value = "discovery-provider",contextId = "providerInterface")
 public interface ProviderInterface {
     @GetMapping("/provider/{msg}")
     String provider(@PathVariable("msg") String msg);
