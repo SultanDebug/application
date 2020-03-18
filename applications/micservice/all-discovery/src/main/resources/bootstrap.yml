@@ -13,7 +13,7 @@ spring:
     zookeeper:
       enabled: false
   profiles:
-    include: eureka
+    include: zookeeper
     active: dev
 
 # --spring.profiles.include=zookeeper
@@ -61,4 +61,4 @@ spring:
       enabled: true
       discovery:
         instance-host: ${spring.cloud.client.ip-address}
-        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+#        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}

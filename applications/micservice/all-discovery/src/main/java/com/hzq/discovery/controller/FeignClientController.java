@@ -12,6 +12,8 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Description: TODO
@@ -28,8 +30,9 @@ public class FeignClientController {
 
     @GetMapping("/services")
     public Set<String> getServices(){
-        System.out.println(providerInterface.provider("client"));
-        return new LinkedHashSet<>(discoveryClient.getServices());
+//        System.out.println(providerInterface.provider("client"));
+        return Stream.of(providerInterface.provider("client")).collect(Collectors.toSet());
+//        return new LinkedHashSet<>(discoveryClient.getServices());
     }
 
     @GetMapping("/services/{serviceName}")
