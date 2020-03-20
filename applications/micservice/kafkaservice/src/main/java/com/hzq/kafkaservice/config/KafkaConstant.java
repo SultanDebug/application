@@ -1,4 +1,4 @@
-package com.hzq.kafka.kafkaservice.config;
+package com.hzq.kafkaservice.config;
 
 /**
  * @author Huangzq

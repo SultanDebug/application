@@ -1,8 +1,7 @@
-package com.hzq.kafka.kafkaservice;
+package com.hzq.kafkaservice;
 
 import com.hzq.common.annotation.EnableApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @EnableApplication
 public class KafkaserviceApplication {

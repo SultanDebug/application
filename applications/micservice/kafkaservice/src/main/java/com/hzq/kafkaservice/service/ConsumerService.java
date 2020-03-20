@@ -1,19 +1,16 @@
-package com.hzq.kafka.kafkaservice.service;
+package com.hzq.kafkaservice.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hzq.kafka.kafkaservice.config.KafkaConstant;
-import com.hzq.kafka.kafkaservice.msgbean.MsgBean;
+import com.hzq.kafkaservice.config.KafkaConstant;
+import com.hzq.kafkaservice.msgbean.MsgBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.Properties;
 
 /**
  * @author Huangzq
@@ -27,20 +24,31 @@ public class ConsumerService {
 
     private Gson gson = new GsonBuilder().create();
 
-    @KafkaListener(topics = {KafkaConstant.TEST_TOPIC})
-    public void consumerMsg(ConsumerRecord<?,?> record){
+    @KafkaListener(topics = {KafkaConstant.TEST_TOPIC}
+    ,topicPartitions = {@TopicPartition(topic = KafkaConstant.TEST_TOPIC,partitions = {"0","1"})},groupId = "group1")
+    public void consumerMsg0(ConsumerRecord<?,?> record){
         Optional<?> msg = Optional.ofNullable(record.value());
 
         if(msg.isPresent()){
             MsgBean msgBean = gson.fromJson ((String) msg.get(),MsgBean.class) ;
-
-            log.info("<<<<<<<<<<<<<<bean：{}>>>>>>>>>>>>",msgBean);
-            log.info("<<<<<<<<<<<<<<optional：{}>>>>>>>>>>>>",msg);
-            log.info("<<<<<<<<<<<<<<ConsumerRecord：{}>>>>>>>>>>>>",record);
+            log.info("<<<<<<<<<<<<<<consumerMsg0：{}>>>>>>>>>>>>",record);
 
         }
 
     }
+
+    /*@KafkaListener(topics = {KafkaConstant.TEST_TOPIC}
+            ,topicPartitions = {@TopicPartition(topic = KafkaConstant.TEST_TOPIC,partitions = {"1"})},groupId = "group2")
+    public void consumerMsg1(ConsumerRecord<?,?> record){
+        Optional<?> msg = Optional.ofNullable(record.value());
+
+        if(msg.isPresent()){
+            MsgBean msgBean = gson.fromJson ((String) msg.get(),MsgBean.class) ;
+            log.info("<<<<<<<<<<<<<<consumerMsg1：{}>>>>>>>>>>>>",record);
+
+        }
+
+    }*/
 
     /*public static void main(String[] s){
         Properties props = new Properties();

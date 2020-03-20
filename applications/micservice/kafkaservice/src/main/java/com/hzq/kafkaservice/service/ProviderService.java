@@ -1,17 +1,15 @@
-package com.hzq.kafka.kafkaservice.service;
+package com.hzq.kafkaservice.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hzq.kafka.kafkaservice.config.KafkaConstant;
-import com.hzq.kafka.kafkaservice.msgbean.MsgBean;
+import com.hzq.kafkaservice.config.KafkaConstant;
+import com.hzq.kafkaservice.msgbean.MsgBean;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.Properties;
 import java.util.UUID;
 
 /**
@@ -29,13 +27,19 @@ public class ProviderService {
 
     private Gson gson = new GsonBuilder().create();
 
-    public void sendMsg(String para){
+    public void sendMsg(String para) {
         MsgBean msgBean = new MsgBean();
         msgBean.setId(System.currentTimeMillis());
-        msgBean.setMsg(UUID.randomUUID().toString()+":"+para);
+        msgBean.setMsg(UUID.randomUUID().toString() + ":" + para);
         msgBean.setSendTime(new Date());
-        kafkaTemplate.send(KafkaConstant.TEST_TOPIC, gson.toJson(msgBean));
-        log.info("<<<<<<<<<<发送完成{}>>>>>>>>>>",msgBean);
+//        kafkaTemplate.send(KafkaConstant.TEST_TOPIC, gson.toJson(msgBean));
+
+        int i = new Double(Math.random() * 2 ).intValue();
+
+        String key = UUID.randomUUID().toString();
+        kafkaTemplate.send(KafkaConstant.TEST_TOPIC,i ,key,gson.toJson(msgBean));
+
+        log.info("<<<<<<<<<<发送完成partition:{},key:{},body:{}>>>>>>>>>>",i,key, msgBean);
     }
 
     /*private void execMsgSend() throws  Exception{

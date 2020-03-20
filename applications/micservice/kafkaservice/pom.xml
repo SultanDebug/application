@@ -41,6 +41,13 @@
             <groupId>com.hzq.common</groupId>
             <artifactId>common</artifactId>
             <version>${hzq.app.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.hzq.mybatiscore</groupId>
+                    <artifactId>mybatiscore</artifactId>
+                </exclusion>
+            </exclusions>
+
         </dependency>
 
     </dependencies>

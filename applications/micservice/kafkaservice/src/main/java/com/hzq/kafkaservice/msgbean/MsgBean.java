@@ -1,4 +1,4 @@
-package com.hzq.kafka.kafkaservice.msgbean;
+package com.hzq.kafkaservice.msgbean;
 
 import lombok.Data;
 

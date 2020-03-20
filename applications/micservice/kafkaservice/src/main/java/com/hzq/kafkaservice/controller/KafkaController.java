@@ -1,6 +1,6 @@
-package com.hzq.kafka.kafkaservice.controller;
+package com.hzq.kafkaservice.controller;
 
-import com.hzq.kafka.kafkaservice.service.ProviderService;
+import com.hzq.kafkaservice.service.ProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class KafkaController {
 
     @GetMapping("/kafka/provider")
     @ApiOperation(value = "消息生产")
-    String confirmOrder(@RequestParam("para") String para){
+    public String confirmOrder(@RequestParam("para") String para){
 
         providerService.sendMsg(para);
 

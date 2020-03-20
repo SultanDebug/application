@@ -1,4 +1,4 @@
-package com.hzq.kafka.kafkaservice;
+package com.hzq.kafkaservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
