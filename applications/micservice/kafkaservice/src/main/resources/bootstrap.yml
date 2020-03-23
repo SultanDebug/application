@@ -1,6 +1,71 @@
 server:
-  port: 20008
+  port: 0
 
+#spring:
+#  application:
+#    name: demo-service
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true #开启配置中心服务
+#        service-id: config-service #配置中心服务名
+#      profile: dev
+#test:
+#  val: sultan-dev
+spring:
+#  profiles:
+#    active: dev
+  application:
+    name: kafka-service
+  cloud:
+    zookeeper:
+      enabled: false
+  profiles:
+    include: zookeeper
+    active: dev
+#  cloud:
+#    config:
+##      uri: http://localhost:20003
+##      name: config-service
+#      profile: ${spring.profiles.active}
+#      label: master
+#      fail-fast: true
+#      discovery:
+#        enabled: true #开启配置中心服务
+#        service-id: config-service #配置中心服务名
+
+  kafka:
+    bootstrap-servers:
+      - 192.168.50.50:9092
+      - 192.168.50.50:9093
+      - 192.168.50.50:9094
+
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 1
+
+    consumer:
+      enable-auto-commit: true
+      group-id: sync_group
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session.timeout.ms: 15000
+#      client-id: clientname2
+
+eureka:
+  client:
+    enabled: false
+
+---
+spring:
+  profiles: eureka
 # 服务注册   服务发现配置
 eureka:
   client:
@@ -16,54 +81,13 @@ eureka:
     lease-expiration-duration-in-seconds: 10
     status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
 
-#spring:
-#  application:
-#    name: demo-service
-#  cloud:
-#    config:
-#      discovery:
-#        enabled: true #开启配置中心服务
-#        service-id: config-service #配置中心服务名
-#      profile: dev
-#test:
-#  val: sultan-dev
+---
 spring:
-  profiles:
-    active: dev
-  application:
-    name: kafka-service
-#  cloud:
-#    config:
-##      uri: http://localhost:20003
-##      name: config-service
-#      profile: ${spring.profiles.active}
-#      label: master
-#      fail-fast: true
-#      discovery:
-#        enabled: true #开启配置中心服务
-#        service-id: config-service #配置中心服务名
-
-  kafka:
-    bootstrap-servers:
-      - 192.168.2.40:9092
-      - 192.168.2.40:9093
-      - 192.168.2.40:9094
-
-    producer:
-      retries: 0
-      batch-size: 16384
-      buffer-memory: 33554432
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      properties:
-        linger.ms: 1
-
-    consumer:
-      enable-auto-commit: true
-#      group-id: sync_group
-      auto-commit-interval: 100
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      properties:
-        session.timeout.ms: 15000
-#      client-id: clientname2
+  profiles: zookeeper
+  cloud:
+    zookeeper:
+      connect-string: 192.168.50.50:2181
+      enabled: true
+      discovery:
+        instance-host: ${spring.cloud.client.ip-address}
+#        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}

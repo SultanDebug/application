@@ -32,12 +32,12 @@ public class ProviderService {
         msgBean.setId(System.currentTimeMillis());
         msgBean.setMsg(UUID.randomUUID().toString() + ":" + para);
         msgBean.setSendTime(new Date());
-//        kafkaTemplate.send(KafkaConstant.TEST_TOPIC, gson.toJson(msgBean));
+        kafkaTemplate.send(KafkaConstant.TEST_TOPIC, gson.toJson(msgBean));
 
-        int i = new Double(Math.random() * 2 ).intValue();
+        int i = new Double(Math.random() * 3 ).intValue();
 
         String key = UUID.randomUUID().toString();
-        kafkaTemplate.send(KafkaConstant.TEST_TOPIC,i ,key,gson.toJson(msgBean));
+//        kafkaTemplate.send(KafkaConstant.TEST_TOPIC,i ,key,gson.toJson(msgBean));
 
         log.info("<<<<<<<<<<发送完成partition:{},key:{},body:{}>>>>>>>>>>",i,key, msgBean);
     }

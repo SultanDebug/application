@@ -24,8 +24,10 @@ public class ConsumerService {
 
     private Gson gson = new GsonBuilder().create();
 
-    @KafkaListener(topics = {KafkaConstant.TEST_TOPIC}
-    ,topicPartitions = {@TopicPartition(topic = KafkaConstant.TEST_TOPIC,partitions = {"0","1"})},groupId = "group1")
+    /*@KafkaListener(topics = {KafkaConstant.TEST_TOPIC}
+            ,topicPartitions = {@TopicPartition(topic = KafkaConstant.TEST_TOPIC,partitions = {"0","1","2"})}
+            ,groupId = "group1",concurrency = "3")*/
+    @KafkaListener(topics = {KafkaConstant.TEST_TOPIC})
     public void consumerMsg0(ConsumerRecord<?,?> record){
         Optional<?> msg = Optional.ofNullable(record.value());
 

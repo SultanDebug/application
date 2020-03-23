@@ -7,5 +7,5 @@ package com.hzq.kafkaservice.config;
  * @date 2019/8/29 16:59
  */
 public class KafkaConstant {
-    public final static String TEST_TOPIC = "test_topic";
+    public final static String TEST_TOPIC = "mytopic";
 }
