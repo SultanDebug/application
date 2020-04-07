@@ -1,5 +1,6 @@
 package com.hzq.netty.designpattern;
 
+import java.lang.annotation.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -32,8 +33,30 @@ public class ProxyDemo {
         }
     }
 
+    //带实现代理
     public interface ISubject{
         void request();
+    }
+
+    @Documented
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface MyInterface{
+        public enum Type{
+            QUERY,ADD,UPDATE,DELETE;
+        }
+
+        String key() default "key";
+        Type option() default Type.QUERY;
+    }
+
+    //无实现代理  mapper伪代码
+    public interface ISubjectNon{
+        @MyInterface(option = MyInterface.Type.QUERY)
+        Object getName(String s);
+
+        @MyInterface(key = "addr",option = MyInterface.Type.DELETE)
+        Object getAddr(String s);
     }
 
     public class SubjectImpl implements ISubject{
@@ -46,7 +69,8 @@ public class ProxyDemo {
 
     public static void main(String[] args) {
 
-        ProxyDemo proxyDemo = new ProxyDemo();
+        //接口实现代理测试
+        /*ProxyDemo proxyDemo = new ProxyDemo();
         SubjectImpl subject = proxyDemo.new SubjectImpl();
         SubjectProxy subjectProxy = proxyDemo.new SubjectProxy(subject);
 
@@ -64,7 +88,32 @@ public class ProxyDemo {
 
         iSubject.request();
 
-        System.out.println(proxyDemo.string);
+        System.out.println(proxyDemo.string);*/
+
+
+        //接口没有实现代理测试  mapper伪代码
+        Object o = Proxy.newProxyInstance(ProxyDemo.class.getClassLoader(), new Class[]{ISubjectNon.class}, new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+                System.out.println("代理开始");
+                MyInterface declaredAnnotation = method.getDeclaredAnnotation(MyInterface.class);
+
+                System.out.println("搜索id为"+declaredAnnotation.key()+"的sql语句");
+
+                if(declaredAnnotation.option().equals(MyInterface.Type.QUERY)){
+                    System.out.println("执行查询操作");
+                }else if(declaredAnnotation.option().equals(MyInterface.Type.DELETE)){
+                    System.out.println("执行删除操作");
+                }
+
+                System.out.println("代理结束");
+
+                return "success";
+            }
+        });
+
+        System.out.println(((ISubjectNon) o).getAddr("hzq"));
 
     }
 }
