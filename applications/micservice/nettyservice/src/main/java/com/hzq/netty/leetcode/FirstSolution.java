@@ -12,6 +12,11 @@ import java.util.Map;
  * @date 2020/4/10 11:18
  */
 public class FirstSolution {
+    /**
+     * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring(String s) {
 
         char[] strings = s.toCharArray();
@@ -51,6 +56,16 @@ public class FirstSolution {
         return result;
     }
 
+    /**
+     * 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+     *
+     * 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+     *
+     * 你可以假设 nums1 和 nums2 不会同时为空
+     * @param nums1
+     * @param nums2
+     * @return
+     */
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
         int i = 0;
@@ -111,16 +126,9 @@ public class FirstSolution {
         return res;
     }
 
-    public static String longestPalindrome(String s) {
-
-        String result = "";
-
-        return result;
-    }
-
     public static void main(String[] args) {
         //最长子串
-        System.out.println(lengthOfLongestSubstring("abcd"));
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
 
         //中位数
         int[] a = new int[]{1,3};

@@ -13,6 +13,11 @@ public class ReverseWords {
         System.out.println(reverseWords(ss));
     }
 
+    /**
+     * 给定一个字符串，逐个翻转字符串中的每个单词
+     * @param s
+     * @return
+     */
     public static String reverseWords(String s){
         //去头尾空格
         String ss = s.trim();
