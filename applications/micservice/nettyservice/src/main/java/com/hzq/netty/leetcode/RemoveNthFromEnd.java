@@ -1,7 +1,10 @@
 package com.hzq.netty.leetcode;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @Description: TODO
@@ -13,22 +16,81 @@ public class RemoveNthFromEnd {
 
         ListNode listNode1 = new ListNode(1);
 
-        ListNode listNode2 = new ListNode(2);
+        /*ListNode listNode2 = new ListNode(2);
         listNode1.next = listNode2;
 
         ListNode listNode3 = new ListNode(3);
-        listNode2.next = listNode3;
+        listNode2.next = listNode3;*/
 
-        ListNode listNode4 = new ListNode(4);
-        listNode3.next = listNode4;
+        ListNode listNode4 = new ListNode(9);
+//        listNode3.next = listNode4;
 
-        ListNode listNode5 = new ListNode(5);
+        ListNode listNode5 = new ListNode(9);
         listNode4.next = listNode5;
 
         RemoveNthFromEnd a = new RemoveNthFromEnd();
 //        System.out.println(a.removeNthFromEnd(listNode1,5));
-        ListNode aaa = a.reverseBetween(listNode1,2,2);
-        System.out.println(aaa);
+//        ListNode aaa = a.reverseBetween(listNode1,2,2);
+        ListNode aaa = a.addTwoNumbers(listNode1,listNode4);
+        System.out.println(JSON.toJSONString(aaa));
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if(l1.val == 0){
+            return l2;
+        }
+
+        if(l2.val == 0){
+            return l1;
+        }
+
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+
+        stackInit(s1,l1);
+        stackInit(s2,l2);
+
+        ListNode res = null;
+        ListNode tmp = null;
+
+        //进位考虑
+        Integer jin = 0;
+
+        while(true){
+            if(s1.empty() && s2.empty()&& jin == 0){
+                break;
+            }
+
+            Integer i1 =s1.empty() ? 0 : s1.pop();
+            Integer i2 = s2.empty() ? 0 : s2.pop();
+
+            Integer v = (i1+i2+jin)%10;
+            jin = (i1+i2+jin)>=10 ? 1 : 0;
+
+            ListNode listNode = new ListNode(v);
+
+//            res = listNode;
+            listNode.next = res;
+            res = listNode;
+
+
+
+        }
+
+        return res;
+    }
+
+    /**
+     * 递归压栈
+     * @param stack
+     * @param listNode
+     */
+    public void stackInit(Stack stack , ListNode listNode){
+        stack.push(listNode.val);
+        if(listNode.next == null){
+            return;
+        }
+        stackInit(stack,listNode.next);
     }
 
     /**
