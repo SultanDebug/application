@@ -33,6 +33,8 @@ spring:
   application:
     name: demo-service
   cloud:
+    zookeeper:
+      enabled: false
     config:
 #      uri: http://localhost:20003
 #      name: config-service

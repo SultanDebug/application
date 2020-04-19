@@ -35,6 +35,12 @@ public class RemoveNthFromEnd {
         System.out.println(JSON.toJSONString(aaa));
     }
 
+    /**
+     * 链表标识数字，数字相加
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if(l1.val == 0){
             return l2;
