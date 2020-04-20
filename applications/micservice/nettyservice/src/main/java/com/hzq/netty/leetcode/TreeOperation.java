@@ -47,9 +47,16 @@ public class TreeOperation {
         return i;
     }
 
+    /**
+     * 递归累加
+     * @param t
+     * @param isLeft
+     * @return
+     */
     public int addLeft(TreeNode t ,boolean isLeft){
         int res = 0;
-        if(isLeft){
+        //获取左叶子节点
+        if(isLeft && t.left==null && t.right == null){
             res += t.val;
         }
 
