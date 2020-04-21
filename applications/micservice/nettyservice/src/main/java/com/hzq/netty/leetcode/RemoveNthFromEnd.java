@@ -16,14 +16,14 @@ public class RemoveNthFromEnd {
 
         ListNode listNode1 = new ListNode(1);
 
-        /*ListNode listNode2 = new ListNode(2);
+        ListNode listNode2 = new ListNode(2);
         listNode1.next = listNode2;
 
         ListNode listNode3 = new ListNode(3);
-        listNode2.next = listNode3;*/
+        listNode2.next = listNode3;
 
         ListNode listNode4 = new ListNode(9);
-//        listNode3.next = listNode4;
+        listNode3.next = listNode4;
 
         ListNode listNode5 = new ListNode(9);
         listNode4.next = listNode5;
@@ -31,8 +31,9 @@ public class RemoveNthFromEnd {
         RemoveNthFromEnd a = new RemoveNthFromEnd();
 //        System.out.println(a.removeNthFromEnd(listNode1,5));
 //        ListNode aaa = a.reverseBetween(listNode1,2,2);
-        ListNode aaa = a.addTwoNumbers(listNode1,listNode4);
-        System.out.println(JSON.toJSONString(aaa));
+//        ListNode aaa = a.addTwoNumbers(listNode1,listNode4);
+        a.deleteNode(listNode2);
+        System.out.println(JSON.toJSONString(listNode1));
     }
 
     /**
@@ -178,6 +179,19 @@ public class RemoveNthFromEnd {
         }
 
         return head;
+    }
+
+
+    /**
+     * 实现一种算法，删除单向链表中间的某个节点（除了第一个和最后一个节点，不一定是中间节点），假定你只能访问该节点
+     * 复制下一个节点
+     * @param node
+     */
+    public void deleteNode(ListNode node) {
+        ListNode tmp = node.next;
+
+        node.val = tmp.val;
+        node.next = tmp.next;
     }
 
 }

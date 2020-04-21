@@ -1,5 +1,7 @@
 package com.hzq.netty.leetcode;
 
+import lombok.Data;
+
 /**
  * @Description: TODO
  * @Auth: Huangzq

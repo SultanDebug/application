@@ -1,5 +1,7 @@
 package com.hzq.netty.leetcode;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -27,10 +27,26 @@ public class TreeOperation {
         TreeNode t5 = new TreeNode(5);
         t2.right = t5;
 
-        TreeOperation treeOperation = new TreeOperation();
-        int res = treeOperation.addLeft(t1,false);
+        TreeNode t6 = new TreeNode(6);
 
-        System.out.println(JSON.toJSONString(res));
+        TreeNode t7 = new TreeNode(7);
+        t6.left = t7;
+
+        TreeNode t8 = new TreeNode(8);
+        t6.right = t8;
+
+        TreeNode t9 = new TreeNode(9);
+        t7.left = t9;
+
+        TreeNode t10 = new TreeNode(10);
+        t7.right = t10;
+
+        TreeOperation treeOperation = new TreeOperation();
+//        int res = treeOperation.addLeft(t1,false);
+
+//        System.out.println(JSON.toJSONString(res));
+        TreeNode res = treeOperation.getTargetCopy(t1,t6,t4);
+        System.out.println(res.val);
 
     }
 
@@ -71,6 +87,47 @@ public class TreeOperation {
         return res;
 
     }
+
+
+    /**
+     * 给你两棵二叉树，原始树 original 和克隆树 cloned，以及一个位于原始树 original 中的目标节点 target。
+     *
+     * 其中，克隆树 cloned 是原始树 original 的一个 副本 。
+     *
+     * 请找出在树 cloned 中，与 target 相同 的节点，并返回对该节点的引用
+     *
+     * 直接遍历树  同时遍历
+     *
+     * @param original
+     * @param cloned
+     * @param target
+     * @return
+     */
+    public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
+
+        TreeNode res = null;
+        if(original.equals(target)){
+            res = cloned;
+        }else{
+            if(original.left!=null){
+                res = getTargetCopy(original.left,cloned.left,target);
+                if(res!=null){
+                    return res;
+                }
+            }
+            if(original.right!=null){
+                res = getTargetCopy(original.right,cloned.right,target);
+                if(res!=null){
+                    return res;
+                }
+            }
+
+        }
+
+        return res;
+    }
+
+
 
 
 }
