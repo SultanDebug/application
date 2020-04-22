@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author Huangzq
@@ -30,7 +31,10 @@ public class TreeOperation {
         TreeNode t6 = new TreeNode(6);
 
         TreeNode t7 = new TreeNode(7);
-        t6.left = t7;
+        t3.left=t6;
+        t3.right=t7;
+
+        /*t6.left = t7;
 
         TreeNode t8 = new TreeNode(8);
         t6.right = t8;
@@ -39,14 +43,17 @@ public class TreeOperation {
         t7.left = t9;
 
         TreeNode t10 = new TreeNode(10);
-        t7.right = t10;
+        t7.right = t10;*/
 
         TreeOperation treeOperation = new TreeOperation();
 //        int res = treeOperation.addLeft(t1,false);
 
 //        System.out.println(JSON.toJSONString(res));
-        TreeNode res = treeOperation.getTargetCopy(t1,t6,t4);
-        System.out.println(res.val);
+//        TreeNode res = treeOperation.getTargetCopy(t1,t6,t4);
+//        System.out.println(res.val);
+
+//        List<Integer> integers = treeOperation.rightSideView(t1);
+        System.out.println(treeOperation.search(t1));
 
     }
 
@@ -127,7 +134,30 @@ public class TreeOperation {
         return res;
     }
 
+    public List<Integer> rightSideView(TreeNode root) {
+        /*Stack<Integer> stack = new Stack<>();
 
+        stack.push(root.val);*/
+
+
+        return null;
+    }
+
+    public int search(TreeNode root/*,Stack<Integer> stack,int deep*/) {
+        int leftHeight, rightHeight, maxHeight;
+//        stack.push(root.val);
+        if(root!=null){
+            leftHeight = search(root.left);
+            rightHeight = search(root.right);
+
+            maxHeight = leftHeight>rightHeight?leftHeight:rightHeight;
+            return maxHeight+1;
+        }else{
+            return 0;
+        }
+
+
+    }
 
 
 }
