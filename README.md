@@ -39,7 +39,7 @@
   - demoservice：redis、ssdb（**异常**）、rabbitmq、zk、feign、feigninterceptor（threadlocal-token）综合测试
   - feignservice：demoservice配套测试服务，mybatis引入测试
   - kafkaservice：kafka数据分片、客户组测试
-  - nettyservice：nettyAPI测试，NIO/BIO服务器，rpc，设计模式，（条件注解、代理、lettuce-jedis性能测试、布隆过滤器、序列化反序列化、zk leader选举、zk分布式锁、zk队列、zk上级节点监听）
+  - nettyservice：nettyAPI测试，NIO/BIO服务器，rpc，设计模式，（条件注解、代理、lettuce-jedis性能测试、布隆过滤器、序列化反序列化、zk leader选举、zk分布式锁、zk队列、zk上级节点监听、rocketmq事物消息）
   - rabbitservice：ack异常测试，topic分发测试
   - zkservice：curatorFramework API测试
 
