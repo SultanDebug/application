@@ -15,14 +15,9 @@ import java.util.Map;
  */
 public class MergeKLists {
     /**
+     * 23. 合并K个排序链表
      * 合并 2【k】 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
      */
-
-    /*public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }*/
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
@@ -90,8 +85,21 @@ public class MergeKLists {
     }
 
     public ListNode mergeKLists(ListNode[] lists) {
+        if(lists==null){
+            return null;
+        }
+        if(lists.length==0){
+            return null;
+        }
+        if(lists.length==1){
+            return lists[0];
+        }
 
-        return null;
+        ListNode listNode = lists[0];
+        for (int i = 1; i < lists.length; i++) {
+            listNode = this.mergeTwoLists(listNode,lists[i]);
+        }
+        return listNode;
     }
 
 
@@ -132,26 +140,40 @@ public class MergeKLists {
     }
 
     public static void main(String[] args) {
-        /*ListNode a1 = new ListNode(1);
+        ListNode a1 = new ListNode(1);
 
-        ListNode a2 = new ListNode(3);
+        ListNode a2 = new ListNode(5);
         a1.next = a2;
 
-        ListNode a3 = new ListNode(6);
+        ListNode a3 = new ListNode(7);
         a2.next = a3;
 
-        ListNode b1 = new ListNode(2);*/
+        ListNode b1 = new ListNode(2);
 
-        /*ListNode b2 = new ListNode(3);
+        ListNode b2 = new ListNode(6);
         b1.next = b2;
 
-        ListNode b3 = new ListNode(4);
-        b2.next = b3;*/
+        ListNode b3 = new ListNode(8);
+        b2.next = b3;
 
-//        MergeKLists mergeKLists = new MergeKLists();
+        ListNode c1 = new ListNode(3);
+
+        ListNode c2 = new ListNode(5);
+        c1.next = c2;
+
+        ListNode c3 = new ListNode(9);
+        c2.next = c3;
+
+        ListNode[] listNodes = {a1,b1,c1};
+
+        MergeKLists mergeKLists = new MergeKLists();
 //        mergeKLists.mergeTwoLists(a1,b1);
 
-        Node a1 = new Node(1);
+        ListNode listNode = mergeKLists.mergeKLists(listNodes);
+
+        System.out.println(listNode.toString());
+
+        /*Node a1 = new Node(1);
 
         Node a2 = new Node(3);
         a1.next = a2;
@@ -164,7 +186,7 @@ public class MergeKLists {
         a3.next = null;
         a3.random = a1;
 
-        System.out.println(JSON.toJSONString(copyRandomList(null)));
+        System.out.println(JSON.toJSONString(copyRandomList(null)));*/
     }
 
 }
