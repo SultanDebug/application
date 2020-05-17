@@ -46,7 +46,7 @@
         <!-- 告知映射文件方式2，自动扫描包内的Mapper接口与配置文件
         <package name="com/xhh/mybatis/mapper"/> -->
 
-        <mapper resource="UserMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 
 </configuration>

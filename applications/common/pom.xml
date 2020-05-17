@@ -89,5 +89,9 @@
             <artifactId>mybatiscore</artifactId>
             <version>${hzq.app.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -16,7 +16,7 @@ import java.io.InputStream;
  * @Date: Created in 2020-02-28
  */
 public class MybatisTest {
-    public static void test(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         //加载全局配置文件
         String resource = "mybatis-config.xml_bak";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -43,23 +43,23 @@ public class MybatisTest {
                 //一级缓存写入
                 User user = mapper.getUser(3);
 
-                System.out.println("session1 1 :"+user);
+                System.out.println("session 1 写入 :"+user);
 
 //            mapper.updateUser(3,"测试3");
 
                 //删除一级缓存
-                mapper.updateUser(2,"测试3");
+                mapper.updateUser(3,"测试3");
                 openSession.commit();
 
                 //测试一级缓存
                 User user2 = mapper.getUser(3);
 
-                System.out.println("session1 2 :"+user2);
+                System.out.println("session1 获取 :"+user2);
 
                 //跨会话缓存
                 User user1 = mapper1.getUser(3);
 
-                System.out.println("session2 1 :"+user1);
+                System.out.println("session2 获取 :"+user1);
 
 
 
