@@ -15,4 +15,5 @@ public @interface RedisLock {
     String lockKey() ;
     int expire() default 30000;
     int timeout() default 10000;
+
 }
