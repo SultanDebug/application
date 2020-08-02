@@ -2,7 +2,13 @@ package com.hzq.rediscore.pubsub;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
+/**
+ * 发布订阅测试
+ * @author Huangzq
+ * @title: Subscriber
+ * @projectName applications
+ * @date 2019/12/4 9:38
+ */
 public class Subscriber extends Thread {
     private final JedisPool jedisPool;
     private final MsgListener msgListener = new MsgListener();

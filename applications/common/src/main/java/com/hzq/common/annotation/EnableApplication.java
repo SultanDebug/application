@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Import;
 import java.lang.annotation.*;
 
 /**
+ * 启动注解包装
  * @author Huangzq
  * @title: EnableApplication
  * @projectName applications

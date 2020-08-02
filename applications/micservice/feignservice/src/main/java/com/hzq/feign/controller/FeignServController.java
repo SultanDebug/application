@@ -19,6 +19,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * feign服务提供
+ * 远程配置
+ * 参数透传
+ * mybatis测试
  * @author Huangzq
  * @title: FeignServController
  * @projectName applications

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * zk注册
  * @author Huangzq
  * @title: ZkCon
  * @projectName applications

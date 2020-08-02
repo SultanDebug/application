@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
+ * starter参数获取
  * @author Huangzq
  * @title: PersonProperties
  * @projectName applications

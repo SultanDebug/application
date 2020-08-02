@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
+ * mybatis配置
  * @Description: TODO
  * @Auth: Huangzq
  * @Date: Created in 2020-03-03

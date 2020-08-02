@@ -8,7 +8,8 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * @ClassName OcrReqDTO
+ * socket请求参数
+ * @ClassName SocketReqDTO
  * @Description
  * @Author zhengzhouyang
  * @Date 2019/9/16 17:00

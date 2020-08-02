@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
+ * rabbitmq配置
  * @author Huangzq
  * @title: RabbitMqConfig
  * @projectName applications

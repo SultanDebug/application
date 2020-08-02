@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
+ * 消息监听
  * @author Huangzq
  * @title: MsgReceiver
  * @projectName applications

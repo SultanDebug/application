@@ -1,12 +1,12 @@
 package com.hzq.demoservice.config;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
+ * redis配置
  * @author Huangzq
  * @date 2019-04-12
  */

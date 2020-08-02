@@ -1,6 +1,5 @@
 package com.hzq.cloudgateway.filter;
 
-import com.hzq.common.utils.UserUtils;
 import com.hzq.feignservice.FeignServInterface;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +15,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
+ * 网关过滤
  * @author Huangzq
  * @title: SecurityFilter
  * @projectName applications

@@ -3,6 +3,7 @@ package com.hzq.feign.service;
 import java.sql.*;
 
 /**
+ * jdbc测试
  * @Description: TODO
  * @Auth: Huangzq
  * @Date: Created in 2020-02-28

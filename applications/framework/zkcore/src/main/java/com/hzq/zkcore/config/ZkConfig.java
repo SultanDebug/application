@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
+ * zk参数获取
  * @author Huangzq
  * @title: ZkConfig
  * @projectName applications

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * redis基础api 锁获取
  * @author Huangzq
  * @title: RedisLockUtil
  * @projectName applications

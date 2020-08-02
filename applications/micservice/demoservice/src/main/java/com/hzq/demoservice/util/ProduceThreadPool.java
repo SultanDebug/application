@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * 线程测试工具
  * @author Huangzq
  * @title: ProduceThreadPool
  * @projectName applications

@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
+ * 启动注解配置 包扫描
  * @author Huangzq
  * @title: EnableApplicationConfig
  * @projectName applications

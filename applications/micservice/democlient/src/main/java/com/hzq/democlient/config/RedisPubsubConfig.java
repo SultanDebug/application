@@ -9,6 +9,7 @@ import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
 /**
+ * ws多实例部署  redis发布订阅
  * @author Huangzq
  * @title: RedisPubsubConfig
  * @projectName qs-saas

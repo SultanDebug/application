@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * swagger配置
  * @author Huangzq
  * @date 2019-01-22
  */

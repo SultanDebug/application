@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 消息发布
  * @author Huangzq
  * @title: KafkaController
  * @projectName zhengtyun-saas

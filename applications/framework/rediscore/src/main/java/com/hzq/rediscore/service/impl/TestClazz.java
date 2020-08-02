@@ -1,14 +1,7 @@
 package com.hzq.rediscore.service.impl;
 
-import org.apache.commons.lang.StringUtils;
-
-import javax.sound.midi.Soundbank;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
+ * 无关测试
  * @author Huangzq
  * @title: TestClazz
  * @projectName applications
@@ -45,7 +38,7 @@ public class TestClazz {
     }
 
 
-
+    //todo main
     public static void test(String[] args) {
         //类初始化
         init();

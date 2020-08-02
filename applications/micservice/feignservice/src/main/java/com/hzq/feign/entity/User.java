@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 数据库实体
  * @Description: TODO
  * @Auth: Huangzq
  * @Date: Created in 2020-02-28

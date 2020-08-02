@@ -1,17 +1,13 @@
 package com.hzq.rabbitservice.consumer;
 
 import com.hzq.rabbitservice.config.RabbitQueue;
-import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.listener.api.ChannelAwareMessageListener;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 /**
+ * 消费者
  * @author Huangzq
  * @title: TestConsumer
  * @projectName applications

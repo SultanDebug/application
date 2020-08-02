@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
+ * 上下文获取
  * @author Huangzq
  * @title: ApplicationContextUtils
  * @projectName applications

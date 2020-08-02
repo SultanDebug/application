@@ -1,11 +1,14 @@
 package com.hzq.demoservice;
 import com.hzq.common.annotation.EnableApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 远程服务提供者和中间件测试
+ * @author Huangzq
+ * @title: DemoserviceApplication
+ * @projectName applications
+ * @date 2019/7/4 18:52
+ */
 @EnableApplication
 public class DemoserviceApplication {
     public static void main(String[] args) {

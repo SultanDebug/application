@@ -2,10 +2,13 @@ package com.hzq.rabbitmqcore.config;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ * mq参数获取
  * @author Huangzq
  * @title: RabbitConfig
  * @projectName applications
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "spring.rabbitmq")
 @Data
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class RabbitConfig {
     private String host;
 

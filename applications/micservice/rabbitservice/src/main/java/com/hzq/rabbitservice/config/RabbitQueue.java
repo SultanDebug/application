@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
+ * rabbitmq队列配置
  * @author Huangzq
  * @title: RabbitQueue
  * @projectName applications

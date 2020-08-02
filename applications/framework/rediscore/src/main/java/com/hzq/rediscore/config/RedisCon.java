@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
+ * 参数获取
  * @author Huangzq
  * @date 2019-04-12
  */

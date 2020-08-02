@@ -13,7 +13,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
- * Created by Huangzq on 2018/10/9.
+ * ws测试业务1
+ * @author Huangzq
+ * @title: SocketController
+ * @projectName applications
+ * @date 2019/8/6 15:59
  */
 @ServerEndpoint("/test1/{sid}")
 @Component(WebSocketServerConst.SERVER_TEST_SERVER_1_CODE)

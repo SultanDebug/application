@@ -3,6 +3,7 @@ package com.hzq.rediscore.lockaop;
 import java.lang.annotation.*;
 
 /**
+ * 分布式锁注解方法标记
  * @author Huangzq
  * @title: RedisLock
  * @projectName applications

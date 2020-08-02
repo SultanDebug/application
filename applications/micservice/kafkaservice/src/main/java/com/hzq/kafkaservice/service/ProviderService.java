@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * 消息发布
  * @author Huangzq
  * @title: ProviderService
  * @projectName applications

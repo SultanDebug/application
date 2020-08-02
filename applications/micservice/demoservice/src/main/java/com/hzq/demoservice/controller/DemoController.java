@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 服务提供者测试
+ * 中间件测试
  * @author Huangzq
  * @date 2019-04-12
  */

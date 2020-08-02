@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 消息实体
  * @author Huangzq
  * @title: MsgBean
  * @projectName zhengtyun-saas

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
+ * 远程提供者测试
  * @Description: TODO
  * @Auth: Huangzq
  * @Date: Created in 2020-03-17

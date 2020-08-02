@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ * mq链接配置
  * @author Huangzq
  * @title: RabbitAutoConfig
  * @projectName applications

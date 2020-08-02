@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 基础api
  * @author Huangzq
  * @title: RedisServiceImpl
  * @projectName applications

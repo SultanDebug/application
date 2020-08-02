@@ -1,9 +1,9 @@
 package com.hzq.demoservice.util;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.stereotype.Component;
 
 /**
+ * mq基础api
  * @author Huangzq
  * @title: RabbitTemplateUtil
  * @projectName applications

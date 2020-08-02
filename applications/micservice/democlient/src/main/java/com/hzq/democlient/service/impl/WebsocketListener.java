@@ -15,11 +15,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 /**
+ * ws-redis消息监听
  * @author Huangzq
- * @title: WebsocketListener redis消息监听服务
+ * @titl: WebsocketListener redis消息监听服务
  * @projectName qs-saas
  * @date 2019/12/30 16:54
  */

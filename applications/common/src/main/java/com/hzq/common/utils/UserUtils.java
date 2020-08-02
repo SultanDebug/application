@@ -1,6 +1,7 @@
 package com.hzq.common.utils;
 
 /**
+ * token参数透传
  * @author Huangzq
  * @title: UserUtils
  * @projectName applications

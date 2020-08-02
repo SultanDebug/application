@@ -17,6 +17,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * zk基础api
  * @author Huangzq
  * @title: ZkUtils
  * @projectName applications

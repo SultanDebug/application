@@ -8,7 +8,10 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * websocket框架抽象类
- * Created by Huangzq on 2018/10/9.
+ * @author Huangzq
+ * @title: SocketController
+ * @projectName applications
+ * @date 2019/8/6 15:59
  */
 @Slf4j
 public abstract class WebsocketAbstractServer {

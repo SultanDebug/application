@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 
 /**
+ * 分布式锁切面
  * @author Huangzq
  * @title: RedisLockAop
  * @projectName applications

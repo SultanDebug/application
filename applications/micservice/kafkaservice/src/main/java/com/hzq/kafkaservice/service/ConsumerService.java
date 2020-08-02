@@ -7,15 +7,15 @@ import com.hzq.kafkaservice.msgbean.MsgBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 /**
+ * 消息消费
  * @author Huangzq
  * @title: ConsumerService
- * @projectName applications
+ * @projectNme applications
  * @date 2019/8/31 16:14
  */
 @Component

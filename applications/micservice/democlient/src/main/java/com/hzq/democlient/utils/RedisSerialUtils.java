@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 /**
+ * reids序列化
  * @author Huangzq
  * @title: RedisSerialUtils
  * @projectName qs-saas

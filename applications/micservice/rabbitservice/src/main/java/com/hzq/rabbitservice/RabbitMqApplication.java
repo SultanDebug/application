@@ -4,7 +4,7 @@ import com.hzq.common.annotation.EnableApplication;
 import org.springframework.boot.SpringApplication;
 
 /**
- * Hello world!
+ * rabbitmq测试
  *
  */
 @EnableApplication

@@ -7,6 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * redis发布
+ * @author Huangzq
+ * @title: Publisher
+ * @projectName applications
+ * @date 2019/12/4 9:38
+ */
 public class Publisher extends Thread{
     private final JedisPool jedisPool;
 

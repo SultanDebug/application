@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
+ * 远程服务接口测试
  * @author Huangzq
  * @title: FeignServInterface
  * @projectName applications

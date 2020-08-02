@@ -3,7 +3,6 @@ package com.hzq.democlient.controller;
 import com.hzq.common.aop.LogAop;
 import com.hzq.common.utils.ApplicationContextUtils;
 import com.hzq.common.utils.UserUtils;
-import com.hzq.demoservice.DemoServiceInterface;
 import com.hzq.feignservice.FeignServInterface;
 import com.hzq.rediscore.lockaop.RedisLock;
 import com.hzq.rediscore.service.RedisService;
@@ -12,14 +11,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -28,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * feign客户端和中间件测试接口
  * @author Huangzq
  * @title: DemoClientController
  * @projectName applications

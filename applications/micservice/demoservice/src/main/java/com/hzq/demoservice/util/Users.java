@@ -3,6 +3,7 @@ package com.hzq.demoservice.util;
 import java.io.Serializable;
 
 /**
+ * 测试bean
  * @author Huangzq
  * @title: Users
  * @projectName applications

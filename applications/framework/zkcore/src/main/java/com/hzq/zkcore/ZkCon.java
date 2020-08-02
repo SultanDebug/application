@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * zk链接配置
  * @author Huangzq
  * @title: ZkCon
  * @projectName applications

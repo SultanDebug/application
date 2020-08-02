@@ -25,6 +25,7 @@ import java.lang.reflect.Method;
 import java.time.Duration;
 
 /**
+ * redis注册
  * @author Huangzq
  * @date 2019-04-12
  */

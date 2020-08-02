@@ -1,6 +1,7 @@
 package com.hzq.democlient.config;
 
 /**
+ * ws业务常量定义
  * @author Huangzq
  * @title: WebSocketServerConst
  * @projectName applications
@@ -8,12 +9,12 @@ package com.hzq.democlient.config;
  */
 public class WebSocketServerConst {
     /**
-     * 客户导出
+     * 测试业务1
      */
     public static final String SERVER_TEST_SERVER_1_CODE = "test1";
 
     /**
-     * 测试
+     * 测试业务2
      */
     public static final String SERVER_TEST_SERVER_2_CODE = "test2";
 

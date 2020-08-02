@@ -1,6 +1,7 @@
 package com.hzq.kafkaservice.config;
 
 /**
+ * kafka队列
  * @author Huangzq
  * @title: KafkaConstant
  * @projectName zhengtyun-saas

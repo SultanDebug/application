@@ -1,11 +1,11 @@
 package com.hzq.common.interceptor.feign;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 拦截器注册
  * @author Huangzq
  * @title: FeignAutoConfig
  * @projectName applications

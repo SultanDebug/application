@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
+ * 远程接口调用测试
  * @author Huangzq
  * @date 2019-03-25
  */

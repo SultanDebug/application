@@ -12,7 +12,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
- * Created by sultan on 2018/10/9.
+ * ws基础api
+ * @author Huangzq
+ * @title: SocketController
+ * @projectName applications
+ * @date 2019/8/6 15:59
  */
 @Controller
 @RequestMapping("/checkcenter")

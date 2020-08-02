@@ -9,6 +9,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.stereotype.Service;
 
 /**
+ * ws-redis消息发布
  * @author Huangzq
  * @title: SocketPubServiceImpl
  * @projectName qs-saas

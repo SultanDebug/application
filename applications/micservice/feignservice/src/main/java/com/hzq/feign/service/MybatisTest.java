@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * mybatis分级缓存测试
  * @Description: TODO
  * @Auth: Huangzq
  * @Date: Created in 2020-02-28
  */
 public class MybatisTest {
-    public static void main(String[] args) throws IOException {
+    public static void test(String[] args) throws IOException {
         //加载全局配置文件
         String resource = "mybatis-config.xml_bak";
         InputStream inputStream = Resources.getResourceAsStream(resource);

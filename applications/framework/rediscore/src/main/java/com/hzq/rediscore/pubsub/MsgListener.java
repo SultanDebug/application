@@ -2,6 +2,13 @@ package com.hzq.rediscore.pubsub;
 
 import redis.clients.jedis.JedisPubSub;
 
+/**
+ * redis发布订阅
+ * @author Huangzq
+ * @title: MsgListener
+ * @projectName applications
+ * @date 2019/12/4 9:38
+ */
 public class MsgListener extends JedisPubSub {
     public MsgListener(){}
 

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
+ * 邮件发送
  * @Description: TODO
  * @Auth: Huangzq
  * @Date: Created in 2020-05-15

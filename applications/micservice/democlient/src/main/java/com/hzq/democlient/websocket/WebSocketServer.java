@@ -12,7 +12,11 @@ import java.net.URLDecoder;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Created by sultan on 2018/10/9.
+ * ws服务入口
+ * @author Huangzq
+ * @title: WebSocketServer
+ * @projectName qs-saas
+ * @date 2019/12/31 14:28
  */
 @ServerEndpoint("/websocket/{sid}")
 @Component

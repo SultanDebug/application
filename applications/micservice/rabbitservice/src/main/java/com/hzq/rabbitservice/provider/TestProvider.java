@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 /**
+ * 生产者
  * @author Huangzq
  * @title: TestProvider
  * @projectName applications

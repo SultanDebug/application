@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * zuul网关
  * @author Huangzq
  * @title: SecurityFilter
  * @projectName applications

@@ -1,11 +1,11 @@
 package com.hzq.feign;
 
 import com.hzq.common.annotation.EnableApplication;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 
 /**
- * Hello world!
+ * 数据库测试
+ * 远程服务提供者
  *
  */
 @EnableApplication
