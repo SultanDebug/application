@@ -1,5 +1,6 @@
 package com.hzq.democlient;
 
+import com.hzq.common.aop.ResultResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -20,5 +21,5 @@ public interface WebsocketInterface {
 
     @PostMapping(value = MAPPING + "/sender")
     @ApiOperation(value = "消息发送")
-    String sender(@RequestBody SocketReqDTO socketReqDTO );
+    ResultResponse<String> sender(@RequestBody SocketReqDTO socketReqDTO );
 }

@@ -1,5 +1,6 @@
 package com.hzq.provider.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.providerservice.ProviderInterface;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +32,7 @@ public class ProviderController implements ProviderInterface {
     }
 
     @Override
-    public String provider(@PathVariable("msg") String msg) {
-        return "provider:port:"+getPort()+"***profiles:"+ Arrays.toString(getProps()) +":"+msg;
+    public ResultResponse<String> provider(@PathVariable("msg") String msg) {
+        return ResultResponse.success("provider:port:"+getPort()+"***profiles:"+ Arrays.toString(getProps()) +":"+msg);
     }
 }

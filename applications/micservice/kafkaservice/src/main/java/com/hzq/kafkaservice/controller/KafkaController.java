@@ -1,5 +1,6 @@
 package com.hzq.kafkaservice.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.kafkaservice.service.ProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,11 +27,11 @@ public class KafkaController {
 
     @GetMapping("/kafka/provider")
     @ApiOperation(value = "消息生产")
-    public String confirmOrder(@RequestParam("para") String para){
+    public ResultResponse<String> confirmOrder(@RequestParam("para") String para){
 
         providerService.sendMsg(para);
 
-        return "success";
+        return ResultResponse.success("success");
     }
 
 }

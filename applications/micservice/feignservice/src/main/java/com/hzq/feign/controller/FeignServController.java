@@ -1,6 +1,7 @@
 package com.hzq.feign.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.common.utils.UserUtils;
 import com.hzq.feign.service.UserService;
 import com.hzq.feignservice.FeignServInterface;
@@ -41,19 +42,19 @@ public class FeignServController implements FeignServInterface {
 
     @Override
     @ApiOperation(value = "feign-service接口")
-    public String servTest(@PathVariable("para") String para) {
+    public ResultResponse<String> servTest(@PathVariable("para") String para) {
 
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
 
         log.info("threadLocal : "+ UserUtils.getUser()+" 线程："+Thread.currentThread().getId()+" 请求头参数："+request.getHeader("user"));
-        return "服务端调用成功："+val;
+        return ResultResponse.success("服务端调用成功："+val);
     }
 
     @Override
     @ApiOperation(value = "feign-service数据库测试接口")
-    public String feignSevDb(@PathVariable("id") Integer id) {
-        return JSONObject.toJSONString(userService.getById(id));
+    public ResultResponse<String> feignSevDb(@PathVariable("id") Integer id) {
+        return ResultResponse.success(JSONObject.toJSONString(userService.getById(id)));
     }
 }

@@ -1,5 +1,6 @@
 package com.hzq.netty.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.common.utils.UserUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,13 +30,13 @@ public class FeignServController {
 
     @ApiOperation(value = "feign-service接口")
     @GetMapping(value = "/netty/servTest/{para}")
-    public String servTest(@PathVariable("para") String para) {
+    public ResultResponse<String> servTest(@PathVariable("para") String para) {
 
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
 
         log.info("threadLocal : "+ UserUtils.getUser()+" 线程："+Thread.currentThread().getId()+" 请求头参数："+request.getHeader("user"));
-        return "服务端调用成功："+val;
+        return ResultResponse.success("服务端调用成功："+val);
     }
 }

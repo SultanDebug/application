@@ -1,5 +1,6 @@
 package com.hzq.demoservice.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.demoservice.DemoServiceInterface;
 import com.hzq.demoservice.config.RedisCon;
 import com.hzq.demoservice.service.rabbitmq.MsgProducer;
@@ -48,36 +49,36 @@ public class DemoController implements DemoServiceInterface{
 
     @ApiOperation(value = "service端")
     @GetMapping("/demo/{name}")
-    public String getTest(@PathVariable("name") String name){
+    public ResultResponse<String> getTest(@PathVariable("name") String name){
         log.info("----------测试{}---------",name);
-        return "hello "+name+",there is :"+val;
+        return ResultResponse.success("hello "+name+",there is :"+val);
     }
 
     @ApiOperation(value = "redis 性能测试")
     @GetMapping("/redis")
-    public String redis(@RequestParam String str){
+    public ResultResponse<String> redis(@RequestParam String str){
 
         System.out.println(redisCon);
 
         redisUtil.set("test",str);
 
-        return "花朵花朵"+","+redisUtil.get("test");
+        return ResultResponse.success("花朵花朵"+","+redisUtil.get("test"));
     }
 
     @ApiOperation("ssdb 性能测试")
     @GetMapping("/ssdb")
-    public String ssdb(@RequestParam String str) throws Exception {
+    public ResultResponse<String> ssdb(@RequestParam String str) throws Exception {
 
         SSDB ssdb = new SSDB("192.168.1.40",8888);
 
         ssdb.set("test","testVal");
 
-        return "hello:"+str+","+ssdb.get("test");
+        return ResultResponse.success("hello:"+str+","+ssdb.get("test"));
     }
 
     @ApiOperation("mq多线程生产者开关")
     @GetMapping("/mq")
-    public String mq(@RequestParam(required = false) Long thredId){
+    public ResultResponse<String> mq(@RequestParam(required = false) Long thredId){
 
         if(thredId != null){
             Thread thread = ProduceThreadPool.pool.get(thredId);
@@ -130,17 +131,17 @@ public class DemoController implements DemoServiceInterface{
             });
             thread.start();
             ProduceThreadPool.pool.put(thread.getId(),thread);
-            return thread.getId()+"";
+            return ResultResponse.success(thread.getId()+"");
         }
 
-        return thredId+"中断成功";
+        return ResultResponse.success(thredId+"中断成功");
     }
 
     @ApiOperation("zookeeper测试")
     @GetMapping("/zk")
-    public String zkTest(){
+    public ResultResponse<String> zkTest(){
 
-        return "success";
+        return ResultResponse.success("success");
     }
 
 }

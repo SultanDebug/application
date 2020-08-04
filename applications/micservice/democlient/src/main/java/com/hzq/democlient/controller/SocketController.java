@@ -1,8 +1,9 @@
 package com.hzq.democlient.controller;
 
+import com.hzq.common.aop.ResultResponse;
+import com.hzq.democlient.SocketReqDTO;
 import com.hzq.democlient.WebsocketInterface;
 import com.hzq.democlient.service.SocketPubService;
-import com.hzq.democlient.SocketReqDTO;
 import com.hzq.democlient.websocket.WebSocketServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class SocketController implements WebsocketInterface {
     //推送数据测试接口
     @ResponseBody
     @GetMapping("/socket/push/{cid}")
-    public String pushToWeb(@PathVariable String cid, String message) {
+    public ResultResponse<String> pushToWeb(@PathVariable String cid, String message) {
         try {
             cid = URLDecoder.decode(cid,"UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -36,7 +37,7 @@ public class SocketController implements WebsocketInterface {
             return null;
         }
         WebSocketServer.sendInfo(message,cid);
-        return cid;
+        return ResultResponse.success(cid);
     }
 
     /**
@@ -45,8 +46,8 @@ public class SocketController implements WebsocketInterface {
      * @return
      */
     @Override
-    public String sender(@RequestBody SocketReqDTO socketReqDTO) {
+    public ResultResponse<String> sender(@RequestBody SocketReqDTO socketReqDTO) {
 //        rabbitTemplate.convertAndSend(RabbitmqConstants.WEBSOCKET_QUEUE,socketReqDTO);
-        return pubService.pubMsg(socketReqDTO);
+        return ResultResponse.success(pubService.pubMsg(socketReqDTO));
     }
 }

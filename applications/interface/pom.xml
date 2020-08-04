@@ -78,6 +78,12 @@
             <artifactId>spring-cloud-commons</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.hzq.common</groupId>
+            <artifactId>common</artifactId>
+            <version>${hzq.app.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

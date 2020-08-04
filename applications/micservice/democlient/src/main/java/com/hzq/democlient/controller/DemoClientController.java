@@ -1,6 +1,7 @@
 package com.hzq.democlient.controller;
 
 import com.hzq.common.aop.LogAop;
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.common.utils.ApplicationContextUtils;
 import com.hzq.common.utils.UserUtils;
 import com.hzq.feignservice.FeignServInterface;
@@ -51,7 +52,7 @@ public class DemoClientController {
 
     @ApiOperation(value = "client端测试")
     @GetMapping("/client/democlient/test/{name}")
-    public String clientTest(@PathVariable("name") String name){
+    public ResultResponse<String> clientTest(@PathVariable("name") String name){
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
@@ -71,23 +72,23 @@ public class DemoClientController {
             e.printStackTrace();
         }
 
-        return "clienttest para :"+name +". demoservice para : "+ service + ",当前配置文件数据：" + val;
+        return ResultResponse.success("clienttest para :"+name +". demoservice para : "+ service + ",当前配置文件数据：" + val);
     }
 
     @ApiOperation(value = "client端starter测试")
     @GetMapping("/client/democlient/starterTest")
-    public String starterTest(){
+    public ResultResponse<String> starterTest(){
         personService.sayHello();
-        return "测试成功";
+        return ResultResponse.success("测试成功");
     }
 
     @ApiOperation(value = "client端redis锁测试")
     @GetMapping("/client/democlient/redis")
     @RedisLock(lockKey = "lockKey",expire = 60000)
-    public String redis(String val) throws InterruptedException {
+    public ResultResponse<String> redis(String val) throws InterruptedException {
         redisService.set("testKey",val);
         TimeUnit.SECONDS.sleep(1L);
-        return (String) redisService.get("testKey");
+        return ResultResponse.success((String) redisService.get("testKey"));
     }
 
 }

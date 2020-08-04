@@ -1,5 +1,6 @@
 package com.hzq.zkservice.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.zkcore.service.ZkService;
 import com.hzq.zkservice.service.ZkOptService;
 import io.swagger.annotations.Api;
@@ -31,7 +32,7 @@ public class TestZkController {
 
     @ApiOperation("zk测试")
     @GetMapping("/zk")
-    public String testZk(@RequestParam("msg") String msg){
+    public ResultResponse<String> testZk(@RequestParam("msg") String msg){
         try {
             String str = zkService.set("/hzq","/",msg);
             log.info("插入结果："+str);
@@ -49,36 +50,36 @@ public class TestZkController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "success";
+        return ResultResponse.success("success");
     }
 
     @ApiOperation("zk新增")
     @GetMapping("/zkadd")
-    public String zkadd(@RequestParam("path") String path ,@RequestParam("msg") String msg){
-        return zkOptService.zkadd(path,msg);
+    public ResultResponse<String> zkadd(@RequestParam("path") String path ,@RequestParam("msg") String msg){
+        return ResultResponse.success(zkOptService.zkadd(path,msg));
     }
 
     @ApiOperation("zk删除")
     @GetMapping("/zkDel")
-    public String zkDel(@RequestParam("path") String path){
-        return zkOptService.zkDel(path);
+    public ResultResponse<String> zkDel(@RequestParam("path") String path){
+        return ResultResponse.success(zkOptService.zkDel(path));
     }
 
     @ApiOperation("zk更新")
     @GetMapping("/zkUpdate")
-    public String zkUpdate(@RequestParam("path") String path ,@RequestParam("msg") String msg){
-        return zkOptService.zkUpdate(path,msg);
+    public ResultResponse<String> zkUpdate(@RequestParam("path") String path ,@RequestParam("msg") String msg){
+        return ResultResponse.success(zkOptService.zkUpdate(path,msg));
     }
 
     @ApiOperation("zk查询")
     @GetMapping("/zkQuery")
-    public String zkQuery(@RequestParam("path") String path){
-        return zkOptService.zkQuery(path);
+    public ResultResponse<String> zkQuery(@RequestParam("path") String path){
+        return ResultResponse.success(zkOptService.zkQuery(path));
     }
 
     @ApiOperation("zk监视测试")
     @GetMapping("/zkWatch")
-    public String zkWatch(@RequestParam("path") String path){
-        return zkOptService.zkWatch(path);
+    public ResultResponse<String> zkWatch(@RequestParam("path") String path){
+        return ResultResponse.success(zkOptService.zkWatch(path));
     }
 }

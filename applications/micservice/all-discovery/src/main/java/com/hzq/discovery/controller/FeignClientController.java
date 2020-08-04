@@ -1,5 +1,6 @@
 package com.hzq.discovery.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.providerservice.ProviderInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -38,9 +39,9 @@ public class FeignClientController {
      * @date 2020/8/2 13:40
     */
     @GetMapping("/services")
-    public Set<String> getServices(){
+    public ResultResponse<Set<String>> getServices(){
 //        System.out.println(providerInterface.provider("client"));
-        return Stream.of(providerInterface.provider("client")).collect(Collectors.toSet());
+        return ResultResponse.success(Stream.of(providerInterface.provider("client").getData()).collect(Collectors.toSet()));
 //        return new LinkedHashSet<>(discoveryClient.getServices());
     }
 
@@ -54,7 +55,7 @@ public class FeignClientController {
      * @date 2020/8/2 13:40
     */
     @GetMapping("/services/{serviceName}")
-    public List<ServiceInstance> getServices(@PathVariable("serviceName") String serviceName){
-        return new LinkedList<>(discoveryClient.getInstances(serviceName));
+    public ResultResponse<List<ServiceInstance>> getServices(@PathVariable("serviceName") String serviceName){
+        return ResultResponse.success(new LinkedList<>(discoveryClient.getInstances(serviceName)));
     }
 }

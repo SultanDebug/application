@@ -1,5 +1,6 @@
 package com.hzq.feignservice;
 
+import com.hzq.common.aop.ResultResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "feign-service",contextId = "feignServInterface")
 public interface FeignServInterface {
     @GetMapping("/feignSev/{para}")
-    String servTest(@PathVariable("para") String para);
+    ResultResponse<String> servTest(@PathVariable("para") String para);
 
     @GetMapping("/feignSevDb/{id}")
-    String feignSevDb(@PathVariable("id") Integer id);
+    ResultResponse<String> feignSevDb(@PathVariable("id") Integer id);
 
 }

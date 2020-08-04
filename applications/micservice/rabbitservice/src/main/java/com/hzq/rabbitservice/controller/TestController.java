@@ -1,5 +1,6 @@
 package com.hzq.rabbitservice.controller;
 
+import com.hzq.common.aop.ResultResponse;
 import com.hzq.rabbitservice.provider.TestProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,8 +26,8 @@ public class TestController {
 
     @ApiOperation("mq测试")
     @GetMapping("/mq")
-    public String testMq(@RequestParam("msg") String msg){
+    public ResultResponse<String> testMq(@RequestParam("msg") String msg){
         provider.sendMsg(msg);
-        return "success";
+        return ResultResponse.success("success");
     }
 }
