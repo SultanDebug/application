@@ -66,7 +66,7 @@ public class DemoClientController {
         log.info("aop实例：{}",logAop.toString());
         String service = "";
         try {
-            String str = feignServInterface.servTest(name);
+            String str = feignServInterface.servTest(name).getData();
             service += str;
         }catch (Exception e){
             e.printStackTrace();
