@@ -11,15 +11,6 @@ import java.util.Stack;
  * @date 2020/4/15 9:51
  */
 public class MatrixOperation {
-    public static void main(String[] args) {
-        int[] nums = {2,4,6};//{1,1,2,1,1}  {2,2,2,1,2,2,1,2,2,2}
-
-        String a = "1010";
-        String b = "1011";
-
-//        System.out.println(numberOfSubarrays(nums,1));
-        System.out.println(addBinary(a,b));
-    }
 
     /**
      * 542. 01 矩阵
@@ -233,18 +224,37 @@ public class MatrixOperation {
     /**
      * 6. Z 字形变换
      * */
-    public String convert(String s, int numRows) {
+    public static String convert(String s, int numRows) {
         char [] source = s.toCharArray();
 
         Stack<Character> [] stacks = new Stack[numRows];
-
+        boolean flag = false;
         for (int i = 0; i < source.length; i++) {
-            int k = i%numRows;
+            if((i/numRows)%2==0){
+                flag = false;
+            }else{
+                flag = true;
+            }
+            int k = !flag ? i%numRows : numRows - i%numRows;
             Stack<Character> stack = stacks[k];
             stack.push(source[i]);
         }
 
         return "";
+    }
+
+    public static void main(String[] args) {
+        /*int[] nums = {2,4,6};//{1,1,2,1,1}  {2,2,2,1,2,2,1,2,2,2}
+
+        String a = "1010";
+        String b = "1011";
+
+//        System.out.println(numberOfSubarrays(nums,1));
+        System.out.println(addBinary(a,b));*/
+
+        String s = "123456789";
+
+        convert(s,3);
     }
 
 }
