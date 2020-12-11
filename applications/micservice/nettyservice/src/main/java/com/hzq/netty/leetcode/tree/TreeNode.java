@@ -1,6 +1,4 @@
-package com.hzq.netty.leetcode;
-
-import lombok.Data;
+package com.hzq.netty.leetcode.tree;
 
 import java.util.ArrayList;
 import java.util.List;

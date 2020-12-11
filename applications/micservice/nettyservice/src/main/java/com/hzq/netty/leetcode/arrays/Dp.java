@@ -1,10 +1,4 @@
-package com.hzq.netty.leetcode;
-
-import com.google.common.primitives.UnsignedInteger;
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.hzq.netty.leetcode.arrays;
 
 /**
  * @Description: TODO

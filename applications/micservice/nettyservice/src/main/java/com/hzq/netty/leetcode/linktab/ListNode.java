@@ -1,6 +1,4 @@
-package com.hzq.netty.leetcode;
-
-import lombok.Data;
+package com.hzq.netty.leetcode.linktab;
 
 /**
  * @Description: TODO

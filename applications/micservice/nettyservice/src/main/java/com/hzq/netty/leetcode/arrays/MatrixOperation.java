@@ -1,7 +1,8 @@
-package com.hzq.netty.leetcode;
+package com.hzq.netty.leetcode.arrays;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author Huangzq
@@ -227,6 +228,23 @@ public class MatrixOperation {
         }
 
         return s;
+    }
+
+    /**
+     * 6. Z 字形变换
+     * */
+    public String convert(String s, int numRows) {
+        char [] source = s.toCharArray();
+
+        Stack<Character> [] stacks = new Stack[numRows];
+
+        for (int i = 0; i < source.length; i++) {
+            int k = i%numRows;
+            Stack<Character> stack = stacks[k];
+            stack.push(source[i]);
+        }
+
+        return "";
     }
 
 }

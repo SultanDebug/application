@@ -1,10 +1,6 @@
-package com.hzq.netty.leetcode;
+package com.hzq.netty.leetcode.tree;
 
-import com.alibaba.fastjson.JSON;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @author Huangzq

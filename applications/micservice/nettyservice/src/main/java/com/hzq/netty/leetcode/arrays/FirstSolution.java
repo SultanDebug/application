@@ -1,4 +1,4 @@
-package com.hzq.netty.leetcode;
+package com.hzq.netty.leetcode.arrays;
 
 import java.util.ArrayList;
 import java.util.HashMap;
