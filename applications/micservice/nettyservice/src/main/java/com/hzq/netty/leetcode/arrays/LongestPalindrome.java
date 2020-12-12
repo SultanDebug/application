@@ -10,7 +10,8 @@ import java.util.Arrays;
  */
 public class LongestPalindrome {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("abb"));
+//        System.out.println(longestPalindrome("abb"));
+        System.out.println(isPalindrome(12));
     }
 
     /**
@@ -74,6 +75,15 @@ public class LongestPalindrome {
             }
         }
         return check;
+    }
+
+    public static boolean isPalindrome(int x) {
+        String s = String.valueOf(x);
+        if(s.length()==1){
+            return true;
+        }
+        char[] chars = s.toCharArray();
+        return isDp(0,chars.length-1,chars);
     }
 
     public static boolean isDp(int l , int r , char[]dp){

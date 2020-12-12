@@ -2,7 +2,6 @@ package com.hzq.netty.leetcode.arrays;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @author Huangzq
@@ -225,22 +224,55 @@ public class MatrixOperation {
      * 6. Z 字形变换
      * */
     public static String convert(String s, int numRows) {
+        if (numRows==1){
+            return s;
+        }
         char [] source = s.toCharArray();
 
-        Stack<Character> [] stacks = new Stack[numRows];
-        boolean flag = false;
-        for (int i = 0; i < source.length; i++) {
-            if((i/numRows)%2==0){
-                flag = false;
-            }else{
-                flag = true;
-            }
-            int k = !flag ? i%numRows : numRows - i%numRows;
-            Stack<Character> stack = stacks[k];
-            stack.push(source[i]);
-        }
+        //每x个数循环一次
+        int x = numRows+numRows-2;
+        //每一次占n-1个长度
+        int l = numRows-1;
 
-        return "";
+        //计算二维数组长度
+        int len = (1+source.length/x)*l;
+
+        //生成二维数组
+        char [][] res = new char[numRows][len];
+
+        int k = 0,j = 0,m = 0;
+
+        boolean flag = true;
+
+        for (int i = 0; i < source.length; i++,m++) {
+            res[k][j] = source[i];
+            if((m+1)%numRows == 0){
+                flag = !flag;
+            }
+
+            if((i)%x==0){
+                flag = true;
+                m = 0;
+            }
+
+            if(flag){
+                k++;
+            }else{
+                k--;
+                j++;
+            }
+
+        }
+        int y = 0;
+        for (int i = 0; i < res.length; i++) {
+            for (int n = 0; n < res[i].length; n++) {
+                if(res[i][n] != 0){
+                    source[y] = res[i][n];
+                    y++;
+                }
+            }
+        }
+        return new String(source);
     }
 
     public static void main(String[] args) {
