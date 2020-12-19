@@ -1,5 +1,7 @@
 package com.hzq.netty.leetcode.arrays;
 
+import java.util.Stack;
+
 /**
  * @Description: TODO
  * @Auth: Huangzq
@@ -7,15 +9,58 @@ package com.hzq.netty.leetcode.arrays;
  */
 public class Dp {
     public static void main(String[] args) {
-        int a = 3;
+        /*int a = 3;
 
         int[] b = {7, 5, 1, 6, 4};
 
         Dp dp = new Dp();
         int[] res = dp.mergeSort(b);
-        System.out.println(res);
+        System.out.println(res);*/
 //        System.out.println(dp.hammingWeight(5));
 //        System.out.println(dp.waysToChange(900750));
+
+        /*int[] b = {1,0};
+        int[] a = {1,0};
+        System.out.println(validateStackSequences(a,b));*/
+
+        String a = "";
+        String b = "a";
+        System.out.println(findTheDifference(a,b));
+    }
+
+
+    /**
+     * 389. 找不同
+     * */
+    public static char findTheDifference(String s, String t) {
+        char[] a = (s+t).toCharArray();
+        int res = a[0];
+        for (int i = 1; i < a.length; i++) {
+            res = res^a[i];
+        }
+        return (char) res;
+    }
+
+    /**
+     *  31. 栈的压入、弹出序列
+     * */
+    public static boolean validateStackSequences(int[] pushed, int[] popped) {
+        /*if(pushed.length==0&&popped.length==0){
+            return true;
+        }else if(pushed.length==0 || popped.length==0){
+            return false;
+        }*/
+        Stack<Integer> sin = new Stack<>();
+        int k = 0,i = 0;
+
+        for (;i < pushed.length; i++) {
+            sin.push(pushed[i]);
+            while (!sin.isEmpty() && sin.peek()==popped[k]){
+                sin.pop();
+                k++;
+            }
+        }
+        return sin.isEmpty();
     }
 
     /**
