@@ -1,5 +1,6 @@
 package com.hzq.netty.leetcode.arrays;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -23,9 +24,40 @@ public class Dp {
         int[] a = {1,0};
         System.out.println(validateStackSequences(a,b));*/
 
-        String a = "";
+        /*String a = "";
         String b = "a";
-        System.out.println(findTheDifference(a,b));
+        System.out.println(findTheDifference(a,b));*/
+
+        int[] a = {1,2,3};
+        int[] b = {1,2};
+        System.out.println(findContentChildren(a,b));
+    }
+
+    /**
+     * 455. 分发饼干
+     * */
+    public static int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int i = 0;
+        int j = 0;
+        int r = 0;
+
+        for (; i < g.length; i++) {
+            if(j==s.length){
+                break;
+            }
+            for (; j < s.length; ) {
+                if(g[i]<=s[j]){
+                    r++;
+                    j++;
+                    break;
+                }
+                j++;
+            }
+        }
+        return r;
     }
 
 
