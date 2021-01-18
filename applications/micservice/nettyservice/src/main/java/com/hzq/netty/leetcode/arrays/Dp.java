@@ -1,7 +1,8 @@
 package com.hzq.netty.leetcode.arrays;
 
-import java.util.Arrays;
-import java.util.Stack;
+import com.alibaba.fastjson.JSON;
+
+import java.util.*;
 
 /**
  * @Description: TODO
@@ -28,10 +29,195 @@ public class Dp {
         String b = "a";
         System.out.println(findTheDifference(a,b));*/
 
-        int[] a = {1,2,3};
+        /*int[] a = {1,2,3};
         int[] b = {1,2};
-        System.out.println(findContentChildren(a,b));
+        System.out.println(findContentChildren(a,b));*/
+
+        /*System.out.println(fib(6));*/
+//        System.out.println(JSONObject.toJSONString(largeGroupPositions("aaa")));
+
+        /*List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john00@mail.com"));
+        accounts.add(Arrays.asList("John", "johnnybravo@mail.com"));
+        accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john_newyork@mail.com"));
+        accounts.add(Arrays.asList("Mary", "mary@mail.com"));*/
+
+        /*
+        * [["David","David0@m.co","David1@m.co"],
+        * ["David","David3@m.co","David4@m.co"],
+        * ["David","David4@m.co","David5@m.co"],
+        * ["David","David2@m.co","David3@m.co"],
+        * ["David","David1@m.co","David2@m.co"]]
+        * */
+
+        List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("David","David0@m.co","David1@m.co"));
+        accounts.add(Arrays.asList("David","David3@m.co","David4@m.co"));
+        accounts.add(Arrays.asList("David","David4@m.co","David5@m.co"));
+        accounts.add(Arrays.asList("David","David2@m.co","David3@m.co"));
+        accounts.add(Arrays.asList("David","David1@m.co","David2@m.co"));
+
+        System.out.println(JSON.toJSONString(accountsMerge(accounts)));
     }
+
+    public static List<List<String>> accountsMerge(List<List<String>> accounts) {
+        Map<String , List<Set<String>>> map = new HashMap<>();
+        for (int i = 0 ; i<accounts.size();i++) {
+            for (int j = i; j < accounts.size(); j++) {
+                List<String> account = accounts.get(j);
+                if(map.get(account.get(0)) == null){
+                    Set<String> tmp = new HashSet<>();
+                    tmp.addAll(account.subList(1,account.size()));
+                    List<Set<String>> val = new ArrayList<>();
+                    val.add(tmp);
+                    map.put(account.get(0),val);
+                }else{
+                    List<Set<String>> list = map.get(account.get(0));
+                    boolean flag = false;
+                    for (String s : account.subList(1,account.size())) {
+                        for (Set<String> strings : list) {
+                            if(strings.contains(s)){
+                                strings.addAll(account.subList(1,account.size()));
+                                flag = true;
+                            }
+                        }
+                        if(flag){
+                            break;
+                        }
+                    }
+
+                    if(!flag){
+                        Set<String> tmp = new HashSet<>();
+                        tmp.addAll(account.subList(1,account.size()));
+                        list.add(tmp);
+                    }
+                }
+            }
+
+        }
+
+        List<List<String>> lists = new ArrayList<>();
+
+        for (Map.Entry<String, List<Set<String>>> stringListEntry : map.entrySet()) {
+            for (Set<String> strings : stringListEntry.getValue()) {
+//                System.out.println(stringListEntry.getKey()+"-"+strings);
+                List<String> strings1 = new ArrayList<>();
+                strings1.add(stringListEntry.getKey());
+                strings1.addAll(sortString(strings));
+                lists.add(strings1);
+            }
+        }
+        return lists;
+    }
+
+    public static List<String> sortString(Set<String> strings) {
+        String[] arr = new String[strings.size()];
+        String[] source = strings.toArray(arr);
+        String str1 = "";
+        String str2 = "";
+        String temp = "";
+        int length = 0;
+        for (int i = 0; i < source.length; i++) {
+            for (int m = 0; m < source.length - 1; m++) {
+                str1 = source[m];
+                str2 = source[m + 1];
+                length = str1.length() > str2.length() ? str2.length() : str1.length();
+                for (int j = 0; j < length; j++) {
+                    if (str1.charAt(j) == str2.charAt(j)) {
+                        continue;
+                    }else if (str1.charAt(j) < str2.charAt(j)) {
+                        break;
+                    } else {
+                        temp = str1;
+                        source[m] = str2;
+                        source[m + 1] = temp;
+                    }
+                }
+            }
+
+        }
+
+        return Arrays.asList(source);
+    }
+
+    public static List<List<Integer>> largeGroupPositions(String s) {
+        if(s.length()<3){
+            return new ArrayList<>();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        char[] ss = s.toCharArray();
+        int i = 0 ,j=0;
+        while(true){
+            i=j;
+            while(true){
+                j++;
+                if(j<ss.length && ss[i]==ss[j]){
+                    //nothing
+                }else{
+                    break;
+                }
+            }
+
+            if(j-i>=3){
+                List<Integer> list = new ArrayList<>(2);
+                list.add(i);
+                list.add(j-1);
+                res.add(list);
+            }
+            if(j>ss.length-1){
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * 509. 斐波那契数
+     * */
+    public static int fib(int n) {
+        /*if(n==0){return 0;}
+        if(n==1){return 1;}
+        int s = 0;
+        int t1 = 0;
+        int t2 = 1;
+        for(int i = 2;i<=n;i++){
+            s=t1+t2;
+            t1=t2;
+            t2=s;
+        }
+        return s;*/
+
+        return fibDp(n,1,0);
+
+    }
+
+    public static int fibDp(int n,int t,int s){
+        if(n==1){
+            return 1;
+        }
+        return s+fibDp(n-1,s,t+s);
+    }
+
+    /**
+     * 188. 买卖股票的最佳时机 IV
+     * */
+    public static int maxProfit(int k, int[] prices) {
+        return 0;
+    }
+    /**
+     * 121. 买卖股票的最佳时机
+     * */
+    /*public static int maxProfit(int[] prices) {
+        int i = 0 , j = prices.length-1;
+        int r = 0;
+        while(true){
+            if(i>=j){break;}
+            if(){}
+        }
+
+        return r;
+    }*/
 
     /**
      * 455. 分发饼干
