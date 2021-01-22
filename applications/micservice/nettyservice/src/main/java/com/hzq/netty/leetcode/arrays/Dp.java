@@ -43,54 +43,132 @@ public class Dp {
         accounts.add(Arrays.asList("Mary", "mary@mail.com"));*/
 
         /*
-        * [["David","David0@m.co","David1@m.co"],
-        * ["David","David3@m.co","David4@m.co"],
-        * ["David","David4@m.co","David5@m.co"],
-        * ["David","David2@m.co","David3@m.co"],
-        * ["David","David1@m.co","David2@m.co"]]
+        * [["John","johnsmith@mail.com"
+        * ,"john_newyork@mail.com"],
+        * ["John","johnsmith@mail.com",
+        * "john00@mail.com"],
+        * ["Mary","mary@mail.com"],
+        * ["John","johnnybravo@mail.com"]]
         * */
 
-        List<List<String>> accounts = new ArrayList<>();
-        accounts.add(Arrays.asList("David","David0@m.co","David1@m.co"));
-        accounts.add(Arrays.asList("David","David3@m.co","David4@m.co"));
-        accounts.add(Arrays.asList("David","David4@m.co","David5@m.co"));
-        accounts.add(Arrays.asList("David","David2@m.co","David3@m.co"));
-        accounts.add(Arrays.asList("David","David1@m.co","David2@m.co"));
+        /*List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("John","johnsmith@mail.com","john_newyork@mail.com"));
+        accounts.add(Arrays.asList("John","johnsmith@mail.com","john00@mail.com"));
+        accounts.add(Arrays.asList("Mary", "mary@mail.com"));
+        accounts.add(Arrays.asList("John","johnnybravo@mail.com"));*/
 
-        System.out.println(JSON.toJSONString(accountsMerge(accounts)));
+        List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("David", "David0@m.co", "David1@m.co"));
+        accounts.add(Arrays.asList("David", "David3@m.co", "David4@m.co"));
+        accounts.add(Arrays.asList("David", "David4@m.co", "David5@m.co"));
+        accounts.add(Arrays.asList("David", "David2@m.co", "David3@m.co"));
+        accounts.add(Arrays.asList("David", "David1@m.co", "David2@m.co"));
+
+        System.out.println(JSON.toJSONString(accountsMerge1(accounts)));
+    }
+
+    public static List<List<String>> accountsMerge1(List<List<String>> accounts) {
+        Map<String, List<Set<String>>> map = new HashMap<>();
+        for (int i = 0; i < accounts.size(); i++) {
+            List<String> account = accounts.get(i);
+            if (map.get(account.get(0)) == null) {
+                Set<String> tmp = new HashSet<>();
+                tmp.addAll(account.subList(1, account.size()));
+                List<Set<String>> val = new ArrayList<>();
+                val.add(tmp);
+                map.put(account.get(0), val);
+            } else {
+                List<Set<String>> list = map.get(account.get(0));
+                Set<String> tmp = new HashSet<>();
+                tmp.addAll(account.subList(1, account.size()));
+                list.add(tmp);
+            }
+
+        }
+
+        List<List<String>> lists = new ArrayList<>();
+
+        for (Map.Entry<String, List<Set<String>>> stringListEntry : map.entrySet()) {
+            List<Set<String>> dfs = dfs(stringListEntry.getValue());
+            for (Set<String> strings : dfs) {
+                List<String> strings1 = new ArrayList<>();
+                strings1.add(stringListEntry.getKey());
+                strings1.addAll(sortString(strings));
+                lists.add(strings1);
+            }
+        }
+        return lists;
+    }
+
+    public static List<Set<String>> dfs (List<Set<String>> accounts){
+        List<Set<String>> result = new ArrayList<>();
+        boolean flag = false;
+        for (int i = 0; i < accounts.size(); i++) {
+            Set<String> account = accounts.get(i);
+            if (result.size() == 0) {
+                Set<String> tmp = new HashSet<>();
+                tmp.addAll(account);
+                result.add(tmp);
+            } else {
+                flag = false;
+                for (String s : account) {
+                    for (Set<String> strings : result) {
+                        if (strings.contains(s)) {
+                            strings.addAll(account);
+                            flag = true;
+                        }
+                    }
+                    if (flag) {
+                        break;
+                    }
+                }
+
+                if (!flag) {
+                    Set<String> tmp = new HashSet<>();
+                    tmp.addAll(account);
+                    result.add(tmp);
+                }
+            }
+
+        }
+
+        if(!flag){
+            return result;
+        }else{
+            return dfs(result);
+        }
+
     }
 
     public static List<List<String>> accountsMerge(List<List<String>> accounts) {
-        Map<String , List<Set<String>>> map = new HashMap<>();
-        for (int i = 0 ; i<accounts.size();i++) {
-            for (int j = i; j < accounts.size(); j++) {
-                List<String> account = accounts.get(j);
-                if(map.get(account.get(0)) == null){
-                    Set<String> tmp = new HashSet<>();
-                    tmp.addAll(account.subList(1,account.size()));
-                    List<Set<String>> val = new ArrayList<>();
-                    val.add(tmp);
-                    map.put(account.get(0),val);
-                }else{
-                    List<Set<String>> list = map.get(account.get(0));
-                    boolean flag = false;
-                    for (String s : account.subList(1,account.size())) {
-                        for (Set<String> strings : list) {
-                            if(strings.contains(s)){
-                                strings.addAll(account.subList(1,account.size()));
-                                flag = true;
-                            }
-                        }
-                        if(flag){
-                            break;
+        Map<String, List<Set<String>>> map = new HashMap<>();
+        for (int i = 0; i < accounts.size(); i++) {
+            List<String> account = accounts.get(i);
+            if (map.get(account.get(0)) == null) {
+                Set<String> tmp = new HashSet<>();
+                tmp.addAll(account.subList(1, account.size()));
+                List<Set<String>> val = new ArrayList<>();
+                val.add(tmp);
+                map.put(account.get(0), val);
+            } else {
+                List<Set<String>> list = map.get(account.get(0));
+                boolean flag = false;
+                for (String s : account.subList(1, account.size())) {
+                    for (Set<String> strings : list) {
+                        if (strings.contains(s)) {
+                            strings.addAll(account.subList(1, account.size()));
+                            flag = true;
                         }
                     }
+                    if (flag) {
+                        break;
+                    }
+                }
 
-                    if(!flag){
-                        Set<String> tmp = new HashSet<>();
-                        tmp.addAll(account.subList(1,account.size()));
-                        list.add(tmp);
-                    }
+                if (!flag) {
+                    Set<String> tmp = new HashSet<>();
+                    tmp.addAll(account.subList(1, account.size()));
+                    list.add(tmp);
                 }
             }
 
@@ -125,7 +203,7 @@ public class Dp {
                 for (int j = 0; j < length; j++) {
                     if (str1.charAt(j) == str2.charAt(j)) {
                         continue;
-                    }else if (str1.charAt(j) < str2.charAt(j)) {
+                    } else if (str1.charAt(j) < str2.charAt(j)) {
                         break;
                     } else {
                         temp = str1;
@@ -141,30 +219,30 @@ public class Dp {
     }
 
     public static List<List<Integer>> largeGroupPositions(String s) {
-        if(s.length()<3){
+        if (s.length() < 3) {
             return new ArrayList<>();
         }
         List<List<Integer>> res = new ArrayList<>();
         char[] ss = s.toCharArray();
-        int i = 0 ,j=0;
-        while(true){
-            i=j;
-            while(true){
+        int i = 0, j = 0;
+        while (true) {
+            i = j;
+            while (true) {
                 j++;
-                if(j<ss.length && ss[i]==ss[j]){
+                if (j < ss.length && ss[i] == ss[j]) {
                     //nothing
-                }else{
+                } else {
                     break;
                 }
             }
 
-            if(j-i>=3){
+            if (j - i >= 3) {
                 List<Integer> list = new ArrayList<>(2);
                 list.add(i);
-                list.add(j-1);
+                list.add(j - 1);
                 res.add(list);
             }
-            if(j>ss.length-1){
+            if (j > ss.length - 1) {
                 break;
             }
         }
@@ -174,7 +252,7 @@ public class Dp {
 
     /**
      * 509. 斐波那契数
-     * */
+     */
     public static int fib(int n) {
         /*if(n==0){return 0;}
         if(n==1){return 1;}
@@ -188,20 +266,20 @@ public class Dp {
         }
         return s;*/
 
-        return fibDp(n,1,0);
+        return fibDp(n, 1, 0);
 
     }
 
-    public static int fibDp(int n,int t,int s){
-        if(n==1){
+    public static int fibDp(int n, int t, int s) {
+        if (n == 1) {
             return 1;
         }
-        return s+fibDp(n-1,s,t+s);
+        return s + fibDp(n - 1, s, t + s);
     }
 
     /**
      * 188. 买卖股票的最佳时机 IV
-     * */
+     */
     public static int maxProfit(int k, int[] prices) {
         return 0;
     }
@@ -221,7 +299,7 @@ public class Dp {
 
     /**
      * 455. 分发饼干
-     * */
+     */
     public static int findContentChildren(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);
@@ -231,11 +309,11 @@ public class Dp {
         int r = 0;
 
         for (; i < g.length; i++) {
-            if(j==s.length){
+            if (j == s.length) {
                 break;
             }
             for (; j < s.length; ) {
-                if(g[i]<=s[j]){
+                if (g[i] <= s[j]) {
                     r++;
                     j++;
                     break;
@@ -249,19 +327,19 @@ public class Dp {
 
     /**
      * 389. 找不同
-     * */
+     */
     public static char findTheDifference(String s, String t) {
-        char[] a = (s+t).toCharArray();
+        char[] a = (s + t).toCharArray();
         int res = a[0];
         for (int i = 1; i < a.length; i++) {
-            res = res^a[i];
+            res = res ^ a[i];
         }
         return (char) res;
     }
 
     /**
-     *  31. 栈的压入、弹出序列
-     * */
+     * 31. 栈的压入、弹出序列
+     */
     public static boolean validateStackSequences(int[] pushed, int[] popped) {
         /*if(pushed.length==0&&popped.length==0){
             return true;
@@ -269,11 +347,11 @@ public class Dp {
             return false;
         }*/
         Stack<Integer> sin = new Stack<>();
-        int k = 0,i = 0;
+        int k = 0, i = 0;
 
-        for (;i < pushed.length; i++) {
+        for (; i < pushed.length; i++) {
             sin.push(pushed[i]);
-            while (!sin.isEmpty() && sin.peek()==popped[k]){
+            while (!sin.isEmpty() && sin.peek() == popped[k]) {
                 sin.pop();
                 k++;
             }
