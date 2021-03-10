@@ -58,6 +58,13 @@ public class NumMatrix {
         return res;
     }
 
+    /**
+     * @Description: 俄罗斯套娃  深度搜索
+     * @Author: Huangzq
+     * @Date: 2021/3/6 9:29
+     * @Param:
+     * @Return:
+     **/
     public static int maxEnvelopes(int[][] envelopes) {
         if(envelopes.length==0 || (envelopes[0].length==0)){
             return 0;
@@ -90,9 +97,13 @@ public class NumMatrix {
         return max;
     }
 
-
-
-
+    /**
+     * @Description: 俄罗斯套娃 严格递增
+     * @Author: Huangzq
+     * @Date: 2021/3/6 9:28
+     * @Param:
+     * @Return:
+     **/
     public static int maxEnvelopes1(int[][] es) {
         int n = es.length;
         int[] f = new int[n];
@@ -109,6 +120,32 @@ public class NumMatrix {
                 }
             }
             res = Math.max(res, f[i]);
+        }
+        return res;
+    }
+
+    /**
+     * @Description: 503. 下一个更大元素 II
+     * @Author: Huangzq
+     * @Date: 2021/3/6 9:41
+     * @Param:
+     * @Return:
+     **/
+    public static int[] nextGreaterElements(int[] nums) {
+        int[] res = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int t = i+1==nums.length?0:i+1;
+            while(t!=i){
+                if(nums[t]>nums[i]){
+                    res[i] = nums[t];
+                    break;
+                }
+                t++;
+                if(t==nums.length){t=0;}
+            }
+            if(t==i){
+                res[i] = -1;
+            }
         }
         return res;
     }
@@ -145,9 +182,12 @@ public class NumMatrix {
         /*System.out.println(countBits(5));*/
 
 //        int[][] envelopes = new int[][]{{5,4},{6,4},{6,7},{2,3}};
-        int[][] envelopes = new int[][]{{4,5},{4,6},{6,7},{2,3},{1,1}};
+        /*int[][] envelopes = new int[][]{{4,5},{4,6},{6,7},{2,3},{1,1}};
 
-        System.out.println(maxEnvelopes1(envelopes));
+        System.out.println(maxEnvelopes1(envelopes));*/
+
+        int[] envelopes = new int[]{1,2,1};
+        nextGreaterElements(envelopes);
 
     }
 }
