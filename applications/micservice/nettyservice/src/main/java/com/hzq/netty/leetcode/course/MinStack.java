@@ -3,6 +3,8 @@
  */
 package com.hzq.netty.leetcode.course;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedList;
 
 /**
@@ -106,6 +108,80 @@ public class MinStack {
         return res;
     }
 
+
+    private static BigDecimal getRate(Integer stock, Integer sale) {
+        stock = stock == null ? 0 : stock;
+        sale = sale == null ? 0 : sale;
+        BigDecimal actStock = new BigDecimal(stock);
+        BigDecimal sellStock = new BigDecimal(sale);
+
+        if (stock == 0 || sale == 0) {
+            return BigDecimal.ZERO;
+        }
+
+        if (stock.equals(sale)) {
+            return new BigDecimal(100);
+        }
+
+        BigDecimal res = sellStock.divide(actStock, 4, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+        if (res.equals(BigDecimal.ZERO)) {
+            res = new BigDecimal(0.01);
+        }
+
+        return res.setScale(2, RoundingMode.HALF_UP);
+
+    }
+
+    public static String removeDuplicates(String S) {
+        int t = 0;
+        int[] f = new int[S.length()];
+        for (int i = 0; i < S.length(); i++) {
+            if(f[t]==1){
+                t=i;
+            }
+            if(i!=t&&f[i]==0){
+                if(S.charAt(i)==S.charAt(t)){
+                    f[i]=1;
+                    f[t]=1;
+                    t=0;i=0;
+                }
+                t=i;
+            }
+        }
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < f.length; i++) {
+            if(f[i]==0){
+                s.append(S.charAt(i));
+            }
+        }
+        return s.toString();
+    }
+
+    public static String removeDuplicates1(String S) {
+            LinkedList<Character> stack = new LinkedList<>();
+            for (int i = 0; i < S.length(); i++) {
+                char t = S.charAt(i);
+                Character peek = stack.peek();
+                if(peek==null){
+                    stack.push(t);
+                    continue;
+                }
+                if(peek.equals(t)){
+                    stack.pop();
+                }else {
+                    stack.push(t);
+                }
+            }
+            StringBuilder s = new StringBuilder();
+            while(true){
+                if (stack.isEmpty()){
+                    break;
+                }
+                s.append(stack.removeLast().charValue());
+            }
+            return s.toString();
+    }
+
     public static void main(String[] args) {
         /*MinStack cQueue = new MinStack();
         cQueue.push(-2);
@@ -115,8 +191,10 @@ public class MinStack {
         cQueue.pop();
         System.out.println(cQueue.top());
         System.out.println(cQueue.min());*/
-        MinStack cQueue = new MinStack();
+//        MinStack cQueue = new MinStack();
 //        System.out.println(cQueue.reverseLeftWords("abcde",1));;
-        System.out.println(cQueue.maxSlidingWindow(new int[]{1,3,-1,-3,5,3,6,7},3));;
+//        System.out.println(cQueue.maxSlidingWindow(new int[]{1,3,-1,-3,5,3,6,7},3));;
+
+        System.out.println(removeDuplicates1("aaaa"));
     }
 }
