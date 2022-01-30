@@ -3,7 +3,6 @@ package com.hzq.netty.gupao.proxy.dynamicproxy.proxyimpl;
 import com.hzq.netty.gupao.proxy.dynamicproxy.Person;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
@@ -12,7 +11,7 @@ import java.lang.reflect.Proxy;
  * @Auth: Huangzq
  * @Date: Created in 2020-01-07
  */
-public class MyMeipo implements MyInvocationHandler {
+public class MyMeipo implements InvocationHandler {
     private Person person;
 
     public Object getInstance(Person person){
@@ -20,7 +19,7 @@ public class MyMeipo implements MyInvocationHandler {
 
         Class<?> aClass = person.getClass();
 
-        return MyProxy.newProxyInstance(new MyClassLoader(),aClass.getInterfaces(),this);
+        return Proxy.newProxyInstance(aClass.getClassLoader(),aClass.getInterfaces(),this);
     }
 
     @Override

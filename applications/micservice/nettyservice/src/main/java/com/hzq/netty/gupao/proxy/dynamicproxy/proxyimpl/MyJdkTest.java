@@ -2,7 +2,6 @@ package com.hzq.netty.gupao.proxy.dynamicproxy.proxyimpl;
 
 import com.hzq.netty.gupao.proxy.dynamicproxy.Person;
 import com.hzq.netty.gupao.proxy.dynamicproxy.jdkproxy.Girl;
-import com.hzq.netty.gupao.proxy.dynamicproxy.jdkproxy.Meipo;
 
 /**
  * @Description: TODO
