@@ -621,6 +621,7 @@ public class Dp {
 
 
     public static void main(String[] args) {
+        //测试仓库
         System.out.println(nthUglyNumber(10));
 
         /*int a = 3;
