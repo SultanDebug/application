@@ -1,7 +1,5 @@
 package com.hzq.netty.leetcode.arrays;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.*;
 
 /**
@@ -10,63 +8,6 @@ import java.util.*;
  * @Date: Created in 2020-04-18
  */
 public class Dp {
-    public static void main(String[] args) {
-        /*int a = 3;
-
-        int[] b = {7, 5, 1, 6, 4};
-
-        Dp dp = new Dp();
-        int[] res = dp.mergeSort(b);
-        System.out.println(res);*/
-//        System.out.println(dp.hammingWeight(5));
-//        System.out.println(dp.waysToChange(900750));
-
-        /*int[] b = {1,0};
-        int[] a = {1,0};
-        System.out.println(validateStackSequences(a,b));*/
-
-        /*String a = "";
-        String b = "a";
-        System.out.println(findTheDifference(a,b));*/
-
-        /*int[] a = {1,2,3};
-        int[] b = {1,2};
-        System.out.println(findContentChildren(a,b));*/
-
-        /*System.out.println(fib(6));*/
-//        System.out.println(JSONObject.toJSONString(largeGroupPositions("aaa")));
-
-        /*List<List<String>> accounts = new ArrayList<>();
-        accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john00@mail.com"));
-        accounts.add(Arrays.asList("John", "johnnybravo@mail.com"));
-        accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john_newyork@mail.com"));
-        accounts.add(Arrays.asList("Mary", "mary@mail.com"));*/
-
-        /*
-        * [["John","johnsmith@mail.com"
-        * ,"john_newyork@mail.com"],
-        * ["John","johnsmith@mail.com",
-        * "john00@mail.com"],
-        * ["Mary","mary@mail.com"],
-        * ["John","johnnybravo@mail.com"]]
-        * */
-
-        /*List<List<String>> accounts = new ArrayList<>();
-        accounts.add(Arrays.asList("John","johnsmith@mail.com","john_newyork@mail.com"));
-        accounts.add(Arrays.asList("John","johnsmith@mail.com","john00@mail.com"));
-        accounts.add(Arrays.asList("Mary", "mary@mail.com"));
-        accounts.add(Arrays.asList("John","johnnybravo@mail.com"));*/
-
-        List<List<String>> accounts = new ArrayList<>();
-        accounts.add(Arrays.asList("David", "David0@m.co", "David1@m.co"));
-        accounts.add(Arrays.asList("David", "David3@m.co", "David4@m.co"));
-        accounts.add(Arrays.asList("David", "David4@m.co", "David5@m.co"));
-        accounts.add(Arrays.asList("David", "David2@m.co", "David3@m.co"));
-        accounts.add(Arrays.asList("David", "David1@m.co", "David2@m.co"));
-
-        System.out.println(JSON.toJSONString(accountsMerge1(accounts)));
-    }
-
     public static List<List<String>> accountsMerge1(List<List<String>> accounts) {
         Map<String, List<Set<String>>> map = new HashMap<>();
         for (int i = 0; i < accounts.size(); i++) {
@@ -100,7 +41,7 @@ public class Dp {
         return lists;
     }
 
-    public static List<Set<String>> dfs (List<Set<String>> accounts){
+    public static List<Set<String>> dfs(List<Set<String>> accounts) {
         List<Set<String>> result = new ArrayList<>();
         boolean flag = false;
         for (int i = 0; i < accounts.size(); i++) {
@@ -132,9 +73,9 @@ public class Dp {
 
         }
 
-        if(!flag){
+        if (!flag) {
             return result;
-        }else{
+        } else {
             return dfs(result);
         }
 
@@ -642,5 +583,100 @@ public class Dp {
         return res;
     }
 
+
+    /**
+     * 剑指 Offer 49. 丑数
+     * 我们把只包含质因子 2、3 和 5 的数称作丑数（Ugly Number）。求按从小到大的顺序的第 n 个丑数。
+     *
+     * @Description: TODO
+     * @Author: Huangzq
+     * @Date: 2022/1/30 16:30
+     **/
+    public static int nthUglyNumber(int n) {
+        int x = 0, y = 0, z = 0;
+        int[] dp = new int[n];
+        int xx = 0, yy = 0, zz = 0;
+        dp[0] = 1;
+        for (int i = 1; i < n; i++) {
+            xx = dp[x] * 2;
+            yy = dp[y] * 3;
+            zz = dp[z] * 5;
+
+            int t = Math.min(Math.min(xx, yy), zz);
+            if (xx == t) {
+                dp[i] = xx;
+                x++;
+            }
+            if (yy == t) {
+                dp[i] = yy;
+                y++;
+            }
+            if (zz == t) {
+                dp[i] = zz;
+                z++;
+            }
+        }
+        return dp[n - 1];
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(nthUglyNumber(10));
+
+        /*int a = 3;
+
+        int[] b = {7, 5, 1, 6, 4};
+
+        Dp dp = new Dp();
+        int[] res = dp.mergeSort(b);
+        System.out.println(res);*/
+//        System.out.println(dp.hammingWeight(5));
+//        System.out.println(dp.waysToChange(900750));
+
+        /*int[] b = {1,0};
+        int[] a = {1,0};
+        System.out.println(validateStackSequences(a,b));*/
+
+        /*String a = "";
+        String b = "a";
+        System.out.println(findTheDifference(a,b));*/
+
+        /*int[] a = {1,2,3};
+        int[] b = {1,2};
+        System.out.println(findContentChildren(a,b));*/
+
+        /*System.out.println(fib(6));*/
+//        System.out.println(JSONObject.toJSONString(largeGroupPositions("aaa")));
+
+        /*List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john00@mail.com"));
+        accounts.add(Arrays.asList("John", "johnnybravo@mail.com"));
+        accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john_newyork@mail.com"));
+        accounts.add(Arrays.asList("Mary", "mary@mail.com"));*/
+
+        /*
+         * [["John","johnsmith@mail.com"
+         * ,"john_newyork@mail.com"],
+         * ["John","johnsmith@mail.com",
+         * "john00@mail.com"],
+         * ["Mary","mary@mail.com"],
+         * ["John","johnnybravo@mail.com"]]
+         * */
+
+        /*List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("John","johnsmith@mail.com","john_newyork@mail.com"));
+        accounts.add(Arrays.asList("John","johnsmith@mail.com","john00@mail.com"));
+        accounts.add(Arrays.asList("Mary", "mary@mail.com"));
+        accounts.add(Arrays.asList("John","johnnybravo@mail.com"));*/
+
+        /*List<List<String>> accounts = new ArrayList<>();
+        accounts.add(Arrays.asList("David", "David0@m.co", "David1@m.co"));
+        accounts.add(Arrays.asList("David", "David3@m.co", "David4@m.co"));
+        accounts.add(Arrays.asList("David", "David4@m.co", "David5@m.co"));
+        accounts.add(Arrays.asList("David", "David2@m.co", "David3@m.co"));
+        accounts.add(Arrays.asList("David", "David1@m.co", "David2@m.co"));
+
+        System.out.println(JSON.toJSONString(accountsMerge1(accounts)));*/
+    }
 
 }
