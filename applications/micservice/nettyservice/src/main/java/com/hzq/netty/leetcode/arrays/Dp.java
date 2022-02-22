@@ -619,10 +619,89 @@ public class Dp {
         return dp[n - 1];
     }
 
+    /**
+     * 剑指 Offer 60. n 个骰子的点数
+     * 把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。
+     * 你需要用一个浮点数数组返回答案，其中第 i 个元素代表这 n 个骰子所能掷出的点数集合中第 i 小的那个的概率
+     * @param:
+     * @return: {@link }
+     * @author: Huangzq
+     * @date: 2022/2/21 19:50
+     */
+    public static double[] dicesProbability(int n) {
+        double[][] tmp = new double[n+1][6*n+1];
+        for (int i = 1; i < 7; i++) {
+            tmp[1][i] = 1.0/6.0;
+        }
+
+
+
+        for (int i = 2; i <= n; i++) {
+            for (int j = i; j <= 6*i; j++) {
+                double t = 0;
+                for (int k = j; k>=i && j-k<6 ; k--) {
+                    t+=tmp[i-1][k-1]/6.0;
+                }
+                tmp[i][j]=t;
+            }
+        }
+        double[] doubles = Arrays.copyOfRange(tmp[n], n, tmp[n].length);
+        for (int j = 0; j < doubles.length; j++) {
+            System.out.print(doubles[j]+"/");
+        }
+
+        /*double[] dp = new double[6];
+        Arrays.fill(dp, 1.0 / 6.0);
+        for (int i = 2; i <= n; i++) {
+            double[] tmp = new double[5 * i + 1];
+            for (int j = 0; j < dp.length; j++) {
+                for (int k = 0; k < 6; k++) {
+                    tmp[j + k] += dp[j] / 6.0;
+                }
+            }
+            dp = tmp;
+        }
+
+        for (int j = 0; j < dp.length; j++) {
+            System.out.print(dp[j]+"/");
+        }*/
+
+//        return Arrays.copyOfRange(tmp[n],n,tmp[n].length);
+        return null;
+    }
+
+    /**
+     * 剑指 Offer 63. 股票的最大利润
+     * 假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
+     * @param:
+     * @return: {@link }
+     * @author: Huangzq
+     * @date: 2022/2/22 9:18
+     */
+    public static int maxProfit(int[] prices) {
+        if(prices.length==0)return 0;
+        int min=prices[0],max=0;
+        for (int i = 1; i < prices.length; i++) {
+            min = Math.min(min,prices[i]);
+            max = Math.max(max,prices[i]-min);
+        }
+
+        return max;
+    }
+
+    /*public static boolean exist(char[][] board, String word) {
+
+    }*/
 
     public static void main(String[] args) {
+
+        int[] a = new int[]{7,1,5,3,6,4};
+        System.out.println(maxProfit(a));
+
+//        dicesProbability(1);
+
         //测试仓库
-        System.out.println(nthUglyNumber(10));
+//        System.out.println(nthUglyNumber(10));
 
         /*int a = 3;
 
