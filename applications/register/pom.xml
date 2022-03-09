@@ -12,6 +12,7 @@
     <artifactId>register</artifactId>
     <name>register</name>
     <version>1.0</version>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
