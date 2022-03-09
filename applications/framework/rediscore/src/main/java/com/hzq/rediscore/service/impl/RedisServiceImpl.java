@@ -2,10 +2,10 @@ package com.hzq.rediscore.service.impl;
 
 import com.hzq.rediscore.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -58,7 +58,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void delete(String key) {
-        if(StringUtils.isNotBlank(key)){
+        if(!StringUtils.isEmpty(key)){
             redisTemplate.delete(key);
         }
     }
