@@ -30,6 +30,7 @@
         <module>micservice</module>
         <module>framework</module>
         <module>direct-service</module>
+        <module>test-learn</module>
     </modules>
 
     <!--Spring Boot版本-->
