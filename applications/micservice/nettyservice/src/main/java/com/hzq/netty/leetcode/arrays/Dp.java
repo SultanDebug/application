@@ -1154,23 +1154,94 @@ public class Dp {
         }
         return middles;
     }
-    
-    
+
+    /**
+     * 剑指 Offer 37. 序列化二叉树 分别用来序列化和反序列化二叉树
+     *
+     * @param:
+     * @return: {@link }
+     * @author: Huangzq
+     * @date: 2022/3/10 16:44
+     */
+    public static String serialize(TreeNode root) {
+        if(root==null){
+            return "[]";
+        }
+        List<Integer> res = new ArrayList<>();
+        serDfs(root,res);
+        return res.toString();
+    }
+
+    public static void serDfs(TreeNode root,List<Integer> res){
+        res.add(root.val);
+
+        if(root.right==null && root.left==null){return;}
+        if(root.left!=null){
+            serDfs(root.left,res);
+        }else{
+            res.add(null);
+        }
+
+        if(root.right!=null){
+            serDfs(root.right,res);
+        }else{
+            res.add(null);
+        }
+    }
+
+    // Decodes your encoded data to tree.
+    public static TreeNode deserialize(String data) {
+        if(data==null || data.equals("[]")){
+            return null;
+        }
+        data = data.substring(1,data.length()-1);
+        String[] split = data.split(",");
+        int root = Integer.parseInt(split[0]);
+        TreeNode head = new TreeNode(root);
+        TreeNode tail = head;
+
+        for (int i = 1; i < split.length; i++) {
+            int left = 2*i+1;
+            int right = 2*i+2;
+            if(left>= split.length){
+                break;
+            }
+
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
 
-        Node t1 = new Node(4);
+        TreeNode t1 = new TreeNode(1);
+        TreeNode t2 = new TreeNode(2);
+        TreeNode t3 = new TreeNode(3);
+        t1.left=t2;
+        t1.right=t3;
+        TreeNode t4 = new TreeNode(4);
+        TreeNode t5 = new TreeNode(5);
+//        t2.left=t4;
+        t2.right=t5;
+
+        TreeNode t6 = new TreeNode(6);
+        TreeNode t7 = new TreeNode(7);
+//        t3.left=t6;
+        t3.right=t7;
+        System.out.println((serialize(t1)));
+
+
+        /*Node t1 = new Node(4);
         Node t2 = new Node(2);
         Node t3 = new Node(5);
         t1.left=t2;
         t1.right=t3;
         Node t4 = new Node(1);
         Node t5 = new Node(3);
-        t2.left=t4;
-        t2.right=t5;
+        t3.left=t4;
+        t3.right=t5;
 
 //        Node node = treeToDoublyList(t1);
-        System.out.println(middle(t1));
+        System.out.println(middle(t1))*/
 
         /*TreeNode t1 = new TreeNode(1);
         TreeNode t2 = new TreeNode(2);
