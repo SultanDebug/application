@@ -2,7 +2,6 @@ package com.hzq.algo.greedy;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +10,7 @@ import java.util.List;
  * @date 2022/8/6 11:40
  */
 @Data
-public class Node {
+public class NSPNode {
     public String value;
     public int weight;
     public boolean stop = false;
@@ -22,13 +21,13 @@ public class Node {
     public int pos;
 
     //树图参数
-    public Node parent;
-    public List<Node> next;
+    public NSPNode parent;
+    public List<NSPNode> next;
 
-    public Node() {
+    public NSPNode() {
     }
 
-    public Node(String value, int weight , int dist, boolean stop , int levle, int pos) {
+    public NSPNode(String value, int weight , int dist, boolean stop , int levle, int pos) {
         this.level = levle;
         this.pos = pos;
         this.stop = stop;

@@ -24,9 +24,9 @@ public class NShortestPath {
         map.put("不可阻挡", 1);
     }
 
-    Node root = new Node("root", 0, 0, false,0,0);
+    NSPNode root = new NSPNode("root", 0, 0, false,0,0);
 
-    static List<List<Node>> seg = new ArrayList<>();
+    static List<List<NSPNode>> seg = new ArrayList<>();
 
     static int totle = 1;
     static int row = 0;
@@ -35,17 +35,17 @@ public class NShortestPath {
     public static void init(String str) {
         char[] chars = str.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            List<Node> list = new ArrayList<>();
+            List<NSPNode> list = new ArrayList<>();
             StringBuilder builder = new StringBuilder();
             builder.append(chars[i]);
-            list.add(new Node(builder.toString(), 1, 1, i == str.length() - 1,i,totle));
+            list.add(new NSPNode(builder.toString(), 1, 1, i == str.length() - 1,i,totle));
             row++;
             totle++;
             for (int j = i + 1; j < str.length(); j++) {
                 builder.append(chars[j]);
                 String sBuild = builder.toString();
                 if (map.containsKey(sBuild)) {
-                    list.add(new Node(sBuild, 1, j - i + 1, j == str.length() - 1,i,totle));
+                    list.add(new NSPNode(sBuild, 1, j - i + 1, j == str.length() - 1,i,totle));
                     totle++;
                 }
             }
@@ -57,7 +57,7 @@ public class NShortestPath {
     public static void main(String[] args) {
         NShortestPath.init("祖国统一是不可阻挡");
 
-        for (List<Node> list : seg) {
+        for (List<NSPNode> list : seg) {
             System.out.println(JSONUtil.toJsonStr(list));
         }
 
@@ -78,13 +78,13 @@ public class NShortestPath {
         }
 
         for (int i = 0; i < seg.size(); i++) {
-            List<Node> rowNodes = seg.get(i);
-            for (int j = 0; j < rowNodes.size(); j++) {
-                Node colNodes = rowNodes.get(j);
+            List<NSPNode> rowNSPNodes = seg.get(i);
+            for (int j = 0; j < rowNSPNodes.size(); j++) {
+                NSPNode colNodes = rowNSPNodes.get(j);
                 nodes[colNodes.pos][colNodes.pos] = 2;
                 if(!colNodes.stop){
-                    for (Node node : seg.get(colNodes.level + colNodes.dist)) {
-                        nodes[colNodes.pos][node.pos] = 1;
+                    for (NSPNode NSPNode : seg.get(colNodes.level + colNodes.dist)) {
+                        nodes[colNodes.pos][NSPNode.pos] = 1;
                     }
                 }
             }

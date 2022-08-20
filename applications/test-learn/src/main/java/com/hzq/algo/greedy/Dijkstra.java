@@ -40,7 +40,7 @@ public class Dijkstra {
     public static Set<Integer> VS = Sets.newHashSet(2,3,4,5);
 
 
-    //路径图
+    //有向带权图
     public static int[][] map = new int[][]{
             {0 , 1,2,max,max},
             {max,0,3,max,4},

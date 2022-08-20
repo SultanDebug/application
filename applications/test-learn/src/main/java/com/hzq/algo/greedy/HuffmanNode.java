@@ -9,5 +9,18 @@ import lombok.Data;
  */
 @Data
 public class HuffmanNode {
+    public HuffmanNode parent;
+    public HuffmanNode left;
+    public HuffmanNode right;
+    public int weight;
+    public String val;
 
+    public String code;
+
+    public HuffmanNode(int weight, String val) {
+        this.weight = weight;
+        this.val = val;
+    }
+
+    public HuffmanNode() {}
 }
