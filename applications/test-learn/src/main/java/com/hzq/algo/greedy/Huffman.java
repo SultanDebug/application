@@ -33,6 +33,17 @@ public class Huffman {
         }
     }
 
+    /**
+     * Description:
+     *  创建哈夫曼树
+     *  1.根据权重排序
+     *  2.以最小的两节点组成一颗子树，权重为节点和，权重小的为左节点、编码为0，大的为右节点、编码为1
+     *  3.子树根节点加入列表，移除最小两个子节点，重新排序，循环创建、移除，知道列表只有一个根节点
+     * @param
+     * @return
+     * @author Huangzq
+     * @date 2022/8/24 15:21
+     */
     public void createTree(int [] weights, String[] values){
         for (int i = 0; i < weights.length; i++) {
             HuffmanNode node = new HuffmanNode(weights[i],values[i]);

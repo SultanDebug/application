@@ -51,6 +51,7 @@ public class Dijkstra {
 
     /**
      * Description:
+     * 求单源无负权到任意节点最短路径问题
      * 1.经过s中点到vs点  更新最短距离
      * 2.找到最短距离的点
      * 3.加入s，移除vs
@@ -61,7 +62,7 @@ public class Dijkstra {
         int cur = 1;
 
         //每次找到的最小节点编码
-        int minNode = 1;
+        Integer minNode = 1;
         while(!VS.isEmpty()){
             //每次找到的最小节点权值大小
             int minDist = max;
