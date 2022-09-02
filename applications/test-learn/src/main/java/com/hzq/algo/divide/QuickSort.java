@@ -3,6 +3,7 @@ package com.hzq.algo.divide;
 import com.xiaoleilu.hutool.json.JSONUtil;
 
 /**
+ * 找基准值，把数组分成两部分，一部分所有元素小于基准值，一部分所有元素大于基准值
  * @author Huangzq
  * @description
  * @date 2022/8/26 17:34
