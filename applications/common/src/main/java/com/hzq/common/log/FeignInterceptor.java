@@ -1,5 +1,6 @@
 package com.hzq.common.log;
 
+import com.hzq.common.utils.UserUtils;
 import feign.RequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -25,6 +26,10 @@ public class FeignInterceptor {
     @Bean
     public RequestInterceptor headerInterceptor() {
         return requestTemplate -> {
+
+            log.info("拦截器所在线程："+ Thread.currentThread().getId());
+            requestTemplate.header("user", UserUtils.getUser());
+
             String traceId = MDC.get(TRACE_ID);
             if (!StringUtils.isEmpty(traceId)) {
                 requestTemplate.header(TRACE_ID, traceId);

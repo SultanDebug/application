@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
  * @projectName applications
  * @date 2019/11/22 18:17
  */
-@Configuration
+//@Configuration
 //@EnableFeignClients(basePackages = "com.hzq.*")
 @Slf4j
 public class FeignAutoConfig {
-    @Bean
+//    @Bean
     public FeignInterceptor init(){
         log.info("feign 拦截器初始化成功");
         return new FeignInterceptor();
