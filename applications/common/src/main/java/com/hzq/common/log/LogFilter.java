@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -31,11 +32,16 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
+            //request
             HttpServletRequest req = (HttpServletRequest) servletRequest;
             String header = req.getHeader(TRACE_ID);
             String traceId = StringUtils.isEmpty(header) ?
                     UUID.randomUUID().toString().replace("-", "")
                     : header;
+
+            //response
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.addHeader(TRACE_ID, traceId);
 
             MDC.put(TRACE_ID, traceId);
             filterChain.doFilter(servletRequest, servletResponse);

@@ -6,6 +6,7 @@ import org.slf4j.MDC;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
 
@@ -39,7 +40,9 @@ public class AsynUtil {
                 public void doGet() {
                     try {
                         R call = this.supplier.get();
-                        list.add(call);
+                        if(Objects.nonNull(call)){
+                            list.add(call);
+                        }
                     } finally {
                         downLatch.countDown();
                     }
@@ -122,7 +125,9 @@ public class AsynUtil {
                             public void doGet() {
                                 try {
                                     R r = this.supplier.get();
-                                    list.add(r);
+                                    if(Objects.nonNull(r)){
+                                        list.add(r);
+                                    }
                                 } finally {
                                     downLatch.countDown();
                                 }
