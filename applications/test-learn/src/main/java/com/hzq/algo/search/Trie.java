@@ -4,6 +4,7 @@ import com.xiaoleilu.hutool.json.JSONObject;
 import com.xiaoleilu.hutool.json.JSONUtil;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,15 +50,11 @@ public class Trie {
     }
     static List<String> datas = new ArrayList<>();
     public static void getData(){
-
-        String path = Trie.class.getResource("/npathword.data").getPath();
-        File file = new File(path);
         try {
-            FileInputStream in = new FileInputStream(file);
-
-            InputStreamReader inReader = new InputStreamReader(in, "UTF-8");
-
+            InputStream in = Trie.class.getResourceAsStream("/npathword.data");
+            InputStreamReader inReader = new InputStreamReader(in, StandardCharsets.UTF_8);
             BufferedReader bufReader = new BufferedReader(inReader);
+
             String line = null;
             int i = 1;
             while((line = bufReader.readLine()) != null){

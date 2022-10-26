@@ -1,4 +1,4 @@
-package com.hzq.util;
+package com.hzq.google;
 
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;

@@ -1,6 +1,4 @@
-package com.hzq.util;
-
-import org.apache.logging.log4j.util.Strings;
+package com.hzq.google;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
