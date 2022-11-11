@@ -2,6 +2,10 @@ package com.hzq.algo.dp;
 
 /**
  * 最长公共子序列
+ * 最优子问题：
+ *      1.x[i] = y[j]  res=x[i]+{x[0..i-1],y[0..j-1]}
+ *      2.x[i] != y[j]  res=MAX({x[0..i-1],y[0..j]},{x[0..i],y[0..j-1]})
+ *
  *
  * @author Huangzq
  * @description
