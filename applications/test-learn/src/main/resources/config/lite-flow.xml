@@ -1,0 +1,5 @@
+<flow>
+    <chain name="chain1">
+        THEN(node1,node2,node3)
+    </chain>
+</flow>
