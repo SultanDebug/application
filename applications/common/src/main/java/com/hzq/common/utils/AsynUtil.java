@@ -140,6 +140,16 @@ public class AsynUtil {
         return list;
     }
 
+    public static <R> Future<R> submitToFuture(ExecutorService executorService ,Supplier<R> supplier){
+        String traceId = MDC.get(TRACE_ID);
+        return executorService.submit(new AsynCallableSupplier<R>(traceId, supplier) {
+            @Override
+            public R doCall() {
+                return this.supplier.get();
+            }
+        });
+    }
+
     @FunctionalInterface
     public interface TaskExecute {
         void execute();
@@ -209,6 +219,40 @@ public class AsynUtil {
         }
 
         public abstract void doGet();
+    }
+
+
+    public abstract static class AsynCallableSupplier<R> implements Callable<R> {
+        /**
+         * 日志id
+         * */
+        protected String traceId;
+
+        /**
+         * 任务逻辑
+         * */
+        protected Supplier<R> supplier;
+
+        protected AsynCallableSupplier(String traceId,Supplier<R> supplier) {
+            this.traceId = traceId;
+            this.supplier = supplier;
+        }
+
+        @Override
+        public R call() throws Exception {
+            try {
+                //线程变量透传
+                MDC.put(TRACE_ID,traceId);
+                return this.doCall();
+            }catch (Exception e){
+                throw new RuntimeException("运行异常："+e.getMessage());
+            }finally {
+                //线程变量清理
+                MDC.remove(TRACE_ID);
+            }
+        }
+
+        public abstract R doCall();
     }
 
 }
