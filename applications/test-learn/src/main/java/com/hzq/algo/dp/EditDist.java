@@ -40,8 +40,8 @@ package com.hzq.algo.dp;
  */
 public class EditDist {
     public static void main(String[] args) {
-        String s1 = "acd";
-        String s2 = "ab";
+        String s1 = "horse";
+        String s2 = "ros";
 
         char[] c1 = s1.toCharArray();
         char[] c2 = s2.toCharArray();

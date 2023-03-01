@@ -1,6 +1,9 @@
 package com.hzq.algo.leetcode;
 
-import com.alibaba.fastjson.JSON;
+
+
+
+import com.xiaoleilu.hutool.json.JSONUtil;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,7 +64,7 @@ public class Twitter {
         if(follows != null){
             for (Integer follow : follows) {
                 List<UserPost> tmp = userPostMap.get(follow);
-                if(tmp != null)results.addAll(tmp);
+                if(tmp != null){results.addAll(tmp);}
             }
         }
 
@@ -107,7 +110,7 @@ public class Twitter {
 //        obj.unfollow(2,1);
         List<Integer> param_5 = obj.getNewsFeed(1);
 
-        System.out.println(JSON.toJSONString(param_5));
+        System.out.println(JSONUtil.toJsonStr(param_5));
 
 //        obj.postTweet(2,5);
 //        obj.follow(1,2);
