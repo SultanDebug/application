@@ -1,7 +1,8 @@
-package com.hzq.algo;
+package com.hzq.thread;
 
 import com.google.common.collect.Lists;
 import com.xiaoleilu.hutool.json.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,16 +14,39 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description
  * @date 2022/8/17 10:52
  */
+@Slf4j
 public class ThreadConcurrentCall {
+
+    public static ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(
+            10,
+            100,
+            60L,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(100),
+            t -> {
+                Thread tt = new Thread(t);
+                tt.setName("my-thread");
+
+                tt.setUncaughtExceptionHandler((Thread ttt, Throwable e) -> {
+                    System.out.println("[" + ttt.getName() + "]:捕获到异常为：" + e.getMessage());
+                });
+                return tt;
+            },
+            new ThreadPoolExecutor.AbortPolicy() {
+                @Override
+                public void rejectedExecution(Runnable r, ThreadPoolExecutor pool) {
+                    log.warn("拒绝策略:: 总线程数：{}， 活动线程数：{}， 排队线程数：{}， 执行完成线程数：{}", pool.getTaskCount(),
+                            pool.getActiveCount(), pool.getQueue().size(), pool.getCompletedTaskCount());
+                }
+            });
+
 
     public static void main(String[] args) {
         all();
     }
 
-    public static void all(){
+    public static void all() {
         List<String> list = Collections.synchronizedList(Lists.newArrayList());
-
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 10, 1, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
 
         AtomicInteger integer = new AtomicInteger(1);
 
@@ -85,14 +109,14 @@ public class ThreadConcurrentCall {
 
 //            countDownLatch.countDown();
 
-            threadPoolExecutor.execute(() -> {
+            THREAD_POOL_EXECUTOR.execute(() -> {
                 try {
                     //获取令牌
                     semaphore.acquire();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("开始"+ finalI);
+                System.out.println("开始" + finalI);
                 try {
                     //栅栏阻塞
                     cyclicBarrier.await();
@@ -101,7 +125,7 @@ public class ThreadConcurrentCall {
                 } catch (BrokenBarrierException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("放行"+ finalI);
+                System.out.println("放行" + finalI);
                 list.add(integer.getAndAdd(1) + "");
                 //非阻塞式任务完成信号
                 countDownLatch.countDown();
@@ -114,6 +138,6 @@ public class ThreadConcurrentCall {
             throw new RuntimeException(e);
         }*/
         System.out.println(JSONUtil.toJsonStr(list));
-        threadPoolExecutor.shutdown();
+        THREAD_POOL_EXECUTOR.shutdown();
     }
 }
