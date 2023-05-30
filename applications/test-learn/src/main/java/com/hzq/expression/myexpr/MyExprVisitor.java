@@ -17,6 +17,20 @@ public interface MyExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStmt(MyExprParser.StmtContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code orExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrExpression(MyExprParser.OrExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code andExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndExpression(MyExprParser.AndExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code strExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.
 	 * @param ctx the parse tree
@@ -24,12 +38,19 @@ public interface MyExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStrExpression(MyExprParser.StrExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code andOrExpression}
+	 * Visit a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAndOrExpression(MyExprParser.AndOrExpressionContext ctx);
+	T visitNotExpression(MyExprParser.NotExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code domainExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDomainExpression(MyExprParser.DomainExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code subExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.

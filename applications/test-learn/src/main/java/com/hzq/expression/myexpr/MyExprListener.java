@@ -18,6 +18,30 @@ public interface MyExprListener extends ParseTreeListener {
 	 */
 	void exitStmt(MyExprParser.StmtContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code orExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrExpression(MyExprParser.OrExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code orExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrExpression(MyExprParser.OrExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code andExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndExpression(MyExprParser.AndExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code andExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndExpression(MyExprParser.AndExpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code strExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.
 	 * @param ctx the parse tree
@@ -30,17 +54,29 @@ public interface MyExprListener extends ParseTreeListener {
 	 */
 	void exitStrExpression(MyExprParser.StrExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code andOrExpression}
+	 * Enter a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterAndOrExpression(MyExprParser.AndOrExpressionContext ctx);
+	void enterNotExpression(MyExprParser.NotExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code andOrExpression}
+	 * Exit a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitAndOrExpression(MyExprParser.AndOrExpressionContext ctx);
+	void exitNotExpression(MyExprParser.NotExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code domainExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterDomainExpression(MyExprParser.DomainExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code domainExpression}
+	 * labeled alternative in {@link MyExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitDomainExpression(MyExprParser.DomainExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code subExpression}
 	 * labeled alternative in {@link MyExprParser#expr}.

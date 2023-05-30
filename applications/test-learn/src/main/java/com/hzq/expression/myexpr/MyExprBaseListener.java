@@ -29,6 +29,30 @@ public class MyExprBaseListener implements MyExprListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOrExpression(MyExprParser.OrExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOrExpression(MyExprParser.OrExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAndExpression(MyExprParser.AndExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAndExpression(MyExprParser.AndExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStrExpression(MyExprParser.StrExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -41,13 +65,25 @@ public class MyExprBaseListener implements MyExprListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAndOrExpression(MyExprParser.AndOrExpressionContext ctx) { }
+	@Override public void enterNotExpression(MyExprParser.NotExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAndOrExpression(MyExprParser.AndOrExpressionContext ctx) { }
+	@Override public void exitNotExpression(MyExprParser.NotExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDomainExpression(MyExprParser.DomainExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDomainExpression(MyExprParser.DomainExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

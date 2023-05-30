@@ -12,23 +12,35 @@ grammar MyExpr;
 */
 AND_: A N D;
 OR_: O R;
+NOT_: N O T;
+
+COL_: ':' | '=';
+
+HZQ_: H Z Q COL_;
 
 stmt: expr;
 expr:
-    left=expr opt=(AND_ | OR_) right=expr                           #andOrExpression
-    | left='(' exp=expr right=')'                            #subExpression
-//    | andOrExpr                           #andOrExpression
-    | STR_   #strExpression
+    left=expr opt=AND_ right=expr               #andExpression
+    | left=expr opt=OR_ right=expr               #orExpression
+    | left=expr opt=NOT_ right=expr               #notExpression
+    | left='(' exp=expr right=')'                       #subExpression
+    | field=STR_ col=COL_ left='(' exp=expr right=')'   #domainExpression
+    | STR_                                              #strExpression
     ;
 
 
 STR_: [\u0080-\ufffeA-Za-z0-9]+;
+SPECIAL_:['./_@%-&,;#?];
 
 fragment A : [aA];
 fragment N : [nN];
 fragment D : [dD];
 fragment O : [Oo];
 fragment R : [Rr];
+fragment H : [hH];
+fragment Z : [Zz];
+fragment Q : [Qq];
+fragment T : [Tt];
 
 WS: [ \t\r\n] ->skip;
 
