@@ -48,7 +48,7 @@ public class Trie {
         System.out.println("暴力倍数："+(l2/l1));
         System.out.println(check);
     }
-    static List<String> datas = new ArrayList<>();
+    public static List<String> datas = new ArrayList<>();
     public static void getData(){
         try {
             InputStream in = Trie.class.getResourceAsStream("/npathword.data");
