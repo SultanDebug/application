@@ -1,4 +1,4 @@
-package com.hzq.nlp;
+package com.hzq.nlp.segment;
 
 import com.hankcs.hanlp.collection.trie.DoubleArrayTrie;
 import com.hankcs.hanlp.collection.trie.bintrie.BinTrie;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @description
  * @date 2023/6/5 09:53
  */
-public class Segment {
+public class DictSegment {
 
     public static List<String> fullSegment(String str){
         List<String> res = new ArrayList<>();
@@ -165,22 +165,22 @@ public class Segment {
         System.out.println("DAT forward                              "+"==>"+DATrieLongestSegment(str));
 
         System.out.print("map匹配全切分:");
-        runPress(str, Segment::fullSegment);
+        runPress(str, DictSegment::fullSegment);
         System.out.print("map树全切分:");
-        runPress(str, Segment::tierByMapSegment);
+        runPress(str, DictSegment::tierByMapSegment);
         System.out.print("数组二分查找全切分:");
-        runPress(str, Segment::binTrieSegment);
+        runPress(str, DictSegment::binTrieSegment);
         System.out.print("双数组全切分:");
-        runPress(str, Segment::DATrieSegment);
+        runPress(str, DictSegment::DATrieSegment);
 
         System.out.print("map匹配正向最长切分:");
-        runPress(str, Segment::forwardSegment);
+        runPress(str, DictSegment::forwardSegment);
         System.out.print("map树正向最长切分:");
-        runPress(str, Segment::tierByMapForwardLongestSegment);
+        runPress(str, DictSegment::tierByMapForwardLongestSegment);
         System.out.print("数组二分查找正向最长切分:");
-        runPress(str, Segment::binTrieLongestSegment);
+        runPress(str, DictSegment::binTrieLongestSegment);
         System.out.print("双数组正向最长切分:");
-        runPress(str, Segment::DATrieLongestSegment);
+        runPress(str, DictSegment::DATrieLongestSegment);
 
         System.out.println("map匹配内存："+MemorySizeTool.getSizeMb(TrieTreeByMap.datas));
         System.out.println("map树内存："+MemorySizeTool.getSizeMb(TrieTreeByMap.root));
