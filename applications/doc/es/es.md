@@ -63,6 +63,17 @@
 > a.索引生成的时候做标准化
 > b.查询索引的时候对查询词条也要标准化
 
+- 插件
+> - Analysis Plugins - 分析插件,提供额外的分析器、过滤器等
+> - Discovery Plugins - 发现插件,提供额外的节点发现机制
+> - Ingest Plugins - 接收插件,提供额外的接收管道处理器
+> - Mapper Plugins - 映射插件,提供额外的字段类型
+> - Repository Plugins - 仓库插件,提供额外的快照/备份仓库类型
+> - Search Plugins - 搜索插件,提供额外的查询、过滤、排序等
+> - Security Plugins - 安全插件,提供额外的安全功能
+> - SQL Plugins - SQL插件,提供JDBC连接和SQL查询功能
+> - Watcher Plugins - 观察者插件,提供警报和通知功能
+
 ## API
 - 只返回部分字段
 ```html
