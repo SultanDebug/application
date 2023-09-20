@@ -1,7 +1,6 @@
 package com.hzq.nlp.segment;
 
 import com.hzq.nlp.util.RandomSelectUtil;
-import com.xiaoleilu.hutool.json.JSONUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,16 +69,32 @@ public class HiddenMarkovModel {
             if (i == 0) {
                 for (int j = 0; j < pi.length; j++) {
                     curStates[j] = pi[j] * emission[j][curDisplay];
+                    System.out.printf("cur:%s display：%s prob:%s , calculate： %s * %s .\n"
+                            , Status.valueByOrder(j).name()
+                            , Display.valueByOrder(curDisplay).name()
+                            , curStates[j]
+                            , pi[j]
+                            , emission[j][curDisplay]);
                 }
             } else {
-                //
-                for (int j = 0; j < pi.length; j++) {
+
+                for (int cur = 0; cur < pi.length; cur++) {
+                    //cur:当前状态
                     double[] curStatesTmp = new double[pi.length];
-                    for (int k = 0; k < prefix.length; k++) {
-                        //
-                        curStatesTmp[k] = prefix[k] * transition[k][j] * emission[k][curDisplay];
+                    for (int pre = 0; pre < pi.length; pre++) {
+                        //pre：前状态
+                        curStatesTmp[cur] = prefix[pre] * transition[pre][cur] * emission[cur][curDisplay];
+                        System.out.printf("pre:%s cur:%s display：%s prob:%s , calculate： %s * %s * %s.\n"
+                                , Status.valueByOrder(pre).name()
+                                , Status.valueByOrder(cur).name()
+                                , Display.valueByOrder(curDisplay).name()
+                                , curStatesTmp[cur]
+                                , prefix[pre]
+                                , transition[pre][cur]
+                                , emission[cur][curDisplay]);
                     }
-                    curStates[j] = maxProbably(curStatesTmp);
+                    //当前状态下，前一个最可能的状态
+                    curStates[cur] = maxProbably(curStatesTmp);
                 }
             }
 
@@ -125,7 +140,17 @@ public class HiddenMarkovModel {
 
         int[] source = new int[]{2, 1, 2, 0};
         int[] viterbi = viterbi(source, pi, transition, emission);
-        System.out.printf("\r结果：%s", JSONUtil.toJsonStr(viterbi));
+        List<String> list = new ArrayList<>();
+        for (int i : viterbi) {
+            list.add(Status.valueByOrder(i).name());
+        }
+
+        List<String> list1 = new ArrayList<>();
+        for (int i : source) {
+            list1.add(Display.valueByOrder(i).name());
+        }
+
+        System.out.printf("\r动作：%s，结果：%s", String.join(",", list1), String.join(",", list));
 
         /*double[] a = {0.1, 0.3, 0.5, 0.7, 0.9};
         double random = Math.random();
