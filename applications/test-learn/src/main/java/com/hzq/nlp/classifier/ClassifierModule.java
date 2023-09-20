@@ -39,15 +39,15 @@ public class ClassifierModule {
      */
     public static void train() {
         PerceptronNameGenderClassifier classifier = new PerceptronNameGenderClassifier();
-        System.out.println("训练评估值：" + classifier.train("预料集路径", 10, true));
+        System.out.println("训练评估值：" + classifier.train("D:\\coderepo\\spring-cloud-demo\\applications\\test-learn\\src\\main\\resources\\data\\test.csv", 1, true));
 
         LinearModel model = classifier.getModel();
-        try {
+        /*try {
             System.out.println("特征数量：" + model.parameter.length);
             model.save("模型路径", model.featureMap.entrySet(), 0, true);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     /**

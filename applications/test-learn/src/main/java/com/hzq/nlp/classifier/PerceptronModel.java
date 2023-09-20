@@ -7,10 +7,7 @@ import org.springframework.util.CollectionUtils;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 平均感知机
@@ -68,6 +65,7 @@ public class PerceptronModel {
 
 
             for (int i = 0; i < maxTimes; i++) {
+                shuffleArray(trainDatas);
                 for (TrainData trainData : trainDatas) {
                     version++;
                     int y = trainData.y;
@@ -81,6 +79,17 @@ public class PerceptronModel {
             System.out.printf("训练数据量%s，特征数量%s，版本%s", trainDatas.size(), featureMap.size(), version);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> void shuffleArray(List<T> ar) {
+        Random rnd = new Random();
+        for (int i = ar.size() - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            // Simple swap
+            T a = ar.get(index);
+            ar.set(index, ar.get(i));
+            ar.set(i, a);
         }
     }
 
@@ -121,7 +130,7 @@ public class PerceptronModel {
      * @date 2023/9/15 15:39
      */
     public int predict(String text) {
-        TrainData trainData = featureExtract(text, 0);
+        TrainData trainData = featureExtract(false, text, 0);
         return decode(trainData.features);
     }
 
@@ -168,7 +177,7 @@ public class PerceptronModel {
     public int decode(List<Integer> features) {
         double y = 0;
         for (Integer feature : features) {
-            y += weights[feature];
+            y += feature == -1 ? 0 : weights[feature];
         }
 
         return y < 0 ? -1 : 1;
@@ -195,7 +204,7 @@ public class PerceptronModel {
         List<TrainData> trainDatas = new ArrayList<>();
         for (String data : datas) {
             String[] split = data.split(",");
-            TrainData trainData = featureExtract(split[0], "男".equals(split[1]) ? 1 : -1);
+            TrainData trainData = featureExtract(true, split[0], "男".equals(split[1]) ? 1 : -1);
             trainDatas.add(trainData);
         }
         return trainDatas;
@@ -209,7 +218,7 @@ public class PerceptronModel {
      * @author Huangzq
      * @date 2023/9/15 15:41
      */
-    public TrainData featureExtract(String text, int y) {
+    public TrainData featureExtract(boolean isTrain, String text, int y) {
         if (text.length() <= 2) {
             text = "_" + text.substring(text.length() - 1);
         } else {
@@ -218,8 +227,8 @@ public class PerceptronModel {
 
         char[] chars = text.toCharArray();
 
-        int k1 = put("1_" + chars[0]);
-        int k2 = put("2_" + chars[1]);
+        int k1 = isTrain ? put("1_" + chars[0]) : featureMap.getOrDefault("1_" + chars[0], -1);
+        int k2 = isTrain ? put("2_" + chars[1]) : featureMap.getOrDefault("2_" + chars[1], -1);
 
         ArrayList<Integer> keys = Lists.newArrayList(k1, k2);
 
