@@ -19,24 +19,25 @@ import java.util.Collection;
  * @date 2023/10/16 17:32
  */
 @Slf4j
-public class EmbeddingTest {
+public class DeeplearningEmbeddingTest {
     private static Word2Vec word2Vec = null;
 
     public static void main(String[] args) {
         //训练
-        train();
+        deeplearningTrain();
 
         //加载
-//        load();
+        deeplearningLoad();
 
         //预测
-        predict();
+        deeplearningPredict();
 
         //测试
-//        test();
+        deeplearningTest();
     }
 
-    public static void test() {
+
+    public static void deeplearningTest() {
         /*String s = StringCleaning.stripPunct("王者荣耀");
         System.out.println(s);*/
 
@@ -46,10 +47,10 @@ public class EmbeddingTest {
         }
     }
 
-    public static void train() {
+    public static void deeplearningTrain() {
         //        HanLP.segment()
 //        InputStream resourceAsStream = EmbeddingTest.class.getClassLoader().getResourceAsStream("data/brand.csv");
-        String path = EmbeddingTest.class.getClassLoader().getResource("data/brand.csv").getPath();
+        String path = DeeplearningEmbeddingTest.class.getClassLoader().getResource("data/brand.csv").getPath();
         SentenceIterator iter = new LineSentenceIterator(new File(path));
         iter.setPreProcessor((SentencePreProcessor) String::toLowerCase);
 
@@ -75,7 +76,7 @@ public class EmbeddingTest {
     }
 
     public static void updateTrain() {
-        String path = EmbeddingTest.class.getClassLoader().getResource("data/brand.csv").getPath();
+        String path = DeeplearningEmbeddingTest.class.getClassLoader().getResource("data/brand.csv").getPath();
         SentenceIterator iter = new LineSentenceIterator(new File(path));
         iter.setPreProcessor((SentencePreProcessor) String::toLowerCase);
 
@@ -87,7 +88,7 @@ public class EmbeddingTest {
         word2Vec.fit();
     }
 
-    public static void load() {
+    public static void deeplearningLoad() {
         TokenizerFactory tokenizerFactory = new MyProTokenizerFactory();
 //        tokenizerFactory.setTokenPreProcessor(new CommonPreprocessor());
         word2Vec = new Word2Vec.Builder()
@@ -100,7 +101,7 @@ public class EmbeddingTest {
         word2Vec = WordVectorSerializer.readWord2VecModel("embedding.txt");
     }
 
-    public static void predict() {
+    public static void deeplearningPredict() {
         Collection<String> strings = word2Vec.wordsNearest(Arrays.asList("王者", "荣耀"), Arrays.asList(), 10);
 
         for (String string : strings) {
