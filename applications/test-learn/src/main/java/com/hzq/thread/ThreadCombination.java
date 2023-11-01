@@ -137,7 +137,7 @@ public class ThreadCombination {
     }
 
     public static void test() throws InterruptedException {
-        THREAD_POOL_EXECUTOR.execute(()->{
+        THREAD_POOL_EXECUTOR.execute(() -> {
             try {
                 log.info("c1");
                 try {
@@ -147,15 +147,15 @@ public class ThreadCombination {
                 }
                 log.error("c1拒绝策略:: 总线程数：{}， 活动线程数：{}， 排队线程数：{}， 执行完成线程数：{}", THREAD_POOL_EXECUTOR.getTaskCount(),
                         THREAD_POOL_EXECUTOR.getActiveCount(), THREAD_POOL_EXECUTOR.getQueue().size(), THREAD_POOL_EXECUTOR.getCompletedTaskCount());
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw e;
-            }finally {
+            } finally {
                 countDownLatch.countDown();
             }
 
         });
 
-        THREAD_POOL_EXECUTOR.execute(()->{
+        THREAD_POOL_EXECUTOR.execute(() -> {
             try {
                 log.info("c2");
                 try {
@@ -165,14 +165,14 @@ public class ThreadCombination {
                 }
                 log.error("c2拒绝策略:: 总线程数：{}， 活动线程数：{}， 排队线程数：{}， 执行完成线程数：{}", THREAD_POOL_EXECUTOR.getTaskCount(),
                         THREAD_POOL_EXECUTOR.getActiveCount(), THREAD_POOL_EXECUTOR.getQueue().size(), THREAD_POOL_EXECUTOR.getCompletedTaskCount());
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw e;
-            }finally {
+            } finally {
                 countDownLatch.countDown();
             }
         });
 
-        THREAD_POOL_EXECUTOR.execute(()->{
+        THREAD_POOL_EXECUTOR.execute(() -> {
             try {
                 log.info("c3");
                 try {
@@ -182,14 +182,50 @@ public class ThreadCombination {
                 }
                 log.error("c3拒绝策略:: 总线程数：{}， 活动线程数：{}， 排队线程数：{}， 执行完成线程数：{}", THREAD_POOL_EXECUTOR.getTaskCount(),
                         THREAD_POOL_EXECUTOR.getActiveCount(), THREAD_POOL_EXECUTOR.getQueue().size(), THREAD_POOL_EXECUTOR.getCompletedTaskCount());
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw e;
-            }finally {
+            } finally {
                 countDownLatch.countDown();
             }
         });
 
         countDownLatch.await();
+    }
+
+    /**
+     * 线程空时兼完全异步
+     *
+     * @param
+     * @return
+     * @author Huangzq
+     * @date 2023/11/1 10:26
+     */
+    public static void timeLimit() {
+        long start = System.nanoTime();
+        CompletableFuture<String> future = new CompletableFuture<>();
+
+        new Thread(
+                () -> {
+                    try {
+                        Thread.sleep(1000);
+                        future.complete("test");
+                    } catch (Exception e) {
+
+                    }
+                }
+        ).start();
+
+        try {
+
+            Thread.sleep(500);
+
+            String s = future.get(490, TimeUnit.MILLISECONDS);
+            System.out.println("结果：" + s);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println("耗时：" + (System.nanoTime() - start));
     }
 
     public static void cf() throws ExecutionException, InterruptedException {
