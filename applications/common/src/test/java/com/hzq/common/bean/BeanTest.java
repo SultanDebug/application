@@ -35,4 +35,16 @@ public class BeanTest {
         System.out.println(cBean.test1("test"));
     }
 
+
+    @Test
+    public void tmp() {
+        char s = '㍿';
+        char s1 = '☯';
+        String s2 = "\uD83D\uDCA3";
+        System.out.println(s);
+        System.out.println(s2);
+        System.out.println((int) s);
+
+    }
+
 }
