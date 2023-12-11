@@ -179,6 +179,54 @@ public class AsynUtil {
         });
     }
 
+    /**
+     * 异步任务控时【多任务】
+     *
+     * @param tasks           业务逻辑
+     * @param executorService 线程池
+     * @return 异步任务
+     * @author Huangzq
+     * @date 2023/11/1 15:53
+     */
+    public static <R> CompletableFuture<List<R>> excuteTask(List<Supplier<R>> tasks, ExecutorService executorService) {
+        CountDownLatch downLatch = new CountDownLatch(tasks.size());
+        CompletableFuture<List<R>> future = new CompletableFuture<>();
+        String traceId = MDC.get(CommonConstants.TRACE_ID);
+        List<R> list = Collections.synchronizedList(new ArrayList<>());
+        executorService.execute(() -> {
+            try {
+                MDC.put(CommonConstants.TRACE_ID, traceId);
+                CompletableFuture.allOf(
+                        tasks.stream()
+                                .map(o -> CompletableFuture.runAsync(new AsynSupplier<R>(traceId, o) {
+                                    @Override
+                                    public void doGet() {
+                                        try {
+                                            R r = this.supplier.get();
+                                            if (Objects.nonNull(r)) {
+                                                list.add(r);
+                                            }
+                                        } catch (Exception e) {
+                                            throw new RuntimeException("子任务运行异常：", e);
+                                        } finally {
+                                            downLatch.countDown();
+                                        }
+                                    }
+                                }, executorService))
+                                .toArray(CompletableFuture<?>[]::new)
+                ).get();
+                downLatch.await();
+                future.complete(list);
+            } catch (Exception e) {
+                throw new RuntimeException("主任务执行失败：", e);
+            } finally {
+                MDC.remove(CommonConstants.TRACE_ID);
+            }
+        });
+
+        return future;
+    }
+
     @FunctionalInterface
     public interface TaskExecute {
         void execute();
